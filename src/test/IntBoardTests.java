@@ -23,12 +23,12 @@ public class IntBoardTests {
 		
 	}
 	
-	@Test
+	/*@Test
 	public void testNearby() {
 		
+		assertEquals()
 		
-		
-	}
+	}*/
 	
 	
 	//adjacency tests
