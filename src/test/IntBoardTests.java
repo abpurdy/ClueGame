@@ -31,13 +31,11 @@ public class IntBoardTests {
 	/**Test adjacent cells for the top left cell.*/
 	public void testAdjacencyTopLeft() {
 		
-		//TODO add functionality for these methods in BoardCell and IntBoard
-		
-		/*BoardCell cell = board.getCell(0, 0);
+		BoardCell cell = board.getCell(0, 0);
 		Set<BoardCell> testList = board.getAdjList(cell);
 		assertTrue(testList.contains(board.getCell(1, 0)));
 		assertTrue(testList.contains(board.getCell(0, 1)));
-		assertEquals(2, testList.size());*/
+		assertEquals(2, testList.size());
 		
 	}
 	
@@ -45,11 +43,23 @@ public class IntBoardTests {
 	/**Test adjacent cells for a cell on the right edge of the board..*/
 	public void testAdjacencyRightEdge() {
 		
+		BoardCell cell = board.getCell(0, 0);
+		Set<BoardCell> testList = board.getAdjList(cell);
+		assertTrue(testList.contains(board.getCell(1, 0)));
+		assertTrue(testList.contains(board.getCell(0, 1)));
+		assertEquals(2, testList.size());
+		
 	}
 	
 	@Test
 	/**Test adjacent cells for a cell on the left edge of the board.*/
 	public void testAdjacencyLeftEdge() {
+		
+		BoardCell cell = board.getCell(0, 0);
+		Set<BoardCell> testList = board.getAdjList(cell);
+		assertTrue(testList.contains(board.getCell(1, 0)));
+		assertTrue(testList.contains(board.getCell(0, 1)));
+		assertEquals(2, testList.size());
 		
 	}
 	
@@ -57,11 +67,23 @@ public class IntBoardTests {
 	/**Test adjacent cells for the cell in the middle of the second column.*/
 	public void testAdjacencySecondColMid() {
 		
+		BoardCell cell = board.getCell(0, 0);
+		Set<BoardCell> testList = board.getAdjList(cell);
+		assertTrue(testList.contains(board.getCell(1, 0)));
+		assertTrue(testList.contains(board.getCell(0, 1)));
+		assertEquals(2, testList.size());
+		
 	}
 	
 	@Test
 	/**Test adjacent cells for the cell in the middle of the second to last column..*/
 	public void testAdjacencySecondLastColMid() {
+		
+		BoardCell cell = board.getCell(0, 0);
+		Set<BoardCell> testList = board.getAdjList(cell);
+		assertTrue(testList.contains(board.getCell(1, 0)));
+		assertTrue(testList.contains(board.getCell(0, 1)));
+		assertEquals(2, testList.size());
 		
 	}
 	
@@ -73,14 +95,25 @@ public class IntBoardTests {
 	/**Test target cells for the cell (0,0) that are 1 move away.*/
 	public void testTargets0_0_1() {
 		
-		//TODO add functionality for methods
-		
-		/*BoardCell cell = board.getCell(0, 0);
+		BoardCell cell = board.getCell(0, 0);
 		board.calcTargets(cell, 1);
 		Set<BoardCell> targets = board.getTargets();
 		assertEquals(2, targets.size());
 		assertTrue(targets.contains(board.getCell(0, 1)));
-		assertTrue(targets.contains(board.getCell(1, 0)));*/
+		assertTrue(targets.contains(board.getCell(1, 0)));
+		
+	}
+	
+	@Test
+	/**Test target cells for the cell (0,0) that are 2 moves away.*/
+	public void testTargets0_0_2() {
+		
+		BoardCell cell = board.getCell(0, 0);
+		board.calcTargets(cell, 1);
+		Set<BoardCell> targets = board.getTargets();
+		assertEquals(2, targets.size());
+		assertTrue(targets.contains(board.getCell(0, 1)));
+		assertTrue(targets.contains(board.getCell(1, 0)));
 		
 	}
 

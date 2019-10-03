@@ -18,9 +18,23 @@ public class IntBoard {
 	private BoardCell[][] grid = new BoardCell[ROW_NUM][COL_NUM];
 	private Map<BoardCell, Set<BoardCell> > adjMtx = new HashMap();
 	
+	public IntBoard() {
+		
+		try {
+			fillGrid();
+			calcAdjacencies();
+		} catch (FileNotFoundException e) {
+			System.err.println("Could not find the file specified.");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+	
 	//initializes the adjacency matrix 
 	private void calcAdjacencies() throws IOException{
-		fillGrid();
 		
 		for(int i = 0; i < ROW_NUM; i++) {
 		    for(int j = 0; j < COL_NUM; j++) {
@@ -104,5 +118,8 @@ public class IntBoard {
 	}
 	public Set<BoardCell> getTargets(){
 		return targets;
+	}
+	public BoardCell getCell(int x, int y) {
+		return grid[x][y];
 	}
 }
