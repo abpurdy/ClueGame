@@ -15,10 +15,15 @@ public class IntBoard {
 	public final static int COL_NUM = 24;
 	//instance variables
 	private Set<BoardCell> targets = new HashSet();
-	private BoardCell[][] grid = new BoardCell[ROW_NUM][COL_NUM];
+	private BoardCell[][] grid;
 	private Map<BoardCell, Set<BoardCell> > adjMtx = new HashMap();
 	
+	
+	//constructors
+	
 	public IntBoard() {
+		
+		grid = new BoardCell[ROW_NUM][COL_NUM];
 		
 		try {
 			fillGrid();
@@ -36,11 +41,24 @@ public class IntBoard {
 		
 	}
 	
+	//test constructor
+	public IntBoard(boolean testBoard) {
+		
+		grid = new BoardCell[4][4];
+		
+		for(int x = 0; x < grid.length; x++)
+			for(int y = 0; y < grid[x].length; y++)
+				grid[x][y] = new BoardCell(x, y, "R");
+		
+		calcAdjacencies();
+		
+	}
+	
 	//initializes the adjacency matrix 
 	private void calcAdjacencies(){
 		
-		for(int i = 0; i < ROW_NUM; i++) {
-		    for(int j = 0; j < COL_NUM; j++) {
+		for(int i = 0; i < grid.length; i++) {
+		    for(int j = 0; j < grid[i].length; j++) {
 		    	Set<BoardCell> list = new HashSet<BoardCell>();
 		    	//adds cell to list if you are allowed to move to it
 		    	if (i-1 >= 0 && 
@@ -49,7 +67,7 @@ public class IntBoard {
 		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'L'))) {
 		    		list.add(grid[i-1][j]);
 		    	}
-		    	if (i+1 < ROW_NUM && 
+		    	if (i+1 < grid.length && 
 		    			(grid[i+1][j].getRoomType().equals(grid[i][j].getRoomType()) || 
 		    			(grid[i+1][j].getRoomType().length() == 2 && grid[i+1][j].getRoomType().charAt(1) == 'L') ||
 		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'R'))) {
@@ -61,7 +79,7 @@ public class IntBoard {
 		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'D'))) {
 		    		list.add(grid[i][j-1]);
 		    	}
-		    	if (j+1 < COL_NUM && 
+		    	if (j+1 < grid[i].length && 
 		    			(grid[i][j+1].getRoomType().equals(grid[i][j].getRoomType()) || 
 		    			(grid[i][j+1].getRoomType().length() == 2 && grid[i][j+1].getRoomType().charAt(1) == 'D') ||
 		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'U'))) {
@@ -89,7 +107,7 @@ public class IntBoard {
 		if(pathLength == 0) {
 			for (BoardCell adjacent:adjMtx.get(startCell)) {
 				if(!visited.contains(adjacent)) {
-					targets.add(adjacent);
+					options.add(adjacent);
 				}
 			}
 		}

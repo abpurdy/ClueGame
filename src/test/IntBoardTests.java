@@ -19,7 +19,7 @@ public class IntBoardTests {
 	/**Setup game board to perform tests.*/
 	public void setupBoard(){
 		
-		board = new IntBoard();
+		board = new IntBoard(true);
 		
 	}
 	
@@ -147,11 +147,26 @@ public class IntBoardTests {
 		BoardCell cell = board.getCell(1, 1);
 		board.calcTargets(cell, 2);
 		Set<BoardCell> targets = board.getTargets();
-		assertEquals(4, targets.size());
+		assertEquals(6, targets.size());
 		assertTrue(targets.contains(board.getCell(0, 0)));
-		assertTrue(targets.contains(board.getCell(1, 0)));
-		assertTrue(targets.contains(board.getCell(0, 1)));
-		assertTrue(targets.contains(board.getCell(2, 1)));
+		assertTrue(targets.contains(board.getCell(2, 0)));
+		assertTrue(targets.contains(board.getCell(0, 2)));
+		assertTrue(targets.contains(board.getCell(2, 2)));
+		assertTrue(targets.contains(board.getCell(1, 3)));
+		assertTrue(targets.contains(board.getCell(3, 1)));
+		
+	}
+	
+	@Test
+	/**Test target cells for the cell (3,3) that are 1 move away.*/
+	public void testTargets3_3_1() {
+		
+		BoardCell cell = board.getCell(3, 3);
+		board.calcTargets(cell, 1);
+		Set<BoardCell> targets = board.getTargets();
+		assertEquals(2, targets.size());
+		assertTrue(targets.contains(board.getCell(2, 3)));
+		assertTrue(targets.contains(board.getCell(3, 2)));
 		
 	}
 
