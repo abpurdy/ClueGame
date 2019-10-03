@@ -22,7 +22,6 @@ public class IntBoard {
 		
 		try {
 			fillGrid();
-			calcAdjacencies();
 		} catch (FileNotFoundException e) {
 			System.err.println("Could not find the file specified.");
 			e.printStackTrace();
@@ -31,10 +30,14 @@ public class IntBoard {
 			e.printStackTrace();
 		}
 		
+		calcAdjacencies();
+		
+		System.out.println(adjMtx.get(grid[1][1]));
+		
 	}
 	
 	//initializes the adjacency matrix 
-	private void calcAdjacencies() throws IOException{
+	private void calcAdjacencies(){
 		
 		for(int i = 0; i < ROW_NUM; i++) {
 		    for(int j = 0; j < COL_NUM; j++) {
@@ -52,13 +55,13 @@ public class IntBoard {
 		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'R'))) {
 		    		list.add(new BoardCell(i+1,j,grid[i+1][j].getRoomType()));
 		    	}
-		    	if (i-1 >= 0 && 
+		    	if (j-1 >= 0 && 
 		    			(grid[i][j-1].getRoomType() == grid[i][j].getRoomType() || 
 		    			(grid[i][j-1].getRoomType().length() == 2 && grid[i][j-1].getRoomType().charAt(1) == 'U') ||
 		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'D'))) {
 		    		list.add(new BoardCell(i,j-1,grid[i][j-1].getRoomType()));
 		    	}
-		    	if (i-1 >= 0 && 
+		    	if (j+1 < COL_NUM && 
 		    			(grid[i][j+1].getRoomType() == grid[i][j].getRoomType() || 
 		    			(grid[i][j+1].getRoomType().length() == 2 && grid[i][j+1].getRoomType().charAt(1) == 'D') ||
 		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'U'))) {

@@ -23,6 +23,13 @@ public class IntBoardTests {
 		
 	}
 	
+	@Test
+	public void testNearby() {
+		
+		
+		
+	}
+	
 	
 	//adjacency tests
 	//TODO create bodies for all adjacency tests
@@ -109,11 +116,42 @@ public class IntBoardTests {
 	public void testTargets0_0_2() {
 		
 		BoardCell cell = board.getCell(0, 0);
+		board.calcTargets(cell, 2);
+		Set<BoardCell> targets = board.getTargets();
+		assertEquals(3, targets.size());
+		assertTrue(targets.contains(board.getCell(0, 2)));
+		assertTrue(targets.contains(board.getCell(1, 1)));
+		assertTrue(targets.contains(board.getCell(2, 0)));
+		
+	}
+	
+	@Test
+	/**Test target cells for the cell (1,1) that are 1 move away.*/
+	public void testTargets1_1_1() {
+		
+		BoardCell cell = board.getCell(1, 1);
 		board.calcTargets(cell, 1);
 		Set<BoardCell> targets = board.getTargets();
-		assertEquals(2, targets.size());
-		assertTrue(targets.contains(board.getCell(0, 1)));
+		assertEquals(4, targets.size());
+		assertTrue(targets.contains(board.getCell(1, 2)));
 		assertTrue(targets.contains(board.getCell(1, 0)));
+		assertTrue(targets.contains(board.getCell(0, 1)));
+		assertTrue(targets.contains(board.getCell(2, 1)));
+		
+	}
+	
+	@Test
+	/**Test target cells for the cell (1,1) that are 2 moves away.*/
+	public void testTargets1_1_2() {
+		
+		BoardCell cell = board.getCell(1, 1);
+		board.calcTargets(cell, 2);
+		Set<BoardCell> targets = board.getTargets();
+		assertEquals(4, targets.size());
+		assertTrue(targets.contains(board.getCell(0, 0)));
+		assertTrue(targets.contains(board.getCell(1, 0)));
+		assertTrue(targets.contains(board.getCell(0, 1)));
+		assertTrue(targets.contains(board.getCell(2, 1)));
 		
 	}
 
