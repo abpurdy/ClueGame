@@ -78,7 +78,10 @@ public class IntBoard {
 		}
 		else {
 			for (BoardCell adjacent:adjMtx.get(startCell)) {
-				if(!visited.contains(adjacent)) {
+				if(adjacent.getRoomType().charAt(0) != startCell.getRoomType().charAt(0)) {
+					options.add(adjacent);
+				}
+				else if(!visited.contains(adjacent)) {
 					options.addAll(calcAllTargets(adjacent, pathLength, visited, options));
 				}
 			}
