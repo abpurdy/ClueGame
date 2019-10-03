@@ -41,25 +41,25 @@ public class IntBoard {
 		    	Set<BoardCell> list = new HashSet<BoardCell>();
 		    	//adds cell to list if you are allowed to move to it
 		    	if (i-1 >= 0 && 
-		    			(grid[i-1][j].getRoomType() == grid[i-1][j].getRoomType() || 
+		    			(grid[i-1][j].getRoomType() == grid[i][j].getRoomType() || 
 		    			(grid[i-1][j].getRoomType().length() == 2 && grid[i-1][j].getRoomType().charAt(1) == 'R') ||
 		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'L'))) {
 		    		list.add(new BoardCell(i-1,j,grid[i-1][j].getRoomType()));
 		    	}
 		    	if (i+1 < ROW_NUM && 
-		    			(grid[i+1][j].getRoomType() == grid[i+1][j].getRoomType() || 
+		    			(grid[i+1][j].getRoomType() == grid[i][j].getRoomType() || 
 		    			(grid[i+1][j].getRoomType().length() == 2 && grid[i+1][j].getRoomType().charAt(1) == 'L') ||
 		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'R'))) {
 		    		list.add(new BoardCell(i+1,j,grid[i+1][j].getRoomType()));
 		    	}
 		    	if (i-1 >= 0 && 
-		    			(grid[i][j-1].getRoomType() == grid[i][j-1].getRoomType() || 
+		    			(grid[i][j-1].getRoomType() == grid[i][j].getRoomType() || 
 		    			(grid[i][j-1].getRoomType().length() == 2 && grid[i][j-1].getRoomType().charAt(1) == 'U') ||
 		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'D'))) {
 		    		list.add(new BoardCell(i,j-1,grid[i][j-1].getRoomType()));
 		    	}
 		    	if (i-1 >= 0 && 
-		    			(grid[i][j+1].getRoomType() == grid[i][j+1].getRoomType() || 
+		    			(grid[i][j+1].getRoomType() == grid[i][j].getRoomType() || 
 		    			(grid[i][j+1].getRoomType().length() == 2 && grid[i][j+1].getRoomType().charAt(1) == 'D') ||
 		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'U'))) {
 		    		list.add(new BoardCell(i,j+1,grid[i][j+1].getRoomType()));
@@ -92,7 +92,10 @@ public class IntBoard {
 		}
 		else {
 			for (BoardCell adjacent:adjMtx.get(startCell)) {
-				if(!visited.contains(adjacent)) {
+				if(adjacent.getRoomType().charAt(0) != startCell.getRoomType().charAt(0)) {
+					options.add(adjacent);
+				}
+				else if(!visited.contains(adjacent)) {
 					options.addAll(calcAllTargets(adjacent, pathLength, visited, options));
 				}
 			}
