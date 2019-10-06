@@ -23,16 +23,8 @@ public class IntBoardTests {
 		
 	}
 	
-	/*@Test
-	public void testNearby() {
-		
-		assertEquals()
-		
-	}*/
-	
 	
 	//adjacency tests
-	//TODO create bodies for all adjacency tests
 	
 	@Test
 	/**Test adjacent cells for the top left cell.*/
@@ -50,11 +42,12 @@ public class IntBoardTests {
 	/**Test adjacent cells for a cell on the right edge of the board..*/
 	public void testAdjacencyRightEdge() {
 		
-		BoardCell cell = board.getCell(0, 0);
+		BoardCell cell = board.getCell(3, 1);
 		Set<BoardCell> testList = board.getAdjList(cell);
-		assertTrue(testList.contains(board.getCell(1, 0)));
-		assertTrue(testList.contains(board.getCell(0, 1)));
-		assertEquals(2, testList.size());
+		assertTrue(testList.contains(board.getCell(3, 0)));
+		assertTrue(testList.contains(board.getCell(2, 1)));
+		assertTrue(testList.contains(board.getCell(3, 2)));
+		assertEquals(3, testList.size());
 		
 	}
 	
@@ -62,11 +55,12 @@ public class IntBoardTests {
 	/**Test adjacent cells for a cell on the left edge of the board.*/
 	public void testAdjacencyLeftEdge() {
 		
-		BoardCell cell = board.getCell(0, 0);
+		BoardCell cell = board.getCell(0, 2);
 		Set<BoardCell> testList = board.getAdjList(cell);
-		assertTrue(testList.contains(board.getCell(1, 0)));
 		assertTrue(testList.contains(board.getCell(0, 1)));
-		assertEquals(2, testList.size());
+		assertTrue(testList.contains(board.getCell(1, 2)));
+		assertTrue(testList.contains(board.getCell(0, 3)));
+		assertEquals(3, testList.size());
 		
 	}
 	
@@ -74,29 +68,32 @@ public class IntBoardTests {
 	/**Test adjacent cells for the cell in the middle of the second column.*/
 	public void testAdjacencySecondColMid() {
 		
-		BoardCell cell = board.getCell(0, 0);
+		BoardCell cell = board.getCell(1, 1);
 		Set<BoardCell> testList = board.getAdjList(cell);
 		assertTrue(testList.contains(board.getCell(1, 0)));
 		assertTrue(testList.contains(board.getCell(0, 1)));
-		assertEquals(2, testList.size());
+		assertTrue(testList.contains(board.getCell(1, 2)));
+		assertTrue(testList.contains(board.getCell(2, 1)));
+		assertEquals(4, testList.size());
 		
 	}
 	
 	@Test
-	/**Test adjacent cells for the cell in the middle of the second to last column..*/
+	/**Test adjacent cells for the cell in the middle of the second to last column.*/
 	public void testAdjacencySecondLastColMid() {
 		
-		BoardCell cell = board.getCell(0, 0);
+		BoardCell cell = board.getCell(2, 2);
 		Set<BoardCell> testList = board.getAdjList(cell);
-		assertTrue(testList.contains(board.getCell(1, 0)));
-		assertTrue(testList.contains(board.getCell(0, 1)));
-		assertEquals(2, testList.size());
+		assertTrue(testList.contains(board.getCell(2, 1)));
+		assertTrue(testList.contains(board.getCell(1, 2)));
+		assertTrue(testList.contains(board.getCell(2, 3)));
+		assertTrue(testList.contains(board.getCell(3, 2)));
+		assertEquals(4, testList.size());
 		
 	}
 	
 	
 	//target tests
-	//TODO add bodies for target tests
 	
 	@Test
 	/**Test target cells for the cell (0,0) that are 1 move away.*/
@@ -167,6 +164,20 @@ public class IntBoardTests {
 		assertEquals(2, targets.size());
 		assertTrue(targets.contains(board.getCell(2, 3)));
 		assertTrue(targets.contains(board.getCell(3, 2)));
+		
+	}
+	
+	@Test
+	/**Test target cells for the cell (3,3) that are 2 moves away.*/
+	public void testTargets3_3_2() {
+		
+		BoardCell cell = board.getCell(3, 3);
+		board.calcTargets(cell, 2);
+		Set<BoardCell> targets = board.getTargets();
+		assertEquals(3, targets.size());
+		assertTrue(targets.contains(board.getCell(1, 3)));
+		assertTrue(targets.contains(board.getCell(3, 1)));
+		assertTrue(targets.contains(board.getCell(2, 2)));
 		
 	}
 
