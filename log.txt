@@ -101,3 +101,142 @@ Author: abpurdy <54818048+abpurdy@users.noreply.github.com>
 Date:   Tue Oct 1 09:57:10 2019 -0600
 
     Initial commit
+commit 0759df2b56577091a92a7da671e792573eec2919
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 10 09:54:37 2019 -0600
+
+    Finished failing tests
+
+commit a38c8493b965f864bbe4b2210bba4d01c7ac4a35
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Thu Oct 10 08:49:29 2019 -0600
+
+    Some files were not included in last commit
+
+commit b731ea41721f4a8d67197050bb1abf0c78545f05
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Thu Oct 10 08:48:46 2019 -0600
+
+    Finished all code skeletons
+
+commit b6c0f422fd9544a3ac0c1af138d25732954af3db
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Tue Oct 8 10:38:43 2019 -0600
+
+    Created Board class skeleton
+
+commit bcdcebefde40449086c1d9bc3c0eefc0d51adebd
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Sun Oct 6 15:50:39 2019 -0600
+
+    Finished tests and added some comments
+
+commit 62078c957335fa9ec12889f222d621b6c2721e04
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Sun Oct 6 13:44:29 2019 -0600
+
+    Added git log and removed duplicate class BoardCell
+
+commit 038036c5fc84e9a78e3159ea3e117ad9750aa979
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 3 10:38:58 2019 -0600
+
+    Finished tests
+
+commit 063c18fdc895e65a9f8e37d7c7a863e9cd3d3df4
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 3 10:14:27 2019 -0600
+
+    Fixed calcAdjacencies
+
+commit 3270cb6590c1046fd1c6fd4bda0b8ca3e5ebf18f
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 3 09:59:49 2019 -0600
+
+    Attempting bug fixes
+
+commit ccd36b8f674a4e5f04aa4da46a366a9c3415403d
+Merge: 259509e 252c8cb
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 3 09:38:27 2019 -0600
+
+    Merge branch 'master' of https://github.com/abpurdy/ClueGame
+
+commit 259509e108879998d156cf1e681692f6511eafee
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 3 09:38:14 2019 -0600
+
+    Added more tests
+
+commit 252c8cb3b34fce10e3607884c21f11bb37d3b50b
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Thu Oct 3 09:36:46 2019 -0600
+
+    fix bug
+
+commit dc7b960f1019ef596aba7adcd7eb47f8bb3594bf
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Thu Oct 3 09:24:55 2019 -0600
+
+    handle door cases
+
+commit e004dfeaafc709124ac994165c70bceaf245c28d
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Wed Oct 2 22:50:54 2019 -0600
+
+    get calc targets working without doors
+
+commit 0cce7f1d115c642586c5ed1ce6978d7e8cffa414
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Wed Oct 2 22:31:42 2019 -0600
+
+    finish calcAdjacencies method
+
+commit 9c8429774516187549d5d63ccec5be4c2b8bc0ee
+Merge: ab73b1f eec482e
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Tue Oct 1 10:48:11 2019 -0600
+
+    Merge branch 'master' of https://github.com/abpurdy/ClueGame
+
+commit ab73b1fbc441fe231fdb768c2d6e2596172f5499
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Tue Oct 1 10:47:53 2019 -0600
+
+    Created test skeleton
+
+commit eec482eb7e3f3d1ad426553223542b70024f5e7e
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Tue Oct 1 10:46:32 2019 -0600
+
+    initialize grid
+
+commit 50b72b64989690f336718a453d59b6f604a418d7
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Tue Oct 1 10:27:56 2019 -0600
+
+    initial class setup
+
+commit 1964535f635e6b2014d68b398ec03281d75e736b
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Tue Oct 1 10:26:40 2019 -0600
+
+    initial class setup
+
+commit ed28afcbd7d2e263b3d76e696c5cc417e4a36b9d
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Tue Oct 1 10:23:42 2019 -0600
+
+    Add files via upload
+
+commit 2ae522c62e109b1ffcb84dd60692a0d16322178d
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Tue Oct 1 10:07:46 2019 -0600
+
+    initial commit
+
+commit bf409c29425850dc861a2991752e50c9fc063921
+Author: abpurdy <54818048+abpurdy@users.noreply.github.com>
+Date:   Tue Oct 1 09:57:10 2019 -0600
+
+    Initial commit

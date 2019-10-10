@@ -7,9 +7,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
-import experiment.BoardCell;
+import clueGame.BoardCell;
 
 public class Board {
 	
@@ -52,6 +53,16 @@ public class Board {
 		adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 		targets = new HashSet<BoardCell>();
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		
+		//load config files
+		try {
+			loadRoomConfig();
+			loadBoardConfig();	
+		}
+		catch(FileNotFoundException e) {
+			System.err.println("The specified configuration files were not found.");
+			e.printStackTrace();
+		}
 
 	}
 	
@@ -61,8 +72,24 @@ public class Board {
 	/**Initialize the game board.*/
 	public void initialize() {}
 	
-	/**Load the room configuration from the room config file.*/
-	public void loadRoomConfig() {}
+	/**Load the room configuration from the room config file.
+	 * @throws FileNotFoundException If the room config file is not found */
+	public void loadRoomConfig() throws FileNotFoundException {
+		
+		//open input file and scanner
+		FileReader roomFileIn = new FileReader(roomConfigFile);
+		Scanner reader = new Scanner(roomFileIn);
+		
+		//read legend file and store info in legend map
+		while(reader.hasNext()) {
+			
+			String line = reader.nextLine(); //get next line
+			String[] lineData = line.split(","); //split line by comma
+			legend.put(lineData[0].charAt(0), lineData[1]); //insert map pair
+			
+		}
+		
+	}
 	
 	/**Load the board configuration from the board config file.*/
 	public void loadBoardConfig() {
