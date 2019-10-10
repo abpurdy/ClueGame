@@ -91,13 +91,36 @@ public class Board {
 		
 	}
 	
-	/**Load the board configuration from the board config file.*/
-	public void loadBoardConfig() {
-		try {
+	/**Load the board configuration from the board config file.
+	 * @throws FileNotFoundException */
+	public void loadBoardConfig() throws FileNotFoundException {
+		
+		FileReader boardFileIn = new FileReader(boardConfigFile);
+		Scanner reader = new Scanner(boardFileIn);
+		
+		int rowNum = 0;
+		
+		while(reader.hasNext()) {
+			
+			String row = reader.nextLine();
+			String[] rowData = row.split(",");
+			
+			for(int x = 0; x < rowData.length; x++) {
+				BoardCell newCell = new BoardCell(rowNum, x, rowData[x]);
+				board[rowNum][x] = newCell;
+			}
+			
+			rowNum++;
+			numColumns = rowData.length;
+			
+		}
+		
+		numRows = rowNum;
+		
+		/*try {
 			BufferedReader csvReader = new BufferedReader(new FileReader(boardConfigFile));
 			String row = csvReader.readLine();
 			while(row != null) {
-				row = csvReader.readLine();
 			    String[] data = row.split(",");
 			    numColumns = data.length;
 			    for(int j = 0; j < data.length; j++) {
@@ -112,7 +135,7 @@ public class Board {
 		}
 		catch(IOException e) {
 			
-		}
+		}*/
 	}
 	
 	/**Load the adjacency matrix for each cell in the board.*/
