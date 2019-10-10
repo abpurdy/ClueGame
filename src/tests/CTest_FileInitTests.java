@@ -6,7 +6,9 @@ package tests;
 
 // Doing a static import allows me to write assertEquals rather than
 // Assert.assertEquals
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -16,7 +18,7 @@ import org.junit.Test;
 
 import clueGame.Board;
 import clueGame.BoardCell;
-import clueGame.DoorDirection;
+import clueGame.BoardCell.DoorDirection;
 
 public class CTest_FileInitTests {
 	// Constants that I will use to test whether the file was loaded correctly

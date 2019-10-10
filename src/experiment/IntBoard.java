@@ -68,42 +68,6 @@ public class IntBoard {
 	/**Calculates adjacent cells for each cell in the grid and stores them in the adjacency map.*/
 	private void calcAdjacencies(){
 		
-		//check each cell in the board
-		for(int i = 0; i < grid.length; i++) {
-		    for(int j = 0; j < grid[i].length; j++) {
-		    	
-		    	Set<BoardCell> list = new HashSet<BoardCell>(); //list of adjacent cells
-
-		    	//check each nearby cell to see if it can be moved to from the current cell
-		    	if (i-1 >= 0 && 
-		    			(grid[i-1][j].getRoomType().equals(grid[i][j].getRoomType()) || 
-		    			(grid[i-1][j].getRoomType().length() == 2 && grid[i-1][j].getRoomType().charAt(1) == 'R') ||
-		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'L'))) {
-		    		list.add(grid[i-1][j]);
-		    	}
-		    	if (i+1 < grid.length && 
-		    			(grid[i+1][j].getRoomType().equals(grid[i][j].getRoomType()) || 
-		    			(grid[i+1][j].getRoomType().length() == 2 && grid[i+1][j].getRoomType().charAt(1) == 'L') ||
-		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'R'))) {
-		    		list.add(grid[i+1][j]);
-		    	}
-		    	if (j-1 >= 0 && 
-		    			(grid[i][j-1].getRoomType().equals(grid[i][j].getRoomType()) || 
-		    			(grid[i][j-1].getRoomType().length() == 2 && grid[i][j-1].getRoomType().charAt(1) == 'U') ||
-		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'D'))) {
-		    		list.add(grid[i][j-1]);
-		    	}
-		    	if (j+1 < grid[i].length && 
-		    			(grid[i][j+1].getRoomType().equals(grid[i][j].getRoomType()) || 
-		    			(grid[i][j+1].getRoomType().length() == 2 && grid[i][j+1].getRoomType().charAt(1) == 'D') ||
-		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'U'))) {
-		    		list.add(grid[i][j+1]);
-		    	}
-		    	
-		    	adjMtx.put(grid[i][j], list); //add list to adjacency map
-		    	
-		    }
-		}
 	}
 	
 	/**Calculate the cells that the player can move to given a move length and a starting cell.
@@ -112,7 +76,6 @@ public class IntBoard {
 	public void calcTargets(BoardCell startCell, int pathLength){
 		
 		Set<BoardCell> visited = new HashSet(); //list of already visited cells
-		visited.add(startCell);
 		
 		Set<BoardCell> options = new HashSet(); //the current available list of cells to move to
 		
@@ -128,37 +91,6 @@ public class IntBoard {
 	 * @return A set of cells that the player can move to in the given distance from the given cell.*/
 	private Set<BoardCell> calcAllTargets(BoardCell startCell, int pathLength, Set<BoardCell> visited, Set<BoardCell> options){
 		
-		pathLength -= 1;
-		visited.add(startCell); //mark current cell as visited
-		
-		//if player has no remaining distance to move
-		if(pathLength == 0) {
-			
-			//add all adjacent cells to this cell that haven't already been visited to the target list
-			for (BoardCell adjacent:adjMtx.get(startCell)) {
-				if(!visited.contains(adjacent)) {
-					options.add(adjacent);
-				}
-			}
-			
-		}
-		else {
-			
-			//check each adjacent cell to current cell
-			for (BoardCell adjacent:adjMtx.get(startCell)) {
-				
-				//add all relevant nearby cells to targets list
-				if(adjacent.getRoomType().charAt(0) != startCell.getRoomType().charAt(0)) {
-					options.add(adjacent);
-				}
-				else if(!visited.contains(adjacent)) {
-					options.addAll(calcAllTargets(adjacent, pathLength, visited, options)); //check each adjacent cell and get their possible move targets
-				}
-				
-			}
-			
-		}
-		
 		return options;
 		
 	}
@@ -166,17 +98,6 @@ public class IntBoard {
 	/**Initialize the grid of cells.
 	 * @throws FileNotFoundException If the game board file does not exist.*/
 	private void fillGrid() throws FileNotFoundException, IOException {
-		
-		BufferedReader csvReader = new BufferedReader(new FileReader("Clue Board.csv")); //open file reader
-		
-		//load cell data and store new cell in grid
-		for(int i = 0; i < ROW_NUM; i++) {
-			String row = csvReader.readLine();
-		    String[] data = row.split(",");
-		    for(int j = 0; j < data.length; j++) {
-		    	grid[i][j] = new BoardCell(i,j,data[j]);
-		    }
-		}
 		
 	}
 	

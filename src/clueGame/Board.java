@@ -105,5 +105,9 @@ public class Board {
 		this.boardConfigFile = boardConfigFile;
 		this.roomConfigFile = roomConfigFile;
 	}
+	
+	public BoardCell getCellAt(int x, int y) {
+		return board[x][y];
+	}
 
 }
