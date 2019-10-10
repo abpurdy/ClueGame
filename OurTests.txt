@@ -1,0 +1,7 @@
+For the door direction test, we selected cells with doors for each different direction. The door in
+the library points down, the door in the bathroom points right, the door in the observatory points
+up, and the door in the long room points left. We also included a cell from the walkway to make
+sure there were no doors there.
+
+For the room type tests, we selected cells that were on the edges of other rooms to make sure that
+the rooms were getting loaded into the correct cells and that we weren't one cell off somewhere.
