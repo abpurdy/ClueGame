@@ -68,13 +68,16 @@ public class Board {
 	public void loadBoardConfig() {
 		try {
 			BufferedReader csvReader = new BufferedReader(new FileReader(boardConfigFile));
-			
-			for(int i = 0; i < numRows; i++) {
-				String row = csvReader.readLine();
+			String row = csvReader.readLine();
+			while(row != null) {
+				row = csvReader.readLine();
 			    String[] data = row.split(",");
+			    numColumns = data.length;
 			    for(int j = 0; j < data.length; j++) {
-			    	board[i][j] = new BoardCell(i,j,data[j]);
+			    	board[numRows][j] = new BoardCell(numRows,j,data[j]);
 			    }
+			    row = csvReader.readLine();
+			    numRows+=1;
 			}
 		}
 		catch(FileNotFoundException e) {
