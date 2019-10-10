@@ -29,22 +29,53 @@ public class BoardCell {
 		this.row = row;
 		this.column = column;
 		this.roomType = roomType;
-		this.doorDirection = DoorDirection.NONE;
+		if(roomType.length()>1) {
+			switch(roomType.charAt(1)) {
+				case 'D':
+					this.doorDirection = DoorDirection.DOWN;
+					break;
+				case 'U':
+					this.doorDirection = DoorDirection.UP;
+					break;
+				case 'L':
+					this.doorDirection = DoorDirection.LEFT;
+					break;
+				case 'R':
+					this.doorDirection = DoorDirection.RIGHT;
+					break;
+				default:
+					this.doorDirection = DoorDirection.NONE;
+			}
+		}
+		else {
+			this.doorDirection = doorDirection.NONE;
+		}
 	}
 	
 	
 	//class methods
 	
 	public boolean isWalkway() {
+		if(roomType.charAt(0) == 'W') {
+			return true;
+		}
 		return false;
 	}
 	
 	public boolean isRoom() {
-		return false;
+		if(roomType.charAt(0) == 'W') {
+			return false;
+		}
+		return true;
 	}
 	
 	public boolean isDoorway() {
-		return false;
+		if(doorDirection.equals(DoorDirection.NONE)) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	
 	

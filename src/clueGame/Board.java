@@ -1,9 +1,15 @@
 package clueGame;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import experiment.BoardCell;
 
 public class Board {
 	
@@ -59,7 +65,25 @@ public class Board {
 	public void loadRoomConfig() {}
 	
 	/**Load the board configuration from the board config file.*/
-	public void loadBoardConfig() {}
+	public void loadBoardConfig() {
+		try {
+			BufferedReader csvReader = new BufferedReader(new FileReader(boardConfigFile));
+			
+			for(int i = 0; i < numRows; i++) {
+				String row = csvReader.readLine();
+			    String[] data = row.split(",");
+			    for(int j = 0; j < data.length; j++) {
+			    	board[i][j] = new BoardCell(i,j,data[j]);
+			    }
+			}
+		}
+		catch(FileNotFoundException e) {
+			
+		}
+		catch(IOException e) {
+			
+		}
+	}
 	
 	/**Load the adjacency matrix for each cell in the board.*/
 	public void calcAdjacencies() {}
