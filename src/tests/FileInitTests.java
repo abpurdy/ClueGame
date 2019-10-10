@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 import org.junit.Before;
@@ -26,7 +27,8 @@ public class FileInitTests {
 	public void setUp() throws Exception {
 		
 		board = Board.getInstance();
-		board.setConfigFiles("ClueBoard.csv", "ClueRooms.txt");
+		board.setConfigFiles("Clue Board.csv", "ClueRooms.txt");
+		board.initialize();
 		
 	}
 	

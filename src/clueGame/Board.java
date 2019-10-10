@@ -53,16 +53,6 @@ public class Board {
 		adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 		targets = new HashSet<BoardCell>();
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
-		
-		//load config files
-		try {
-			loadRoomConfig();
-			loadBoardConfig();	
-		}
-		catch(FileNotFoundException e) {
-			System.err.println("The specified configuration files were not found.");
-			e.printStackTrace();
-		}
 
 	}
 	
@@ -70,7 +60,17 @@ public class Board {
 	//class methods
 	
 	/**Initialize the game board.*/
-	public void initialize() {}
+	public void initialize(){
+		
+		try {
+			loadRoomConfig();
+			loadBoardConfig();
+		}
+		catch(FileNotFoundException e) {
+			System.err.println("The specified config files were not found.");
+		}
+		
+	}
 	
 	/**Load the room configuration from the room config file.
 	 * @throws FileNotFoundException If the room config file is not found */
