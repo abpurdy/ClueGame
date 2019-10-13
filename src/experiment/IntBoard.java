@@ -1,5 +1,6 @@
 package experiment;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -66,7 +67,39 @@ public class IntBoard {
 	
 	/**Calculates adjacent cells for each cell in the grid and stores them in the adjacency map.*/
 	private void calcAdjacencies(){
-		
+		for(int i = 0; i < grid.length; i++) {
+		    for(int j = 0; j < grid[i].length; j++) {
+		    	Set<BoardCell> list = new HashSet<BoardCell>();
+		    	//adds cell to list if you are allowed to move to it
+		    	if (i-1 >= 0 && 
+		    			(grid[i-1][j].getRoomType().equals(grid[i][j].getRoomType()) || 
+		    			(grid[i-1][j].getRoomType().length() == 2 && grid[i-1][j].getRoomType().charAt(1) == 'R') ||
+		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'L'))) {
+		    		list.add(grid[i-1][j]);
+		    	}
+		    	if (i+1 < grid.length && 
+		    			(grid[i+1][j].getRoomType().equals(grid[i][j].getRoomType()) || 
+		    			(grid[i+1][j].getRoomType().length() == 2 && grid[i+1][j].getRoomType().charAt(1) == 'L') ||
+		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'R'))) {
+		    		list.add(grid[i+1][j]);
+		    	}
+		    	if (j-1 >= 0 && 
+		    			(grid[i][j-1].getRoomType().equals(grid[i][j].getRoomType()) || 
+		    			(grid[i][j-1].getRoomType().length() == 2 && grid[i][j-1].getRoomType().charAt(1) == 'U') ||
+		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'D'))) {
+		    		list.add(grid[i][j-1]);
+		    	}
+		    	if (j+1 < grid[i].length && 
+		    			(grid[i][j+1].getRoomType().equals(grid[i][j].getRoomType()) || 
+		    			(grid[i][j+1].getRoomType().length() == 2 && grid[i][j+1].getRoomType().charAt(1) == 'D') ||
+		    			(grid[i][j].getRoomType().length() == 2 && grid[i][j].getRoomType().charAt(1) == 'U'))) {
+		    		list.add(grid[i][j+1]);
+		    	}
+		    	
+		    	//adds list to adjacency matrix
+		    	adjMtx.put(grid[i][j], list);
+		    }
+		}
 	}
 	
 	/**Calculate the cells that the player can move to given a move length and a starting cell.
@@ -90,6 +123,26 @@ public class IntBoard {
 	 * @return A set of cells that the player can move to in the given distance from the given cell.*/
 	private Set<BoardCell> calcAllTargets(BoardCell startCell, int pathLength, Set<BoardCell> visited, Set<BoardCell> options){
 		
+		pathLength -= 1;
+		visited.add(startCell);
+		
+		if(pathLength == 0) {
+			for (BoardCell adjacent:adjMtx.get(startCell)) {
+				if(!visited.contains(adjacent)) {
+					options.add(adjacent);
+				}
+			}
+		}
+		else {
+			for (BoardCell adjacent:adjMtx.get(startCell)) {
+				if(adjacent.getRoomType().charAt(0) != startCell.getRoomType().charAt(0)) {
+					options.add(adjacent);
+				}
+				else if(!visited.contains(adjacent)) {
+					options.addAll(calcAllTargets(adjacent, pathLength, visited, options));
+				}
+			}
+		}
 		return options;
 		
 	}
@@ -97,7 +150,15 @@ public class IntBoard {
 	/**Initialize the grid of cells.
 	 * @throws FileNotFoundException If the game board file does not exist.*/
 	private void fillGrid() throws FileNotFoundException, IOException {
+		BufferedReader csvReader = new BufferedReader(new FileReader("Clue Board.csv"));
 		
+		for(int i = 0; i < ROW_NUM; i++) {
+			String row = csvReader.readLine();
+		    String[] data = row.split(",");
+		    for(int j = 0; j < data.length; j++) {
+		    	grid[i][j] = new BoardCell(i,j,data[j]);
+		    }
+		}
 	}
 	
 	
