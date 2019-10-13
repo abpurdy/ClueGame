@@ -1,6 +1,5 @@
 package experiment;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,11 +18,11 @@ public class IntBoard {
 	/**The amount of columns in the board.*/
 	public final static int COL_NUM = 24;
 	/**The current list of cells that the player can move to.*/
-	private Set<BoardCell> targets = new HashSet();
+	private Set<BoardCell> targets = new HashSet<BoardCell>();
 	/**The list of cells in the board.*/
 	private BoardCell[][] grid;
 	/**A map that stores a list of adjacent cells for each cell in the board.*/
-	private Map<BoardCell, Set<BoardCell> > adjMtx = new HashMap();
+	private Map<BoardCell, Set<BoardCell> > adjMtx = new HashMap<BoardCell, Set<BoardCell> >();
 	
 	
 	//constructors
@@ -75,9 +74,9 @@ public class IntBoard {
 	 * @param pathLength The amount of spaces the player will move.*/
 	public void calcTargets(BoardCell startCell, int pathLength){
 		
-		Set<BoardCell> visited = new HashSet(); //list of already visited cells
+		Set<BoardCell> visited = new HashSet<BoardCell>(); //list of already visited cells
 		
-		Set<BoardCell> options = new HashSet(); //the current available list of cells to move to
+		Set<BoardCell> options = new HashSet<BoardCell>(); //the current available list of cells to move to
 		
 		targets = calcAllTargets(startCell, pathLength, visited, options); //recursively calculate targets using each cell in range
 		

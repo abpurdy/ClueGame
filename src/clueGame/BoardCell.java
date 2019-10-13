@@ -48,7 +48,7 @@ public class BoardCell {
 			}
 		}
 		else {
-			this.doorDirection = doorDirection.NONE;
+			this.doorDirection = DoorDirection.NONE;
 		}
 	}
 	

@@ -5,7 +5,7 @@ L, Long Room, Card
 V, Living Room, Card
 K, Kitchen, Card
 F, Office, Card
-W, War Room, Card
+R, War Room, Card
 B, Ballroom, Card
 X, Closet, Other
 W, Walkway, Other

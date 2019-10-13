@@ -47,7 +47,7 @@ public class FileInitTests {
 		assertEquals(legend.get('T'), "Bathroom");
 		assertEquals(legend.get('V'), "Living Room");
 		assertEquals(legend.get('X'), "Closet");
-		assertEquals(legend.get('W'), "War Room");
+		assertEquals(legend.get('R'), "War Room");
 		
 	}
 	
@@ -64,19 +64,19 @@ public class FileInitTests {
 	@Test
 	public void testDoorDirections() {
 		
-		BoardCell doorCell = board.getCellAt(2, 6);
+		BoardCell doorCell = board.getCellAt(6, 2);
 		assertTrue(doorCell.isDoorway());
 		assertEquals(doorCell.getDoorDirection(), DoorDirection.DOWN);
 		
-		doorCell = board.getCellAt(1, 11);
+		doorCell = board.getCellAt(11, 1);
 		assertTrue(doorCell.isDoorway());
 		assertEquals(doorCell.getDoorDirection(), DoorDirection.RIGHT);
 		
-		doorCell = board.getCellAt(2, 17);
+		doorCell = board.getCellAt(17, 2);
 		assertTrue(doorCell.isDoorway());
 		assertEquals(doorCell.getDoorDirection(), DoorDirection.UP);
 		
-		doorCell = board.getCellAt(5, 14);
+		doorCell = board.getCellAt(14, 5);
 		assertTrue(doorCell.isDoorway());
 		assertEquals(doorCell.getDoorDirection(), DoorDirection.LEFT);
 		
@@ -107,10 +107,10 @@ public class FileInitTests {
 	public void testRoomTypes() {
 		
 		assertEquals('I', board.getCellAt(0, 0).getInitial());
-		assertEquals('B', board.getCellAt(7, 0).getInitial());
+		assertEquals('B', board.getCellAt(0, 7).getInitial());
 		assertEquals('X', board.getCellAt(10, 12).getInitial());
 		assertEquals('K', board.getCellAt(24, 23).getInitial());
-		assertEquals('V', board.getCellAt(12, 24).getInitial());
+		assertEquals('V', board.getCellAt(24, 12).getInitial());
 		
 	}
 

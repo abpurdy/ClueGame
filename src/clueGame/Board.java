@@ -1,9 +1,7 @@
 package clueGame;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -84,11 +82,11 @@ public class Board {
 		while(reader.hasNext()) {
 			
 			String line = reader.nextLine(); //get next line
-			String[] lineData = line.split(","); //split line by comma
+			String[] lineData = line.split(", "); //split line by comma
 			legend.put(lineData[0].charAt(0), lineData[1]); //insert map pair
 			
 		}
-		
+		reader.close();
 	}
 	
 	/**Load the board configuration from the board config file.
@@ -117,25 +115,7 @@ public class Board {
 		
 		numRows = rowNum;
 		
-		/*try {
-			BufferedReader csvReader = new BufferedReader(new FileReader(boardConfigFile));
-			String row = csvReader.readLine();
-			while(row != null) {
-			    String[] data = row.split(",");
-			    numColumns = data.length;
-			    for(int j = 0; j < data.length; j++) {
-			    	board[numRows][j] = new BoardCell(numRows,j,data[j]);
-			    }
-			    row = csvReader.readLine();
-			    numRows+=1;
-			}
-		}
-		catch(FileNotFoundException e) {
-			
-		}
-		catch(IOException e) {
-			
-		}*/
+		reader.close();
 	}
 	
 	/**Load the adjacency matrix for each cell in the board.*/
