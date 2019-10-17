@@ -67,12 +67,16 @@ public class Board {
 		catch(FileNotFoundException e) {
 			System.err.println("The specified config files were not found.");
 		}
+		catch(BadConfigFormatException e) {
+			System.err.println("One or more of the config files had an error.");
+		}
 		
 	}
 	
 	/**Load the room configuration from the room config file.
-	 * @throws FileNotFoundException If the room config file is not found */
-	public void loadRoomConfig() throws FileNotFoundException {
+	 * @throws FileNotFoundException If the room config file is not found 
+	 * @throws BadConfigFormatException */
+	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
 		
 		//open input file and scanner
 		FileReader roomFileIn = new FileReader(roomConfigFile);
@@ -83,6 +87,10 @@ public class Board {
 			
 			String line = reader.nextLine(); //get next line
 			String[] lineData = line.split(", "); //split line by comma
+			
+			if(lineData[0].length() != 1 || lineData[2] != "Card" || lineData[2] != "Other")
+				throw new BadConfigFormatException("An entry in the room config file does not have the correct format.");
+			
 			legend.put(lineData[0].charAt(0), lineData[1]); //insert map pair
 			
 		}
@@ -90,8 +98,9 @@ public class Board {
 	}
 	
 	/**Load the board configuration from the board config file.
-	 * @throws FileNotFoundException */
-	public void loadBoardConfig() throws FileNotFoundException {
+	 * @throws FileNotFoundException 
+	 * @throws BadConfigFormatException */
+	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
 		
 		FileReader boardFileIn = new FileReader(boardConfigFile);
 		Scanner reader = new Scanner(boardFileIn);
@@ -104,11 +113,25 @@ public class Board {
 			String[] rowData = row.split(",");
 			
 			for(int x = 0; x < rowData.length; x++) {
+				
+				//ensure that the given room type matches one in the list of rooms
+				boolean validRoom = false;
+				for(char room : legend.keySet())
+					if(rowData[x].charAt(0) == room)
+						validRoom = true;
+						
+				if(validRoom == false)
+					throw new BadConfigFormatException("An illegal room type was found in the board config file.");
+				
 				BoardCell newCell = new BoardCell(rowNum, x, rowData[x]);
 				board[rowNum][x] = newCell;
 			}
 			
 			rowNum++;
+			
+			if(numColumns != 0 && numColumns != rowData.length)
+				throw new BadConfigFormatException("Each row in the board must have the same amount of columns.");
+			
 			numColumns = rowData.length;
 			
 		}

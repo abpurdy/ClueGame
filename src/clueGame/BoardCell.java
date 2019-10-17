@@ -29,6 +29,7 @@ public class BoardCell {
 		this.row = row;
 		this.column = column;
 		this.roomType = roomType;
+		
 		if(roomType.length()>1) {
 			switch(roomType.charAt(1)) {
 				case 'D':
