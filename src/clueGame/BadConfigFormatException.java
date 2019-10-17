@@ -1,7 +1,8 @@
 package clueGame;
 
 /**@author Tanner Lorenz
- * @author Austin Purdy*/
+ * @author Austin Purdy
+ * Exception that is thrown when a Clue config file has an error.*/
 public class BadConfigFormatException extends Exception {
 	
 	//constructors

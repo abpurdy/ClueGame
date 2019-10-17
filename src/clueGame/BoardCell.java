@@ -26,9 +26,14 @@ public class BoardCell {
 	
 	/**Create a new board cell with the given room type at the given row and column.*/
 	public BoardCell(int row, int column, String roomType) {
+		
+		//initialize class variables
+		
 		this.row = row;
 		this.column = column;
 		this.roomType = roomType;
+		
+		//determine door direction
 		
 		if(roomType.length()>1) {
 			switch(roomType.charAt(1)) {
@@ -56,6 +61,7 @@ public class BoardCell {
 	
 	//class methods
 	
+	/**Returns true if this cell is a walkway.*/
 	public boolean isWalkway() {
 		if(roomType.charAt(0) == 'W') {
 			return true;
@@ -63,6 +69,7 @@ public class BoardCell {
 		return false;
 	}
 	
+	/**Returns true if this cell is in a room.*/
 	public boolean isRoom() {
 		if(roomType.charAt(0) == 'W') {
 			return false;
@@ -70,6 +77,7 @@ public class BoardCell {
 		return true;
 	}
 	
+	/**Return true if this cell is a doorway.*/
 	public boolean isDoorway() {
 		if(doorDirection.equals(DoorDirection.NONE)) {
 			return false;

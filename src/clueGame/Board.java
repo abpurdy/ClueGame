@@ -10,6 +10,9 @@ import java.util.Set;
 
 import clueGame.BoardCell;
 
+/**@author Tanner Lorenz
+ * @author Austin Purdy
+ * A class that controls the Clue board.*/
 public class Board {
 	
 	
@@ -61,8 +64,11 @@ public class Board {
 	public void initialize(){
 		
 		try {
+			
+			//load board specs from config files
 			loadRoomConfig();
 			loadBoardConfig();
+			
 		}
 		catch(FileNotFoundException e) {
 			System.err.println("The specified config files were not found.");
@@ -74,8 +80,8 @@ public class Board {
 	}
 	
 	/**Load the room configuration from the room config file.
-	 * @throws FileNotFoundException If the room config file is not found 
-	 * @throws BadConfigFormatException */
+	 * @throws FileNotFoundException If the room config file is not found. 
+	 * @throws BadConfigFormatException If there is a room entry in the config file with the wrong format.*/
 	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
 		
 		//open input file and scanner
@@ -88,30 +94,37 @@ public class Board {
 			String line = reader.nextLine(); //get next line
 			String[] lineData = line.split(", "); //split line by comma
 			
-			if(lineData[0].length() != 1 || lineData[2] != "Card" || lineData[2] != "Other")
+			//throw exception if line is not configured correctly
+			if(lineData[0].length() != 1 || (!lineData[2].equals("Card") && !lineData[2].equals("Other")))
 				throw new BadConfigFormatException("An entry in the room config file does not have the correct format.");
 			
 			legend.put(lineData[0].charAt(0), lineData[1]); //insert map pair
 			
 		}
+		
 		reader.close();
+		
 	}
 	
 	/**Load the board configuration from the board config file.
-	 * @throws FileNotFoundException 
-	 * @throws BadConfigFormatException */
+	 * @throws FileNotFoundException If the board config file is not found.
+	 * @throws BadConfigFormatException If the board does not contain the same amount of columns in every row, or if a room appears on the board that is not in the legend.*/
 	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
 		
+		//open input and file scanner
 		FileReader boardFileIn = new FileReader(boardConfigFile);
 		Scanner reader = new Scanner(boardFileIn);
 		
-		int rowNum = 0;
+		int rowNum = 0; //number of rows in board
 		
+		//read each line from file
 		while(reader.hasNext()) {
 			
+			//get each cell in row
 			String row = reader.nextLine();
 			String[] rowData = row.split(",");
 			
+			//create a new cell for each spot in array
 			for(int x = 0; x < rowData.length; x++) {
 				
 				//ensure that the given room type matches one in the list of rooms
@@ -120,15 +133,18 @@ public class Board {
 					if(rowData[x].charAt(0) == room)
 						validRoom = true;
 						
+				//throw exception if illegal room is found
 				if(validRoom == false)
 					throw new BadConfigFormatException("An illegal room type was found in the board config file.");
 				
+				//create new board cell and add it to the board
 				BoardCell newCell = new BoardCell(rowNum, x, rowData[x]);
 				board[rowNum][x] = newCell;
 			}
 			
 			rowNum++;
 			
+			//throw an exception if the current number of columns doesn't match the number of columns in the last row
 			if(numColumns != 0 && numColumns != rowData.length)
 				throw new BadConfigFormatException("Each row in the board must have the same amount of columns.");
 			
