@@ -79,6 +79,8 @@ public class Board {
 		catch(BadConfigFormatException e) {
 			System.err.println("One or more of the config files had an error.");
 		}
+		
+		calcAdjacencies();
 
 	}
 
@@ -161,6 +163,21 @@ public class Board {
 	}
 
 	private void calcAdjacencies(){
+		
+		/*for(int x = 0; x < numRows; x++) {
+			for(int y = 0; y < numColumns; y++) {
+				
+				Set<BoardCell> adjacent = new HashSet<BoardCell>();
+				
+				if(board[x][y].isDoorway()) {
+					
+					if(!(y-1 < 0))
+					
+				}
+				
+			}
+		}*/
+		
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
 				Set<BoardCell> list = new HashSet<BoardCell>();
@@ -197,15 +214,16 @@ public class Board {
 	}
 
 	/**Calculate the cells that the player can move to given a move length and a starting cell.
-	 * @param startCell The cell to start from.
+	 * @param x The x coordinate of the starting cell.
+	 * @param y The y coordinate of the starting cell.
 	 * @param pathLength The amount of spaces the player will move.*/
-	public void calcTargets(BoardCell startCell, int pathLength){
+	public void calcTargets(int x, int y, int pathLength){
 
 		Set<BoardCell> visited = new HashSet<BoardCell>(); //list of already visited cells
 
 		Set<BoardCell> options = new HashSet<BoardCell>(); //the current available list of cells to move to
 
-		targets = calcAllTargets(startCell, pathLength, visited, options); //recursively calculate targets using each cell in range
+		targets = calcAllTargets(board[x][y], pathLength, visited, options); //recursively calculate targets using each cell in range
 
 	}
 
@@ -280,6 +298,12 @@ public class Board {
 
 	public BoardCell getCellAt(int x, int y) {
 		return board[x][y];
+	}
+
+
+	public Set<BoardCell> getAdjList(int x, int y) {
+		// TODO Auto-generated method stub
+		return adjMatrix.get(board[x][y]);
 	}
 
 }
