@@ -161,9 +161,10 @@ public class Board {
 	public void calcAdjacencies() {}
 	
 	/**Calculate the current targets the player can move to.
-	 * @param cell The cell the player is on.
+	 * @param x The x coordinate of the starting cell.
+	 * @param y The y coordinate of the starting cell.
 	 * @param pathLength The amount of spaces the player can move.*/
-	public void calcTargets(BoardCell cell, int pathLength) {}
+	public void calcTargets(int x, int y, int pathLength) {}
 
 
 	//getters and setters
@@ -204,6 +205,12 @@ public class Board {
 	
 	public BoardCell getCellAt(int x, int y) {
 		return board[x][y];
+	}
+
+
+	public Set<BoardCell> getAdjList(int x, int y) {
+		// TODO Auto-generated method stub
+		return adjMatrix.get(board[x][y]);
 	}
 
 }
