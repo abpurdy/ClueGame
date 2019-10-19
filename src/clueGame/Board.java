@@ -80,7 +80,25 @@ public class Board {
 			System.err.println("One or more of the config files had an error.");
 		}
 		
+		/*for(int x = 0; x < numRows; x++) {
+			for(int y = 0; y < numColumns; y++) {
+				System.out.print(board[x][y].getRoomType() + ",");
+			}
+			System.out.println();
+		}
+		
+		System.out.println();
+		System.out.println(numRows);
+		
+		for(BoardCell[] row : board) {
+			for(int x = 0; x < numColumns; x++)
+				System.out.print(row[x].getRoomType() + ",");
+			System.out.println();
+		}*/
+		
 		calcAdjacencies();
+		
+		//System.out.println(board[4][3]);
 
 	}
 
@@ -167,17 +185,35 @@ public class Board {
 		for(int x = 0; x < numRows; x++) {
 			for(int y = 0; y < numColumns; y++) {
 				
+				if(x == 4 && y == 4) { // && x-1 >= 0 && y-1 >= 0 && y+1 < numRows && x-1 < numColumns
+					System.out.println("Above: " + board[x][y-1] + " Right: " + board[x+1][y] + " Below : " + board[x][y+1] + " Left: " + board[x-1][y]);
+				}
+				
 				Set<BoardCell> adjacent = new HashSet<BoardCell>();
 				
 				if(board[x][y].isWalkway()) {
 					
-					if(!(y-1 < 0) && (board[x][y-1].isWalkway() || (board[x][y-1].isDoorway() && board[x][y-1].getDoorDirection() == BoardCell.DoorDirection.DOWN)))
+					if(!(y-1 < 0) && (board[x][y-1].isWalkway() || (board[x][y-1].isDoorway() && board[x][y-1].getDoorDirection() == BoardCell.DoorDirection.RIGHT)))
 						adjacent.add(board[x][y-1]);
-					if(!(x-1 < 0) && (board[x-1][y].isWalkway() || (board[x-1][y].isDoorway() && board[x-1][y].getDoorDirection() == BoardCell.DoorDirection.RIGHT)))
+					if(!(x-1 < 0) && (board[x-1][y].isWalkway() || (board[x-1][y].isDoorway() && board[x-1][y].getDoorDirection() == BoardCell.DoorDirection.DOWN)))
 						adjacent.add(board[x-1][y]);
-					if(!(y+1 > numColumns-1) && (board[x][y+1].isWalkway() || (board[x][y+1].isDoorway() && board[x][y+1].getDoorDirection() == BoardCell.DoorDirection.UP)))
+					if(!(y+1 > numColumns-1) && (board[x][y+1].isWalkway() || (board[x][y+1].isDoorway() && board[x][y+1].getDoorDirection() == BoardCell.DoorDirection.LEFT)))
 						adjacent.add(board[x][y+1]);
-					if(!(x+1 > numRows-1) && (board[x+1][y].isWalkway() || (board[x+1][y].isDoorway() && board[x+1][y].getDoorDirection() == BoardCell.DoorDirection.LEFT)))
+					if(!(x+1 > numRows-1) && (board[x+1][y].isWalkway() || (board[x+1][y].isDoorway() && board[x+1][y].getDoorDirection() == BoardCell.DoorDirection.UP)))
+						adjacent.add(board[x+1][y]);
+					
+				}
+				else if(board[x][y].isDoorway()) {
+					
+					//TODO
+					
+					if(!(y-1 < 0) && board[x][y-1].isWalkway() && board[x][y].getDoorDirection() == DoorDirection.LEFT)
+						adjacent.add(board[x][y-1]);
+					if(!(x-1 < 0) && board[x-1][y].isWalkway() && board[x][y].getDoorDirection() == DoorDirection.UP)
+						adjacent.add(board[x-1][y]);
+					if(!(y+1 > numColumns-1) && board[x][y+1].isWalkway() && board[x][y].getDoorDirection() == DoorDirection.RIGHT)
+						adjacent.add(board[x][y+1]);
+					if(!(x+1 > numRows-1) && board[x+1][y].isWalkway() && board[x][y].getDoorDirection() == DoorDirection.DOWN)
 						adjacent.add(board[x+1][y]);
 					
 				}
@@ -313,6 +349,13 @@ public class Board {
 
 
 	public Set<BoardCell> getAdjList(int x, int y) {
+		
+		System.out.println("Adjacent to " + board[x][y] + ":");
+		
+		for(BoardCell cell : adjMatrix.get(board[x][y]))
+			System.out.print(cell + " ");
+		System.out.println();
+		
 		// TODO Auto-generated method stub
 		return adjMatrix.get(board[x][y]);
 	}

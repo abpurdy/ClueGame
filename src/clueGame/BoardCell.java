@@ -88,6 +88,11 @@ public class BoardCell {
 	}
 	
 	
+	/**Return the string representation of this board cell.*/
+	public String toString() {
+		return roomType + " (" + row + "," + column + ")";
+	}
+	
 	//getters and setters
 	
 	public int getRow() {
