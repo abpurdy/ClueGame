@@ -185,10 +185,6 @@ public class Board {
 		for(int x = 0; x < numRows; x++) {
 			for(int y = 0; y < numColumns; y++) {
 				
-				if(x == 4 && y == 4) { // && x-1 >= 0 && y-1 >= 0 && y+1 < numRows && x-1 < numColumns
-					System.out.println("Above: " + board[x][y-1] + " Right: " + board[x+1][y] + " Below : " + board[x][y+1] + " Left: " + board[x-1][y]);
-				}
-				
 				Set<BoardCell> adjacent = new HashSet<BoardCell>();
 				
 				if(board[x][y].isWalkway()) {
