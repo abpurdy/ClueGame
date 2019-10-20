@@ -223,40 +223,6 @@ public class Board {
 			}
 			
 		}
-		
-		/*for(int i = 0; i < board.length; i++) {
-			for(int j = 0; j < board[i].length; j++) {
-				Set<BoardCell> list = new HashSet<BoardCell>();
-				//adds cell to list if you are allowed to move to it
-				if (i-1 >= 0 && 
-						(board[i-1][j].getRoomType().equals(board[i][j].getRoomType()) || 
-								(board[i-1][j].getDoorDirection() == DoorDirection.RIGHT) ||
-								(board[i][j].getDoorDirection() == DoorDirection.LEFT))) {
-					list.add(board[i-1][j]);
-				}
-				if (i+1 < board.length && 
-						(board[i+1][j].getRoomType().equals(board[i][j].getRoomType()) || 
-								(board[i+1][j].getDoorDirection() == DoorDirection.LEFT) ||
-								(board[i][j].getDoorDirection() == DoorDirection.RIGHT))) {
-					list.add(board[i+1][j]);
-				}
-				if (j-1 >= 0 && 
-						(board[i][j-1].getRoomType().equals(board[i][j].getRoomType()) || 
-								(board[i][j-1].getDoorDirection() == DoorDirection.UP) ||
-				    			(board[i][j].getDoorDirection() == DoorDirection.DOWN))) {
-					list.add(board[i][j-1]);
-				}
-				if (j+1 < board[i].length && 
-						(board[i][j+1].getRoomType().equals(board[i][j].getRoomType()) || 
-								(board[j][j+1].getDoorDirection() == DoorDirection.DOWN) ||
-				    			(board[i][j].getDoorDirection() == DoorDirection.UP))) {
-					list.add(board[i][j+1]);
-				}
-
-				//adds list to adjacency matrix
-				adjMatrix.put(board[i][j], list);
-			}
-		}*/
 	}
 
 	/**Calculate the cells that the player can move to given a move length and a starting cell.
@@ -265,11 +231,11 @@ public class Board {
 	 * @param pathLength The amount of spaces the player will move.*/
 	public void calcTargets(int x, int y, int pathLength){
 
-		/*Set<BoardCell> visited = new HashSet<BoardCell>(); //list of already visited cells
+		Set<BoardCell> visited = new HashSet<BoardCell>(); //list of already visited cells
 
 		Set<BoardCell> options = new HashSet<BoardCell>(); //the current available list of cells to move to
 
-		targets = calcAllTargets(board[x][y], pathLength, visited, options); //recursively calculate targets using each cell in range*/
+		targets = calcAllTargets(board[x][y], pathLength, new HashSet<BoardCell>(), options); //recursively calculate targets using each cell in range*/
 
 	}
 
@@ -281,7 +247,7 @@ public class Board {
 	 * @return A set of cells that the player can move to in the given distance from the given cell.*/
 	private Set<BoardCell> calcAllTargets(BoardCell startCell, int pathLength, Set<BoardCell> visited, Set<BoardCell> options){
 
-		/*pathLength -= 1;
+		pathLength--;
 		visited.add(startCell);
 
 		if(pathLength == 0) {
@@ -293,17 +259,17 @@ public class Board {
 		}
 		else {
 			for (BoardCell adjacent:adjMatrix.get(startCell)) {
-				if(adjacent.getRoomType().charAt(0) != startCell.getRoomType().charAt(0)) {
+				if(adjacent.isDoorway()) {
 					options.add(adjacent);
 				}
 				else if(!visited.contains(adjacent)) {
-					options.addAll(calcAllTargets(adjacent, pathLength, visited, options));
+					Set<BoardCell> Value = new HashSet<BoardCell>();
+					Value.addAll(visited);
+					options.addAll(calcAllTargets(adjacent, pathLength, Value, options));
 				}
 			}
-		}*/
+		}
 		return options;
-		
-
 	}
 
 
