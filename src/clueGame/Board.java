@@ -80,26 +80,10 @@ public class Board {
 			System.err.println("One or more of the config files had an error.");
 		}
 		
-		/*for(int x = 0; x < numRows; x++) {
-			for(int y = 0; y < numColumns; y++) {
-				System.out.print(board[x][y].getRoomType() + ",");
-			}
-			System.out.println();
-		}
 		
-		System.out.println();
-		System.out.println(numRows);
-		
-		for(BoardCell[] row : board) {
-			for(int x = 0; x < numColumns; x++)
-				System.out.print(row[x].getRoomType() + ",");
-			System.out.println();
-		}*/
 		
 		calcAdjacencies();
 		
-		//System.out.println(board[4][3]);
-
 	}
 
 	/**Load the room configuration from the room config file.
@@ -311,8 +295,6 @@ public class Board {
 
 
 	public Set<BoardCell> getAdjList(int x, int y) {
-		
-		System.out.println("Adjacent to " + board[x][y] + ":");
 		
 		for(BoardCell cell : adjMatrix.get(board[x][y]))
 			System.out.print(cell + " ");
