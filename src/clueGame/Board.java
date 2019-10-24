@@ -212,11 +212,7 @@ public class Board {
 	 * @param pathLength The amount of spaces the player will move.*/
 	public void calcTargets(int x, int y, int pathLength){
 
-		Set<BoardCell> visited = new HashSet<BoardCell>(); //list of already visited cells
-
-		Set<BoardCell> options = new HashSet<BoardCell>(); //the current available list of cells to move to
-
-		targets = calcAllTargets(board[x][y], pathLength, visited, options); //recursively calculate targets using each cell in range*/
+		targets = calcAllTargets(board[x][y], pathLength, new HashSet<BoardCell>(), new HashSet<BoardCell>()); //recursively calculate targets using each cell in range*/
 
 	}
 
