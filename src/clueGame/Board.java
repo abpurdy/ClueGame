@@ -80,10 +80,8 @@ public class Board {
 			System.err.println("One or more of the config files had an error.");
 		}
 		
-		
-		
 		calcAdjacencies();
-		
+
 	}
 
 	/**Load the room configuration from the room config file.
@@ -195,7 +193,6 @@ public class Board {
 						adjacent.add(board[x][y+1]);
 					if(!(x+1 > numRows-1) && board[x+1][y].isWalkway() && board[x][y].getDoorDirection() == DoorDirection.DOWN)
 						adjacent.add(board[x+1][y]);
-					
 				}
 				
 				adjMatrix.put(board[x][y], adjacent);
@@ -215,7 +212,7 @@ public class Board {
 
 		Set<BoardCell> options = new HashSet<BoardCell>(); //the current available list of cells to move to
 
-		targets = calcAllTargets(board[x][y], pathLength, new HashSet<BoardCell>(), options); //recursively calculate targets using each cell in range*/
+		targets = calcAllTargets(board[x][y], pathLength, visited, options); //recursively calculate targets using each cell in range*/
 
 	}
 
@@ -295,11 +292,6 @@ public class Board {
 
 
 	public Set<BoardCell> getAdjList(int x, int y) {
-		
-		for(BoardCell cell : adjMatrix.get(board[x][y]))
-			System.out.print(cell + " ");
-		System.out.println();
-		
 		// TODO Auto-generated method stub
 		return adjMatrix.get(board[x][y]);
 	}
