@@ -100,13 +100,15 @@ public class Board {
 			String[] lineData = line.split(", "); //split line by comma
 
 			//throw exception if line is not configured correctly
-			if(lineData[0].length() != 1 || (!lineData[2].equals("Card") && !lineData[2].equals("Other")))
+			if(lineData[0].length() != 1 || (!lineData[2].equals("Card") && !lineData[2].equals("Other"))) {
+				reader.close();
 				throw new BadConfigFormatException("An entry in the room config file does not have the correct format.");
+			}
 
 			legend.put(lineData[0].charAt(0), lineData[1]); //insert map pair
 
 		}
-
+		
 		reader.close();
 
 	}
@@ -150,8 +152,10 @@ public class Board {
 			rowNum++;
 
 			//throw an exception if the current number of columns doesn't match the number of columns in the last row
-			if(numColumns != 0 && numColumns != rowData.length)
+			if(numColumns != 0 && numColumns != rowData.length) {
+				reader.close();
 				throw new BadConfigFormatException("Each row in the board must have the same amount of columns.");
+			}
 
 			numColumns = rowData.length;
 
@@ -208,11 +212,7 @@ public class Board {
 	 * @param pathLength The amount of spaces the player will move.*/
 	public void calcTargets(int x, int y, int pathLength){
 
-		Set<BoardCell> visited = new HashSet<BoardCell>(); //list of already visited cells
-
-		Set<BoardCell> options = new HashSet<BoardCell>(); //the current available list of cells to move to
-
-		targets = calcAllTargets(board[x][y], pathLength, visited, options); //recursively calculate targets using each cell in range*/
+		targets = calcAllTargets(board[x][y], pathLength, new HashSet<BoardCell>(), new HashSet<BoardCell>()); //recursively calculate targets using each cell in range*/
 
 	}
 
