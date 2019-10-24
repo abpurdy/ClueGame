@@ -1,0 +1,11 @@
+1. Optimize calcTargets function: Austin
+2. Optimize calcAllTargets function: Tanner
+3. Add comments to calc target function: Tanner
+4. Clean up comments in rest of code: Austin
+5. Clean up resources INSIDE try/catch (reader.close): Austin
+6. Clean code in general (ex remove print statements): Austin
+7. Optimize BoardCell constructor for finding door type: Tanner
+8. Optimize "is____" functions in BoardCell: Tanner
+9. Optimize calcAdjacencies?: Austin (if needed)
+
+

@@ -63,10 +63,7 @@ public class BoardCell {
 	
 	/**Returns true if this cell is a walkway.*/
 	public boolean isWalkway() {
-		if(roomType.charAt(0) == 'W') {
-			return true;
-		}
-		return false;
+		return roomType.charAt(0) == 'W';
 	}
 	
 	/**Returns true if this cell is in a room.*/
