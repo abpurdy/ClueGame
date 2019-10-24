@@ -68,20 +68,12 @@ public class BoardCell {
 	
 	/**Returns true if this cell is in a room.*/
 	public boolean isRoom() {
-		if(roomType.charAt(0) == 'W') {
-			return false;
-		}
-		return true;
+		return roomType.charAt(0) != 'W';
 	}
 	
 	/**Return true if this cell is a doorway.*/
 	public boolean isDoorway() {
-		if(doorDirection.equals(DoorDirection.NONE)) {
-			return false;
-		}
-		else {
-			return true;
-		}
+		return !doorDirection.equals(DoorDirection.NONE);
 	}
 	
 	
