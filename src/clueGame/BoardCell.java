@@ -58,6 +58,9 @@ public class BoardCell {
 				}
 			}
 			
+			if(doorDirection == null)
+				doorDirection = DoorDirection.NONE;
+			
 		}
 	}
 	
