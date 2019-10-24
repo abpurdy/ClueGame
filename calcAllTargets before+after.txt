@@ -1,0 +1,26 @@
+private Set<BoardCell> calcAllTargets(BoardCell startCell, int pathLength, Set<BoardCell> visited, Set<BoardCell> options){
+
+		pathLength--;
+		visited.add(startCell);
+
+		if(pathLength == 0) {
+			for (BoardCell adjacent:adjMatrix.get(startCell)) {
+				if(!visited.contains(adjacent)) {
+					options.add(adjacent);
+				}
+			}
+		}
+		else {
+			for (BoardCell adjacent:adjMatrix.get(startCell)) {
+				if(adjacent.isDoorway()) {
+					options.add(adjacent);
+				}
+				else if(!visited.contains(adjacent)) {
+					Set<BoardCell> Value = new HashSet<BoardCell>();
+					Value.addAll(visited);
+					options.addAll(calcAllTargets(adjacent, pathLength, Value, options));
+				}
+			}
+		}
+		return options;
+	}

@@ -7,7 +7,18 @@ public class BoardCell {
 	
 	/**Enum that represents each direction a door can be in.*/
 	public enum DoorDirection{
-		UP, DOWN, LEFT, RIGHT, NONE;
+		
+		UP("U"), DOWN("D"), LEFT("L"), RIGHT("R"), NONE("");
+		
+		/**The character that represents the direction of this door.*/
+		public String direction;
+		
+		/**Create a new DoorDirection.
+		 * @param direction The character representing this DoorDirection.*/
+		private DoorDirection(String direction) {
+			this.direction = direction;
+		}
+		
 	}
 	
 	//class variables
@@ -35,26 +46,18 @@ public class BoardCell {
 		
 		//determine door direction
 		
-		if(roomType.length()>1) {
-			switch(roomType.charAt(1)) {
-				case 'D':
-					this.doorDirection = DoorDirection.DOWN;
-					break;
-				case 'U':
-					this.doorDirection = DoorDirection.UP;
-					break;
-				case 'L':
-					this.doorDirection = DoorDirection.LEFT;
-					break;
-				case 'R':
-					this.doorDirection = DoorDirection.RIGHT;
-					break;
-				default:
-					this.doorDirection = DoorDirection.NONE;
-			}
-		}
+		if(roomType.length() == 1)
+			doorDirection = DoorDirection.NONE;
 		else {
-			this.doorDirection = DoorDirection.NONE;
+			
+			//check each door direction and find the one that matches the character given by roomType
+			for(DoorDirection d : DoorDirection.values()) {
+				if(d.direction.equals(roomType.substring(1))) {
+					doorDirection = d;
+					break;
+				}
+			}
+			
 		}
 	}
 	
