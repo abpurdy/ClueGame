@@ -211,8 +211,19 @@ public class Board {
 	 * @param y The y coordinate of the starting cell.
 	 * @param pathLength The amount of spaces the player will move.*/
 	public void calcTargets(int x, int y, int pathLength){
+		
+		System.out.println("Getting targets for " + board[x][y] + ", move length: " + pathLength);
 
-		targets = calcAllTargets(board[x][y], pathLength, new HashSet<BoardCell>(), new HashSet<BoardCell>()); //recursively calculate targets using each cell in range*/
+		Set<BoardCell> visited = new HashSet<BoardCell>(); //list of already visited cells
+		
+		targets.clear();
+		visited.add(board[x][y]); //add start cell to visited list
+
+		calcAllTargets(board[x][y], pathLength, visited); //recursively calculate targets using each cell in range
+		
+		System.out.println("Final list: ");
+		for(BoardCell cell : targets)
+			System.out.print(cell + " ");
 
 	}
 
@@ -222,31 +233,36 @@ public class Board {
 	 * @param visited The list of cells that have already been visited.
 	 * @param options The current list of targets the player can move to.
 	 * @return A set of cells that the player can move to in the given distance from the given cell.*/
-	private Set<BoardCell> calcAllTargets(BoardCell startCell, int pathLength, Set<BoardCell> visited, Set<BoardCell> options){
-
-		pathLength--;
-		visited.add(startCell);
-
-		if(pathLength == 0) {
-			for (BoardCell adjacent:adjMatrix.get(startCell)) {
-				if(!visited.contains(adjacent)) {
-					options.add(adjacent);
-				}
-			}
-		}
-		else {
-			for (BoardCell adjacent:adjMatrix.get(startCell)) {
+	private void calcAllTargets(BoardCell startCell, int pathLength, Set<BoardCell> visited){
+		
+		System.out.println("Checking " + startCell + " with " + pathLength + " moves remaining");
+		
+		//check each adjacent cell
+		for(BoardCell adjacent : adjMatrix.get(startCell)) {
+			
+			//if cell is not visited
+			if(!visited.contains(adjacent)) {
+				
+				visited.add(adjacent);
+				
 				if(adjacent.isDoorway()) {
-					options.add(adjacent);
+					targets.add(adjacent);
+					System.out.println(adjacent + " added!");
 				}
-				else if(!visited.contains(adjacent)) {
-					Set<BoardCell> Value = new HashSet<BoardCell>();
-					Value.addAll(visited);
-					options.addAll(calcAllTargets(adjacent, pathLength, Value, options));
+				
+				if(pathLength == 1) {
+					targets.add(adjacent);
+					System.out.println(adjacent + " added!");
 				}
+				else
+					calcAllTargets(adjacent, pathLength-1, visited);
+				
+				visited.remove(adjacent);
+				
 			}
+			
 		}
-		return options;
+		
 	}
 
 
