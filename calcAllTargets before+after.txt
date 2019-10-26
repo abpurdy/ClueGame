@@ -1,3 +1,5 @@
+Before:
+
 private Set<BoardCell> calcAllTargets(BoardCell startCell, int pathLength, Set<BoardCell> visited, Set<BoardCell> options){
 
 		pathLength--;
@@ -23,4 +25,36 @@ private Set<BoardCell> calcAllTargets(BoardCell startCell, int pathLength, Set<B
 			}
 		}
 		return options;
+	}
+
+
+
+After:
+
+private void calcAllTargets(BoardCell startCell, int pathLength, Set<BoardCell> visited){
+		
+		//check each adjacent cell
+		for(BoardCell adjacent : adjMatrix.get(startCell)) {
+			
+			//if cell is not visited
+			if(!visited.contains(adjacent)) {
+				
+				visited.add(adjacent); //add cell to visited list
+				
+				//add cell if it is a doorway
+				if(adjacent.isDoorway())
+					targets.add(adjacent);
+				
+				//add cell to targets if no moves remain, otherwise go to that cell and check its adjacent cells
+				if(pathLength == 1)
+					targets.add(adjacent);
+				else
+					calcAllTargets(adjacent, pathLength-1, visited);
+				
+				visited.remove(adjacent); //remove cell from visited list
+				
+			}
+			
+		}
+		
 	}

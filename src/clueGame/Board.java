@@ -166,13 +166,16 @@ public class Board {
 		reader.close();
 	}
 
+	/**Calculate the list of adjacent cells for each cell in the board.*/
 	private void calcAdjacencies(){
 		
+		//loop through each cell
 		for(int x = 0; x < numRows; x++) {
 			for(int y = 0; y < numColumns; y++) {
 				
-				Set<BoardCell> adjacent = new HashSet<BoardCell>();
+				Set<BoardCell> adjacent = new HashSet<BoardCell>(); //list of adjacent cells to current cell
 				
+				//if current cell is a walkway, add all nearby walkways or any doors facing the correct direction to the adjacency list
 				if(board[x][y].isWalkway()) {
 					
 					if(!(y-1 < 0) && (board[x][y-1].isWalkway() || (board[x][y-1].isDoorway() && board[x][y-1].getDoorDirection() == BoardCell.DoorDirection.RIGHT)))
@@ -185,9 +188,8 @@ public class Board {
 						adjacent.add(board[x+1][y]);
 					
 				}
+				//if current cell is a doorway, only add the walkway cell next to it to the adjacency list
 				else if(board[x][y].isDoorway()) {
-					
-					//TODO
 					
 					if(!(y-1 < 0) && board[x][y-1].isWalkway() && board[x][y].getDoorDirection() == DoorDirection.LEFT)
 						adjacent.add(board[x][y-1]);
@@ -199,11 +201,11 @@ public class Board {
 						adjacent.add(board[x+1][y]);
 				}
 				
-				adjMatrix.put(board[x][y], adjacent);
+				adjMatrix.put(board[x][y], adjacent); //add adjacency list to matrix
 				
 			}
-			
 		}
+		
 	}
 
 	/**Calculate the cells that the player can move to given a move length and a starting cell.
@@ -220,22 +222,14 @@ public class Board {
 		visited.add(board[x][y]); //add start cell to visited list
 
 		calcAllTargets(board[x][y], pathLength, visited); //recursively calculate targets using each cell in range
-		
-		System.out.println("Final list: ");
-		for(BoardCell cell : targets)
-			System.out.print(cell + " ");
 
 	}
 
 	/**Recursively calculate cells that the player can move to.
 	 * @param startCell The cell to check around.
 	 * @param pathLength The remaining distance the player can move.
-	 * @param visited The list of cells that have already been visited.
-	 * @param options The current list of targets the player can move to.
-	 * @return A set of cells that the player can move to in the given distance from the given cell.*/
+	 * @param visited The list of cells that have already been visited. */
 	private void calcAllTargets(BoardCell startCell, int pathLength, Set<BoardCell> visited){
-		
-		System.out.println("Checking " + startCell + " with " + pathLength + " moves remaining");
 		
 		//check each adjacent cell
 		for(BoardCell adjacent : adjMatrix.get(startCell)) {
@@ -243,21 +237,19 @@ public class Board {
 			//if cell is not visited
 			if(!visited.contains(adjacent)) {
 				
-				visited.add(adjacent);
+				visited.add(adjacent); //add cell to visited list
 				
-				if(adjacent.isDoorway()) {
+				//add cell if it is a doorway
+				if(adjacent.isDoorway())
 					targets.add(adjacent);
-					System.out.println(adjacent + " added!");
-				}
 				
-				if(pathLength == 1) {
+				//add cell to targets if no moves remain, otherwise go to that cell and check its adjacent cells
+				if(pathLength == 1)
 					targets.add(adjacent);
-					System.out.println(adjacent + " added!");
-				}
 				else
 					calcAllTargets(adjacent, pathLength-1, visited);
 				
-				visited.remove(adjacent);
+				visited.remove(adjacent); //remove cell from visited list
 				
 			}
 			
