@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -37,6 +38,8 @@ public class Board {
 	private String cardConfigFile;
 	/**The singleton instance of this Board class.*/
 	private static Board instance = new Board();
+	/**A list of the players in the game.*/
+	private ArrayList<Player> players;
 	/**The room legend.*/
 	private Map<Character, String> legend;
 	/**The list of adjacent cells for each cell on the board.*/
@@ -57,6 +60,9 @@ public class Board {
 		numColumns = 0;
 		boardConfigFile = "";
 		roomConfigFile = "";
+		playerConfigFile = "";
+		cardConfigFile = "";
+		players = new ArrayList<Player>();
 		legend = new HashMap<Character, String>();
 		adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 		targets = new HashSet<BoardCell>();
@@ -293,6 +299,10 @@ public class Board {
 
 	public static Board getInstance() {
 		return instance;
+	}
+	
+	public ArrayList<Player> getPlayers(){
+		return players;
 	}
 
 

@@ -15,7 +15,7 @@ public class ComputerPlayer extends Player {
 	 * @param name This player's name.
 	 * @param color This player's color as a String, eg. "white"*/
 	public ComputerPlayer(int row, int column, String name, String color) {
-		super(row, column, name, color);
+		super(false, row, column, name, color);
 	}
 	
 	

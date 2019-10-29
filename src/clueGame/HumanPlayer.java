@@ -13,7 +13,7 @@ public class HumanPlayer extends Player {
 	 * @param name This player's name.
 	 * @param color This player's color as a String, eg. "white"*/
 	public HumanPlayer(int row, int column, String name, String color) {
-		super(row, column, name, color);
+		super(true, row, column, name, color);
 	}
 
 }
