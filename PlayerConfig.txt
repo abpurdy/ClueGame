@@ -1,8 +1,8 @@
-Jotaro,black,human,0,0
-Kakyoin,green,computer,0,0
-Okuyasu,blue,computer,0,0
-Giorno,yellow,computer,0,0
-Bruno,white,computer,0,0
-Josuke,pink,computer,0,0
+Jotaro,black,human,0,4
+Kakyoin,green,computer,7,0
+Okuyasu,blue,computer,15,0
+Giorno,yellow,computer,0,17
+Bruno,white,computer,24,17
+Josuke,pink,computer,24,7
 
 

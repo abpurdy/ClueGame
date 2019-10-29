@@ -1,0 +1,7 @@
+Arrow
+Turtle
+Rock
+Statue
+Bomb
+Mask
+

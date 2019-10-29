@@ -24,33 +24,12 @@ public class Card {
 	/**Create a new card object.
 	 * @param name The name of this card.
 	 * @param type The card type as a string.*/
-	public Card(String name, String type) {
+	public Card(String name, CardType type) {
 		
 		//init class variables
 		
 		this.name = name;
-		
-		//get card type from string
-		switch(type) {
-		
-			case "weapon":
-				this.type = CardType.WEAPON;
-				break;
-				
-			case "person":
-				this.type = CardType.PERSON;
-				break;
-				
-			case "room":
-				this.type = CardType.ROOM;
-				break;
-				
-			default:
-				this.type = null;
-				break;
-			
-		}
-		
+		this.type = type;
 	}
 	
 	

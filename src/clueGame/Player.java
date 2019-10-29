@@ -62,7 +62,8 @@ public class Player {
 	/**Test if this player object is equal to another player object.
 	 * @return True if both players are equal.*/
 	public boolean equals(Player player) {
-		return (name.equals(player.name) && color.equals(player.color) && human == player.human);
+		return (name.equals(player.name) && color.equals(player.color) && human == player.human 
+				&& row == player.row && column == player.column);
 	}
 
 }
