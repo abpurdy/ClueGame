@@ -178,8 +178,36 @@ public class Board {
 		reader.close();
 	}
 	
-	/**Load the players from the player config file.*/
-	public void loadPlayerConfig() {}
+	/**Load the players from the player config file.
+	 * @throws FileNotFoundException If the player config file is not found.*/
+	public void loadPlayerConfig() throws FileNotFoundException {
+		
+		//create readers for file
+		
+		FileReader playerFileIn = new FileReader(playerConfigFile);
+		Scanner reader = new Scanner(playerFileIn);
+		
+		//read players from file
+		
+		while(reader.hasNext()) {
+			
+			Player newPlayer; //create a new player
+			String[] playerData = reader.nextLine().split(","); //get next line and split by comma
+			
+			//initialize new player object from line data
+			if(playerData[2].equals("human"))
+				newPlayer = new HumanPlayer(Integer.parseInt(playerData[3]), Integer.parseInt(playerData[4]), playerData[0], playerData[1]);
+			else
+				newPlayer = new ComputerPlayer(Integer.parseInt(playerData[3]), Integer.parseInt(playerData[4]), playerData[0], playerData[1]);
+			
+			players.add(newPlayer); //add new player to lsit
+				
+			
+		}
+		
+		reader.close();
+		
+	}
 	
 	/**Load the cards from the card config file.*/
 	public void loadCardConfig() {}

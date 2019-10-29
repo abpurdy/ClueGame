@@ -18,7 +18,7 @@ public class gameSetupTests {
 	public void init() {
 		
 		board = Board.getInstance();
-		board.setConfigFiles("Clue Board.csv", "ClueRooms.txt");
+		board.setConfigFiles("Clue Board.csv", "ClueRooms.txt", "PlayerConfig.txt", "CardConfig.txt");
 		board.initialize();
 		
 	}
@@ -28,7 +28,7 @@ public class gameSetupTests {
 		
 		//create 3 player objects to test the first, third and last players in config file
 		
-		Player player1 = new HumanPlayer(0, 0, "Jotaro", "purple");
+		Player player1 = new HumanPlayer(0, 0, "Jotaro", "black");
 		Player player2 = new ComputerPlayer(0, 0, "Okuyasu", "blue");
 		Player player3 = new ComputerPlayer(0, 0, "Josuke", "pink");
 		

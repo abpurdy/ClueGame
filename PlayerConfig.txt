@@ -1,4 +1,4 @@
-Jotaro,purple,human,0,0
+Jotaro,black,human,0,0
 Kakyoin,green,computer,0,0
 Okuyasu,blue,computer,0,0
 Giorno,yellow,computer,0,0
