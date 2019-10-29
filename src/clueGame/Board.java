@@ -31,6 +31,10 @@ public class Board {
 	private String boardConfigFile;
 	/**The name of the room configuration file.*/
 	private String roomConfigFile;
+	/**The name of the player configuration file.*/
+	private String playerConfigFile;
+	/**The name of the card configuration file.*/
+	private String cardConfigFile;
 	/**The singleton instance of this Board class.*/
 	private static Board instance = new Board();
 	/**The room legend.*/
@@ -71,6 +75,8 @@ public class Board {
 			//load board specs from config files
 			loadRoomConfig();
 			loadBoardConfig();
+			loadPlayerConfig();
+			loadCardConfig();
 
 		}
 		catch(FileNotFoundException e) {
@@ -165,6 +171,12 @@ public class Board {
 
 		reader.close();
 	}
+	
+	/**Load the players from the player config file.*/
+	public void loadPlayerConfig() {}
+	
+	/**Load the cards from the card config file.*/
+	public void loadCardConfig() {}
 
 	/**Calculate the list of adjacent cells for each cell in the board.*/
 	private void calcAdjacencies(){
@@ -213,8 +225,6 @@ public class Board {
 	 * @param y The y coordinate of the starting cell.
 	 * @param pathLength The amount of spaces the player will move.*/
 	public void calcTargets(int x, int y, int pathLength){
-		
-		System.out.println("Getting targets for " + board[x][y] + ", move length: " + pathLength);
 
 		Set<BoardCell> visited = new HashSet<BoardCell>(); //list of already visited cells
 		
@@ -256,6 +266,17 @@ public class Board {
 		}
 		
 	}
+	
+	/**Select an answer.*/
+	public void selectAnswer() {}
+	
+	/**Handle a given suggestion.*/
+	public void handleSuggestion() {}
+	
+	/**Check if an accusation matches the solution.*/
+	public boolean checkAccusation(Solution accusation) {
+		return false;
+	}
 
 
 	//getters and setters
@@ -292,6 +313,13 @@ public class Board {
 	public void setConfigFiles(String boardConfigFile, String roomConfigFile) {
 		this.boardConfigFile = boardConfigFile;
 		this.roomConfigFile = roomConfigFile;
+	}
+	
+	public void setConfigFiles(String boardConfigFile, String roomConfigFile, String playerConfigFile, String cardConfigFile) {
+		this.boardConfigFile = boardConfigFile;
+		this.roomConfigFile = roomConfigFile;
+		this.playerConfigFile = playerConfigFile;
+		this.cardConfigFile = cardConfigFile;
 	}
 
 	public BoardCell getCellAt(int x, int y) {
