@@ -28,9 +28,9 @@ public class gameSetupTests {
 		
 		//create 3 player objects to test the first, third and last players in config file
 		
-		Player player1 = new HumanPlayer(0, 0, "Jotaro", "black");
-		Player player2 = new ComputerPlayer(0, 0, "Okuyasu", "blue");
-		Player player3 = new ComputerPlayer(0, 0, "Josuke", "pink");
+		Player player1 = new HumanPlayer(0, 4, "Jotaro", "black");
+		Player player2 = new ComputerPlayer(15, 0, "Okuyasu", "blue");
+		Player player3 = new ComputerPlayer(24, 7, "Josuke", "pink");
 		
 		assertTrue(player1.equals(board.getPlayers().get(0)));
 		assertTrue(player2.equals(board.getPlayers().get(2)));

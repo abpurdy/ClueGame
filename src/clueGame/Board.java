@@ -66,6 +66,7 @@ public class Board {
 		playerConfigFile = "";
 		weaponConfigFile = "";
 		players = new ArrayList<Player>();
+		deck = new ArrayList<Card>();
 		legend = new HashMap<Character, String>();
 		adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 		targets = new HashSet<BoardCell>();
