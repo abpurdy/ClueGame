@@ -86,13 +86,13 @@ public class Board {
 	public void initialize(){
 
 		try {
-
+			deck = new ArrayList<Card>();
 			//load board specs from config files
 			loadRoomConfig();
 			loadPlayerConfig();
 			loadWeaponConfig();
 			loadBoardConfig();
-
+			dealCards();
 		}
 		catch(FileNotFoundException e) {
 			System.err.println("The specified config files were not found.");
@@ -195,6 +195,7 @@ public class Board {
 	/**Load the players from the player config file.
 	 * @throws FileNotFoundException If the player config file is not found.*/
 	public void loadPlayerConfig() throws FileNotFoundException {
+		players = new ArrayList<Player>();
 		
 		//create readers for file
 		
@@ -359,10 +360,19 @@ public class Board {
 		//deal cards to players
 		int start = 0;
 		for(Player player : players) {
-			
-			for (int i = 0; i < 6; i++) {
-				
+			ArrayList<Card> playerCards = new ArrayList<Card>();
+			for (int i = 0; i < (deck.size()-3)/players.size(); i++) {
+				playerCards.add(deck.get(start + i));
 			}
+			player.setMyCards(playerCards);
+			start += (deck.size()-3)/players.size();
+		}
+		//deal extra cards to players
+		for(int i = 0; i < (deck.size()-3)%players.size(); i++) {
+			ArrayList<Card> playerCards = new ArrayList<Card>();
+			playerCards = players.get(i).getMyCards();
+			playerCards.add(deck.get(deck.size()-4-i));
+			players.get(i).setMyCards(playerCards);
 		}
 	}
 	

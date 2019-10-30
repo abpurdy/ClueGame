@@ -85,9 +85,25 @@ public class gameSetupTests {
 
 	@Test
 	public void testCardDealing() {
+		ArrayList<Player> players = board.getPlayers();
+		Player player1 = players.get(0);
+		//checks that all players have roughly the same number of cards
+		for(Player player : players) {
+			//ensures that all players have the same number of cards or one less than first player
+			assertTrue(player1.getMyCards().size()-player.getMyCards().size() == 1 ||
+					player1.getMyCards().size()-player.getMyCards().size() == 0);
+		}
 
-
-
+		//makes sure no two players have the same card
+		for(Player player2 : players) {
+			for(Player player3 : players) {
+				if(!player2.equals(player3)) {
+					for(Card playerCard : player2.getMyCards()) {
+						ArrayList<Card> playerCards = player3.getMyCards();
+						assertFalse(playerCards.contains(playerCard));
+					}
+				}
+			}
+		}
 	}
-
 }

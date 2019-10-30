@@ -22,7 +22,7 @@ public class Player {
 	/**This player's color.*/
 	private Color color;
 	/**Array of the players cards**/
-	private Card[] myCards;
+	private ArrayList<Card> myCards;
 	/**Arraylist of the cards the player has seen**/
 	private ArrayList<Card> seenCards;
 	
@@ -43,7 +43,7 @@ public class Player {
 		this.column = column;
 		this.name = name;
 		
-		myCards = new Card[6];
+		myCards = new ArrayList<Card>();
 		seenCards = new ArrayList<Card>();
 		
 		//create color object from string
@@ -60,6 +60,26 @@ public class Player {
 	
 	//class methods
 	
+	public ArrayList<Card> getMyCards() {
+		return myCards;
+	}
+
+
+	public void setMyCards(ArrayList<Card> myCards) {
+		this.myCards = myCards;
+	}
+
+
+	public ArrayList<Card> getSeenCards() {
+		return seenCards;
+	}
+
+
+	public void setSeenCards(ArrayList<Card> seenCards) {
+		this.seenCards = seenCards;
+	}
+
+
 	/**Disprove the current suggestion.
 	 * @return A Card object.*/
 	public Card disproveSuggestion(Solution suggestion) {
