@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.Color;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 /**@author Austin Purdy
  * @author Tanner Lorenz
@@ -20,7 +21,10 @@ public class Player {
 	private int column;
 	/**This player's color.*/
 	private Color color;
-	
+	/**Array of the players cards**/
+	private Card[] myCards;
+	/**Arraylist of the cards the player has seen**/
+	private ArrayList<Card> seenCards;
 	
 	//constructors
 
@@ -38,6 +42,9 @@ public class Player {
 		this.row = row;
 		this.column = column;
 		this.name = name;
+		
+		myCards = new Card[6];
+		seenCards = new ArrayList<Card>();
 		
 		//create color object from string
 		try {

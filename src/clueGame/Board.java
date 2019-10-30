@@ -1,13 +1,16 @@
 package clueGame;
 
 import java.io.BufferedReader;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -43,6 +46,8 @@ public class Board {
 	private ArrayList<Player> players;
 	/**A list representing the deck of cards**/
 	private ArrayList<Card> deck;
+	/**An array containing the solution cards**/
+	private Solution solution;
 	/**The room legend.*/
 	private Map<Character, String> legend;
 	/**The list of adjacent cells for each cell on the board.*/
@@ -84,9 +89,9 @@ public class Board {
 
 			//load board specs from config files
 			loadRoomConfig();
-			loadBoardConfig();
 			loadPlayerConfig();
 			loadWeaponConfig();
+			loadBoardConfig();
 
 		}
 		catch(FileNotFoundException e) {
@@ -126,6 +131,7 @@ public class Board {
 			//add room card into deck
 			if(lineData[2].contentEquals("Card")) {
 				Card newCard = new Card(lineData[1], CardType.ROOM);
+				deck.add(newCard);
 			}
 		}
 		
@@ -329,6 +335,37 @@ public class Board {
 		
 	}
 	
+	private void dealCards() {
+		//create random generator
+		Random random = new Random(System.currentTimeMillis());
+		//select random cards of each tpe
+		int roomIndex = random.nextInt(9);
+		int personIndex = random.nextInt(6) + 9;
+		int weaponIndex = random.nextInt(6) + 16; 
+		//set solution
+		solution = new Solution(deck.get(personIndex).getName(), deck.get(roomIndex).getName(), deck.get(weaponIndex).getName());
+		//move cards in the solution to the end of the deck
+		Collections.swap(deck, weaponIndex, deck.size()-1);
+		Collections.swap(deck, personIndex, deck.size()-2);
+		Collections.swap(deck, roomIndex, deck.size()-3);
+		
+		//shuffle the rest of the deck
+		for(int j = 0; j < 3; j++) {
+			for(int i = 0; i < deck.size()-3; i++) {
+				Collections.swap(deck, i, random.nextInt(deck.size()-3));
+			}
+		}
+		
+		//deal cards to players
+		int start = 0;
+		for(Player player : players) {
+			
+			for (int i = 0; i < 6; i++) {
+				
+			}
+		}
+	}
+	
 	/**Select an answer.*/
 	public void selectAnswer() {}
 	
@@ -397,5 +434,8 @@ public class Board {
 		// TODO Auto-generated method stub
 		return adjMatrix.get(board[x][y]);
 	}
-
+	
+	public ArrayList<Card> getDeck(){
+		return deck;
+	}
 }

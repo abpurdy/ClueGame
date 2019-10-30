@@ -27,18 +27,36 @@ public class Card {
 	public Card(String name, CardType type) {
 		
 		//init class variables
-		
 		this.name = name;
 		this.type = type;
 	}
 	
 	
 	//class methods
-	
-	/**Returns true if this card equals the given card.
-	 * @param card The card to test against.*/
-	public boolean equals(Card card) {
-		return (name.equals(card.name) && type == card.type);
+	//getters and setters
+	public String getName() {
+		return name;
 	}
 
+
+	public CardType getType() {
+		return type;
+	}
+
+
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		//return true if object is compared with itself
+		if (o == this) {
+			return true;
+		}
+		//Check if o is an instance of Card
+		if(!(o instanceof Card)) {
+			return false;
+		}
+		//check to see if the values of the card are equal
+		Card card = (Card) o;
+		return (name.equals(card.name) && type == card.type);
+	}
 }
