@@ -95,9 +95,11 @@ public class gameSetupTests {
 		}
 
 		//makes sure no two players have the same card
+		//goes through each player in the deck and compares their cards to the cards of every other player
 		for(Player player2 : players) {
 			for(Player player3 : players) {
-				if(!player2.equals(player3)) {
+				if(!player2.equals(player3)) { //doesn't compare the cards of a player to itself
+					//ensures that no card in player2's deck is in player3's deck
 					for(Card playerCard : player2.getMyCards()) {
 						ArrayList<Card> playerCards = player3.getMyCards();
 						assertFalse(playerCards.contains(playerCard));
