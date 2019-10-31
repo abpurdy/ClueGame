@@ -6,6 +6,8 @@ import java.util.Set;
  * @author Austin Purdy
  * A class to control the computer players.*/
 public class ComputerPlayer extends Player {
+	/**previous cell**/
+	private BoardCell previousCell;
 	
 	//constructors
 
