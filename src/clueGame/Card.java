@@ -23,12 +23,13 @@ public class Card {
 	
 	/**Create a new card object.
 	 * @param name The name of this card.
-	 * @param type The card type as a string.*/
+	 * @param type The card type.*/
 	public Card(String name, CardType type) {
 		
 		//init class variables
 		this.name = name;
 		this.type = type;
+		
 	}
 	
 	
@@ -46,7 +47,6 @@ public class Card {
 
 	@Override
 	public boolean equals(Object o) {
-		// TODO Auto-generated method stub
 		//return true if object is compared with itself
 		if (o == this) {
 			return true;

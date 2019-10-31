@@ -39,7 +39,7 @@ public class Board {
 	/**The name of the player configuration file.*/
 	private String playerConfigFile;
 	/**The name of the card configuration file.*/
-	private String weaponConfigFile;
+	private String cardConfigFile;
 	/**The singleton instance of this Board class.*/
 	private static Board instance = new Board();
 	/**A list of the players in the game.*/
@@ -55,7 +55,7 @@ public class Board {
 	/**The current spaces that the player can move to.*/
 	private Set<BoardCell> targets;
 	/**The game board.*/
-	BoardCell[][] board;
+	private BoardCell[][] board;
 
 
 	//constructor
@@ -69,7 +69,7 @@ public class Board {
 		boardConfigFile = "";
 		roomConfigFile = "";
 		playerConfigFile = "";
-		weaponConfigFile = "";
+		cardConfigFile = "";
 		players = new ArrayList<Player>();
 		deck = new ArrayList<Card>();
 		legend = new HashMap<Character, String>();
@@ -86,13 +86,11 @@ public class Board {
 	public void initialize(){
 
 		try {
-			deck = new ArrayList<Card>();
 			//load board specs from config files
 			loadRoomConfig();
 			loadPlayerConfig();
-			loadWeaponConfig();
+			loadCardConfig();
 			loadBoardConfig();
-			dealCards();
 		}
 		catch(FileNotFoundException e) {
 			System.err.println("The specified config files were not found.");
@@ -102,7 +100,8 @@ public class Board {
 		}
 		
 		calcAdjacencies();
-
+		dealCards();
+		
 	}
 
 	/**Load the room configuration from the room config file.
@@ -228,23 +227,57 @@ public class Board {
 	}
 	
 	/**Load the cards from the card config file.
-	 * @throws FileNotFoundException */
-	public void loadWeaponConfig() throws FileNotFoundException {
+	 * @throws FileNotFoundException If the card config file is not found.*/
+	public void loadCardConfig() throws FileNotFoundException {
+		
 		//open input file and scanner
-				FileReader roomFileIn = new FileReader(weaponConfigFile);
-				Scanner reader = new Scanner(roomFileIn);
-
-				//read legend file and store info in legend map
-				while(reader.hasNext()) {
-
-					String line = reader.nextLine(); //get next line
+		FileReader roomFileIn = new FileReader(cardConfigFile);
+		Scanner reader = new Scanner(roomFileIn);
+		
+		//get cards from file and store in deck
+		
+		while(reader.hasNext()) {
+			
+			Card newCard; //the next card in the list
+			String[] cardData = reader.nextLine().split(","); //get card data from line
+			
+			//set card type from line data
+			switch(cardData[1]) {
+			
+				case "weapon":
+					newCard = new Card(cardData[0], CardType.WEAPON);
+					break;
 					
-					//add weapon card into deck
-					Card newCard = new Card(line, CardType.WEAPON);
-					deck.add(newCard);
-				}
+				case "person":
+					newCard = new Card(cardData[0], CardType.PERSON);
+					break;
+					
+				case "room":
+					newCard = new Card(cardData[0], CardType.ROOM);
+					break;
+					
+				default:
+					newCard = null;
+					break;
+					
+			}
+			
+			deck.add(newCard); //add card to deck
+			
+		}
+
+		//read legend file and store info in legend map
+		/*while(reader.hasNext()) {
+
+			String line = reader.nextLine(); //get next line
+					
+			//add weapon card into deck
+			Card newCard = new Card(line, CardType.WEAPON);
+			deck.add(newCard);
+		}*/
 				
-				reader.close();
+		reader.close();
+				
 	}
 
 	/**Calculate the list of adjacent cells for each cell in the board.*/
@@ -432,7 +465,7 @@ public class Board {
 		this.boardConfigFile = boardConfigFile;
 		this.roomConfigFile = roomConfigFile;
 		this.playerConfigFile = playerConfigFile;
-		this.weaponConfigFile = cardConfigFile;
+		this.cardConfigFile = cardConfigFile;
 	}
 
 	public BoardCell getCellAt(int x, int y) {
