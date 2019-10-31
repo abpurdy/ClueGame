@@ -1,10 +1,12 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueGame.Board;
@@ -18,11 +20,11 @@ public class gameSetupTests {
 
 	private static Board board;
 
-	@Before
-	public void init() {
+	@BeforeClass
+	public static void init() {
 
 		board = Board.getInstance();
-		board.setConfigFiles("Clue Board.csv", "ClueRooms.txt", "PlayerConfig.txt", "WeaponsConfig.txt");
+		board.setConfigFiles("Clue Board.csv", "ClueRooms.txt", "PlayerConfig.txt", "CardConfig.txt");
 		board.initialize();
 
 	}
@@ -47,7 +49,7 @@ public class gameSetupTests {
 		//get deck from the board
 		ArrayList<Card> deck = board.getDeck();
 		//ensure that the deck is the correct size
-		assertTrue(deck.size() == 21);
+		assertEquals(deck.size(), 21);
 
 
 
@@ -85,6 +87,7 @@ public class gameSetupTests {
 
 	@Test
 	public void testCardDealing() {
+		
 		ArrayList<Player> players = board.getPlayers();
 		Player player1 = players.get(0);
 		//checks that all players have roughly the same number of cards

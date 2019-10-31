@@ -60,6 +60,12 @@ public class Player {
 	
 	//class methods
 	
+	/**Add a card to this player's hand.
+	 * @param card The card to add.*/
+	public void giveCard(Card card) {
+		myCards.add(card);
+	}
+	
 	public ArrayList<Card> getMyCards() {
 		return myCards;
 	}

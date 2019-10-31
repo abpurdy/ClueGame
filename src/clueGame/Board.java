@@ -128,10 +128,10 @@ public class Board {
 			legend.put(lineData[0].charAt(0), lineData[1]); //insert map pair
 			
 			//add room card into deck
-			if(lineData[2].contentEquals("Card")) {
+			/*if(lineData[2].contentEquals("Card")) {
 				Card newCard = new Card(lineData[1], CardType.ROOM);
 				deck.add(newCard);
-			}
+			}*/
 		}
 		
 		reader.close();
@@ -217,8 +217,8 @@ public class Board {
 			players.add(newPlayer); //add new player to lsit
 			
 			//add player card to deck
-			Card newCard = new Card(playerData[0], CardType.PERSON);
-			deck.add(newCard);
+			//Card newCard = new Card(playerData[0], CardType.PERSON);
+			//deck.add(newCard);
 			
 		}
 		
@@ -276,7 +276,7 @@ public class Board {
 			deck.add(newCard);
 		}*/
 				
-		reader.close();
+		reader.close(); 
 				
 	}
 
@@ -373,9 +373,9 @@ public class Board {
 		//create random generator
 		Random random = new Random(System.currentTimeMillis());
 		//select random cards of each tpe
-		int roomIndex = random.nextInt(9);
-		int personIndex = random.nextInt(6) + 9;
-		int weaponIndex = random.nextInt(6) + 16; 
+		int roomIndex = random.nextInt(9) + 12;
+		int personIndex = random.nextInt(6) + 6;
+		int weaponIndex = random.nextInt(6); 
 		//set solution
 		solution = new Solution(deck.get(personIndex).getName(), deck.get(roomIndex).getName(), deck.get(weaponIndex).getName());
 		//move cards in the solution to the end of the deck
@@ -390,23 +390,10 @@ public class Board {
 			}
 		}
 		
-		//deal cards to players
-		int start = 0;
-		for(Player player : players) {
-			ArrayList<Card> playerCards = new ArrayList<Card>();
-			for (int i = 0; i < (deck.size()-3)/players.size(); i++) {
-				playerCards.add(deck.get(start + i));
-			}
-			player.setMyCards(playerCards);
-			start += (deck.size()-3)/players.size();
-		}
-		//deal extra cards to players
-		for(int i = 0; i < (deck.size()-3)%players.size(); i++) {
-			ArrayList<Card> playerCards = new ArrayList<Card>();
-			playerCards = players.get(i).getMyCards();
-			playerCards.add(deck.get(deck.size()-4-i));
-			players.get(i).setMyCards(playerCards);
-		}
+		//deal cards to player evenly
+		for(int x = 0; x < deck.size(); x++)
+			players.get(x % players.size()).giveCard(deck.get(x));
+		
 	}
 	
 	/**Select an answer.*/
