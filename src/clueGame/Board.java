@@ -404,8 +404,7 @@ public class Board {
 	
 	/**Check if an accusation matches the solution.*/
 	public boolean checkAccusation(Solution accusation) {
-		//if(accusating.equals)
-		return false;
+		return accusation.equals(solution);
 	}
 
 

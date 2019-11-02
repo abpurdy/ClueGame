@@ -102,15 +102,13 @@ public class GameActionTests {
 		Solution accusation = board.getSolution();
 		assertTrue(board.checkAccusation(accusation));
 		//case where weapon is incorrect
-		accusation.weapon = "wrong";
+		accusation = new Solution(board.getSolution().person, board.getSolution().room, "wrong");
 		assertFalse(board.checkAccusation(accusation));
 		//case where person is incorrect
-		accusation = board.getSolution();
-		accusation.person = "wrong";
+		accusation = new Solution("wrong", board.getSolution().room, board.getSolution().weapon);
 		assertFalse(board.checkAccusation(accusation));
 		//case where room in incorrect
-		accusation = board.getSolution();
-		accusation.room = "wrong";
+		accusation = new Solution(board.getSolution().person, "wrong", board.getSolution().weapon);
 		assertFalse(board.checkAccusation(accusation));
 	}
 
