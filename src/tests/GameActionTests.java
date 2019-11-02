@@ -124,7 +124,9 @@ public class GameActionTests {
 
 	@Test
 	public void testCreateSuggestion() {
-
+		//create computer player to perform tests
+		ComputerPlayer compPlayer = new ComputerPlayer(6,2,"Test","white");
+		
 	}
 
 }

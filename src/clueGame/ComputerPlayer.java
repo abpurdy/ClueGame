@@ -57,6 +57,8 @@ public class ComputerPlayer extends Player {
 	}
 	
 	/**Create a new suggestion for the solution.*/
-	public void createSuggestion() {}
+	public void createSuggestion() {
+		
+	}
 
 }
