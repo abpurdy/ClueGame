@@ -411,6 +411,11 @@ public class Board {
 
 	//getters and setters
 
+	public Solution getSolution() {
+		return solution;
+	}
+
+
 	public int getNumRows() {
 		return numRows;
 	}

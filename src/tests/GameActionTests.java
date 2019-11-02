@@ -3,6 +3,7 @@ package tests;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
 import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.ComputerPlayer;
+import clueGame.Solution;
 
 public class GameActionTests {
 
@@ -96,7 +98,20 @@ public class GameActionTests {
 
 	@Test
 	public void testAccusationCheck() {
-
+		//case where accusation is correct
+		Solution accusation = board.getSolution();
+		assertTrue(board.checkAccusation(accusation));
+		//case where weapon is incorrect
+		accusation.weapon = "wrong";
+		assertFalse(board.checkAccusation(accusation));
+		//case where person is incorrect
+		accusation = board.getSolution();
+		accusation.person = "wrong";
+		assertFalse(board.checkAccusation(accusation));
+		//case where room in incorrect
+		accusation = board.getSolution();
+		accusation.room = "wrong";
+		assertFalse(board.checkAccusation(accusation));
 	}
 
 	@Test
