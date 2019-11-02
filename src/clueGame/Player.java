@@ -16,9 +16,9 @@ public class Player {
 	/**This player's name.*/
 	private String name;
 	/*The row this player is at.**/
-	private int row;
+	protected int row;
 	/**The column this player is at.*/
-	private int column;
+	protected int column;
 	/**This player's color.*/
 	private Color color;
 	/**Array of the players cards**/
