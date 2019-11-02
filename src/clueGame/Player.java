@@ -22,9 +22,9 @@ public class Player {
 	/**This player's color.*/
 	private Color color;
 	/**Array of the players cards**/
-	private ArrayList<Card> myCards;
+	protected ArrayList<Card> myCards;
 	/**Arraylist of the cards the player has seen**/
-	private ArrayList<Card> seenCards;
+	protected ArrayList<Card> seenCards;
 	
 	//constructors
 

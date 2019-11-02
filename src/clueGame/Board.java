@@ -46,6 +46,10 @@ public class Board {
 	private ArrayList<Player> players;
 	/**A list representing the deck of cards**/
 	private ArrayList<Card> deck;
+	/**A list representing the weapon cards in the deck**/
+	private ArrayList<Card> weaponDeck;
+	/**A list representing the person cards in the deck**/
+	private ArrayList<Card> personDeck;
 	/**An array containing the solution cards**/
 	private Solution solution;
 	/**The room legend.*/
@@ -235,7 +239,8 @@ public class Board {
 		Scanner reader = new Scanner(roomFileIn);
 		
 		//get cards from file and store in deck
-		
+		weaponDeck = new ArrayList<Card>();
+		personDeck = new ArrayList<Card>();
 		while(reader.hasNext()) {
 			
 			Card newCard; //the next card in the list
@@ -246,10 +251,12 @@ public class Board {
 			
 				case "weapon":
 					newCard = new Card(cardData[0], CardType.WEAPON);
+					weaponDeck.add(newCard);
 					break;
 					
 				case "person":
 					newCard = new Card(cardData[0], CardType.PERSON);
+					personDeck.add(newCard);
 					break;
 					
 				case "room":
@@ -279,6 +286,16 @@ public class Board {
 		reader.close(); 
 				
 	}
+
+	public ArrayList<Card> getWeaponDeck() {
+		return weaponDeck;
+	}
+
+
+	public ArrayList<Card> getPersonDeck() {
+		return personDeck;
+	}
+
 
 	/**Calculate the list of adjacent cells for each cell in the board.*/
 	private void calcAdjacencies(){
