@@ -89,7 +89,21 @@ public class Player {
 	/**Disprove the current suggestion.
 	 * @return A Card object.*/
 	public Card disproveSuggestion(Solution suggestion) {
-		return null;
+		
+		ArrayList<Card> matchingCards = new ArrayList<Card>(); //list of cards in player's hand that match suggestion
+		
+		//get all matching cards
+		for(Card card : myCards)
+			if(card.getName().equals(suggestion.person) || card.getName().equals(suggestion.room) || card.getName().equals(suggestion.weapon))
+				matchingCards.add(card);
+				
+		if(matchingCards.size() == 0)
+			return null;
+		else if(matchingCards.size() == 1)
+			return matchingCards.get(0);
+		else
+			return matchingCards.get(0); //TODO make random
+		
 	}
 	
 	/**Test if this player object is equal to another player object.
