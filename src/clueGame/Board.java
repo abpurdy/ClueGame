@@ -417,7 +417,11 @@ public class Board {
 	public void selectAnswer() {}
 	
 	/**Handle a given suggestion.*/
-	public void handleSuggestion() {}
+	public Card handleSuggestion(Solution suggestion, Player accuser) {
+		
+		return null;
+		
+	}
 	
 	/**Check if an accusation matches the solution.*/
 	public boolean checkAccusation(Solution accusation) {

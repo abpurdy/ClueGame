@@ -155,6 +155,13 @@ public class GameActionTests {
 
 	@Test
 	public void testSuggestionHandling() {
+		
+		//test solution nobody can disprove
+		
+		Solution suggestion = board.getSolution();
+		assertTrue(board.handleSuggestion(suggestion, board.getPlayers().get(0)) == null);
+		
+		//
 
 	}
 
