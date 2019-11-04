@@ -1,8 +1,6 @@
 package tests;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -10,12 +8,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.Card;
-import clueGame.ComputerPlayer;
-import clueGame.Solution;
 import clueGame.Card.CardType;
+import clueGame.ComputerPlayer;
+import clueGame.Player;
+import clueGame.Solution;
 
 public class GameActionTests {
 
@@ -117,7 +119,38 @@ public class GameActionTests {
 
 	@Test
 	public void testDisproveSuggestion() {
-
+		
+		Player player = new ComputerPlayer(0, 0, "Test", "white");
+		Solution suggestion = new Solution("Jotaro", "Long Room", "Turtle");
+		
+		//test 1 matching card
+		
+		player.giveCard(new Card("Jotaro", CardType.PERSON));
+		player.giveCard(new Card("War Room", CardType.ROOM));
+		player.giveCard(new Card("Arrow", CardType.WEAPON));
+		
+		assertTrue(player.disproveSuggestion(suggestion).equals(new Card("Jotaro", CardType.PERSON)));
+		
+		//test more than 1 matching card
+		
+		player.setMyCards(new ArrayList<Card>());
+		
+		player.giveCard(new Card("Jotaro", CardType.PERSON));
+		player.giveCard(new Card("Long Room", CardType.ROOM));
+		player.giveCard(new Card("Arrow", CardType.WEAPON));
+		
+		assertTrue(player.disproveSuggestion(suggestion).equals(new Card("Jotaro", CardType.PERSON)) || player.disproveSuggestion(suggestion).equals(new Card("Long Room", CardType.ROOM)));
+		
+		//test no matching cards
+		
+		player.setMyCards(new ArrayList<Card>());
+		
+		player.giveCard(new Card("Okuyasu", CardType.PERSON));
+		player.giveCard(new Card("War Room", CardType.ROOM));
+		player.giveCard(new Card("Arrow", CardType.WEAPON));
+		
+		assertTrue(player.disproveSuggestion(suggestion) == null);
+		
 	}
 
 	@Test

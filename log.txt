@@ -1,106 +1,271 @@
-commit 038036c5fc84e9a78e3159ea3e117ad9750aa979
+commit 99a186e786afac999e921bd7350cf0131b541d59
 Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
-Date:   Thu Oct 3 10:38:58 2019 -0600
+Date:   Wed Oct 30 22:36:08 2019 -0600
 
-    Finished tests
+    function optimization and bug fixes
 
-commit 063c18fdc895e65a9f8e37d7c7a863e9cd3d3df4
+commit fcbf3a0e29a826eefeb0354a45ae8daa18bbf612
 Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
-Date:   Thu Oct 3 10:14:27 2019 -0600
+Date:   Wed Oct 30 19:41:43 2019 -0600
 
-    Fixed calcAdjacencies
+    Cleaning card loading code
 
-commit 3270cb6590c1046fd1c6fd4bda0b8ca3e5ebf18f
+commit ea9f4f3dd6fc648ef917166c478fd91d34771985
+Author: Austin Purdy <abpurdy@mymail.mines.edu>
+Date:   Tue Oct 29 19:58:12 2019 -0600
+
+    add dealing functionality
+
+commit 538fffc24cf82b2f22c1b4f737cb5f1cb59b0415
+Author: Austin Purdy <abpurdy@mymail.mines.edu>
+Date:   Tue Oct 29 19:57:42 2019 -0600
+
+    fill in skeleton for dealing test
+
+commit f2430ce75e46a7e4c2b3bfb6c9e31eacebe2cb02
+Author: Austin Purdy <abpurdy@mymail.mines.edu>
+Date:   Tue Oct 29 18:03:05 2019 -0600
+
+    fill in skeleton for load cards test
+
+commit fab5eee9c56463259a22b5100bede96f48c55303
+Author: Austin Purdy <abpurdy@mymail.mines.edu>
+Date:   Tue Oct 29 16:53:12 2019 -0600
+
+    minor changes to load player test
+
+commit d617601b001f67f251bd34602fe4684107e5fec5
+Author: Austin Purdy <abpurdy@mymail.mines.edu>
+Date:   Tue Oct 29 16:47:30 2019 -0600
+
+    Load cards into decks from config files
+
+commit 506744dbd7c973a5a849401089bdf490f4a5842b
 Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
-Date:   Thu Oct 3 09:59:49 2019 -0600
+Date:   Tue Oct 29 10:42:42 2019 -0600
 
-    Attempting bug fixes
+    Passed player loading tests
 
-commit ccd36b8f674a4e5f04aa4da46a366a9c3415403d
-Merge: 259509e 252c8cb
+commit 40b45f5bed41b2fd2a081dbccf86c3d647a5d5de
 Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
-Date:   Thu Oct 3 09:38:27 2019 -0600
+Date:   Tue Oct 29 10:33:18 2019 -0600
+
+    Created failing tests for player loading
+
+commit c8749e065e3fd375e93700b31187402a024f21e7
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Tue Oct 29 10:21:22 2019 -0600
+
+    Created class and code skeletons
+
+commit 7c2d1cf0d7e59533859dd398308afa3be1bf60df
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Tue Oct 29 09:45:59 2019 -0600
+
+    Added player and card config files
+
+commit 261a2101425a8601934b87bed59c67c40d0e70cd
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Fri Oct 25 19:12:19 2019 -0600
+
+    Added/fixed comments for calcAllAdjacencies
+
+commit 1048ab5ba1753b11086cc275c9ef9974687e39c0
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Fri Oct 25 19:03:53 2019 -0600
+
+    Optimized calcAllTargets function
+
+commit ed3da9f630c32cd91173aa8faef81157cfaf5e5b
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 24 10:17:28 2019 -0600
+
+    Fixed bug in BoardCell constructor
+
+commit 29ee24873035d85875f745bc75b5510bf6f5ff5f
+Merge: c1043fc 4177a28
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 24 10:09:22 2019 -0600
 
     Merge branch 'master' of https://github.com/abpurdy/ClueGame
 
-commit 259509e108879998d156cf1e681692f6511eafee
+commit c1043fc03e6d13391b1c782e759bfc2ebd08139d
 Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
-Date:   Thu Oct 3 09:38:14 2019 -0600
+Date:   Thu Oct 24 10:09:12 2019 -0600
 
-    Added more tests
+    Optimized BoardCell constructor
 
-commit 252c8cb3b34fce10e3607884c21f11bb37d3b50b
+commit 4177a28958432d45449a85a4db06577c58237546
 Author: Austin Purdy <abpurdy@mines.edu>
-Date:   Thu Oct 3 09:36:46 2019 -0600
+Date:   Thu Oct 24 09:57:21 2019 -0600
 
-    fix bug
+    test
 
-commit dc7b960f1019ef596aba7adcd7eb47f8bb3594bf
+commit c7151504d2cc00e2568704c068baa42d52efef93
 Author: Austin Purdy <abpurdy@mines.edu>
-Date:   Thu Oct 3 09:24:55 2019 -0600
+Date:   Thu Oct 24 09:51:37 2019 -0600
 
-    handle door cases
+    optimize calcTargets method
 
-commit e004dfeaafc709124ac994165c70bceaf245c28d
+commit f396697972c3d72ffb1442c65ce7ccb574fd12a3
 Author: Austin Purdy <abpurdy@mines.edu>
-Date:   Wed Oct 2 22:50:54 2019 -0600
+Date:   Thu Oct 24 09:49:23 2019 -0600
 
-    get calc targets working without doors
+    Make sure file closes even when exception is thrown
 
-commit 0cce7f1d115c642586c5ed1ce6978d7e8cffa414
-Author: Austin Purdy <abpurdy@mines.edu>
-Date:   Wed Oct 2 22:31:42 2019 -0600
-
-    finish calcAdjacencies method
-
-commit 9c8429774516187549d5d63ccec5be4c2b8bc0ee
-Merge: ab73b1f eec482e
+commit dd88bc8ecba19e35dfb7028a3b93c21b31bbeb34
+Merge: 16e78f8 ff2aaf5
 Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
-Date:   Tue Oct 1 10:48:11 2019 -0600
+Date:   Thu Oct 24 09:48:31 2019 -0600
 
     Merge branch 'master' of https://github.com/abpurdy/ClueGame
 
-commit ab73b1fbc441fe231fdb768c2d6e2596172f5499
+commit 16e78f86a3bdaf653fa6f22402465a2b1b7f44c7
 Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
-Date:   Tue Oct 1 10:47:53 2019 -0600
+Date:   Thu Oct 24 09:48:17 2019 -0600
 
-    Created test skeleton
+    Optimized is____ functions in BoardCell
 
-commit eec482eb7e3f3d1ad426553223542b70024f5e7e
+commit ff2aaf51f9b0a652102305d071a9ed5837271eea
 Author: Austin Purdy <abpurdy@mines.edu>
-Date:   Tue Oct 1 10:46:32 2019 -0600
+Date:   Thu Oct 24 09:37:44 2019 -0600
 
-    initialize grid
+    Clean up comments
 
-commit 50b72b64989690f336718a453d59b6f604a418d7
+commit a8948ad2cca2be977dc1d5865490a599b8ef3b72
 Author: Austin Purdy <abpurdy@mines.edu>
-Date:   Tue Oct 1 10:27:56 2019 -0600
+Date:   Thu Oct 24 09:36:00 2019 -0600
 
-    initial class setup
+    Remove unneccessary print statements
 
-commit 1964535f635e6b2014d68b398ec03281d75e736b
-Author: Austin Purdy <abpurdy@mines.edu>
-Date:   Tue Oct 1 10:26:40 2019 -0600
-
-    initial class setup
-
-commit ed28afcbd7d2e263b3d76e696c5cc417e4a36b9d
+commit 25ab0bff45fc982b04c4d1054dda4fb76a26a065
 Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
-Date:   Tue Oct 1 10:23:42 2019 -0600
+Date:   Thu Oct 24 09:33:04 2019 -0600
 
-    Add files via upload
+    Added list of changes to make
 
-commit 2ae522c62e109b1ffcb84dd60692a0d16322178d
+commit 233055dffbb394603cc65f1a933ea8af84bc1fc4
+Author: Austin Purdy <abpurdy@mymail.mines.edu>
+Date:   Sun Oct 20 19:24:50 2019 -0600
+
+    remove print statement
+
+commit a48bd0d1f8b97c5c15b833409c3a4428d2fc008e
 Author: Austin Purdy <abpurdy@mines.edu>
-Date:   Tue Oct 1 10:07:46 2019 -0600
+Date:   Sun Oct 20 15:24:51 2019 -0600
 
-    initial commit
+    delete print statement
 
-commit bf409c29425850dc861a2991752e50c9fc063921
-Author: abpurdy <54818048+abpurdy@users.noreply.github.com>
-Date:   Tue Oct 1 09:57:10 2019 -0600
+commit 5dfa5221f7a579fd868d2f6146edd738c5ac70ac
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Sun Oct 20 15:21:14 2019 -0600
 
-    Initial commit
+    add in tests for our board
+
+commit b65bc6ac7f178071ece4849e322062b868715782
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Sun Oct 20 13:48:08 2019 -0600
+
+    Get calcAllTargets Working
+
+commit 89dee98ddde002af6852633a55d6d78a977b8925
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Sat Oct 19 17:10:46 2019 -0600
+
+    Passed adjacency tests
+
+commit 882aff59328777bde2bb193dd9b4490509182892
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 17 10:39:53 2019 -0600
+
+    Started code for creating adjacency matrix
+
+commit aea465b851513c1953103d5dd70d2edaf32f15e2
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 17 10:05:33 2019 -0600
+
+    Fixing inconsistencies
+
+commit b0195182c638c9bd51fc929831fa08ced4e65114
+Merge: dda330c 2b3ba57
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Thu Oct 17 09:53:56 2019 -0600
+
+    add calc adjacency matrix and calc targets to actual board class
+
+commit dda330cd11328551532fc2492dc0eb4151df623f
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Thu Oct 17 09:52:09 2019 -0600
+
+    add calc adjacency matrix and calc targets to actual board class
+
+commit 2b3ba57d0623f9be74c130e26dd4920564a82960
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 17 09:31:21 2019 -0600
+
+    Added method skeletons for adjacency tests
+
+commit 9df14205c4662e538650bb1b5252dc254af8cd89
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Wed Oct 16 21:42:24 2019 -0600
+
+    Fixed bugs and added comments
+
+commit 79e84ff74528da0176e7a68890af1321b3e972ec
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Wed Oct 16 18:02:03 2019 -0600
+
+    Added body to BadConfigFormatException and passed exception tests
+
+commit 491fc9657aa1d3ed313ab6b3950db1f4456a2ede
+Author: Austin Purdy <abpurdy@mymail.mines.edu>
+Date:   Sun Oct 13 15:56:50 2019 -0600
+
+    fix deleted code
+
+commit 49c6b213312e353b961d2167a6381489afd37a1f
+Author: Austin Purdy <abpurdy@mymail.mines.edu>
+Date:   Sun Oct 13 15:00:32 2019 -0600
+
+    Fix file in unit tests
+
+commit 4bb258e32e2de71a45fe0c054ec36c5d068951e6
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 10 10:38:59 2019 -0600
+
+    Reworked loading config methods
+
+commit b38dbd6602cfba0e4b01400326bb67e675246695
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 10 10:24:39 2019 -0600
+
+    Fixed bug with board initialization
+
+commit f31ff2105dbb74234a9daf2831104f6b08e8a884
+Merge: 0ab5ad3 b62d539
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 10 10:12:45 2019 -0600
+
+    Merge branch 'master' of https://github.com/abpurdy/ClueGame
+
+commit 0ab5ad3dbf9b4287d561e7b4d59265c320118417
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Thu Oct 10 10:12:32 2019 -0600
+
+    Finished loadRoomConfig method
+
+commit b62d539cab11fbb731612f884ffbe87026b384a3
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Thu Oct 10 10:07:05 2019 -0600
+
+    fix file reader for any gameboard size
+
+commit 41c6a7879026cacdf49285b065425a98babfbcd8
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Thu Oct 10 10:00:04 2019 -0600
+
+    read in csv and fix board cell constructor
+
 commit 0759df2b56577091a92a7da671e792573eec2919
 Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
 Date:   Thu Oct 10 09:54:37 2019 -0600
