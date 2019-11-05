@@ -49,7 +49,7 @@ public class gameSetupTests {
 		//get deck from the board
 		ArrayList<Card> deck = board.getDeck();
 		//ensure that the deck is the correct size
-		assertEquals(deck.size(), 21);
+		assertEquals(deck.size(), 18);
 
 
 
@@ -70,9 +70,9 @@ public class gameSetupTests {
 			}
 		}
 		//checks to make sure type counts are correct
-		assertEquals(personCount, 6);
-		assertEquals(roomCount, 9);
-		assertEquals(weaponCount, 6);
+		assertEquals(personCount, 5);
+		assertEquals(roomCount, 8);
+		assertEquals(weaponCount, 5);
 
 		//ensure that names loaded correctly
 		//create cards to test against

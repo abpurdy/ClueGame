@@ -16,6 +16,7 @@ import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.Card.CardType;
 import clueGame.ComputerPlayer;
+import clueGame.HumanPlayer;
 import clueGame.Player;
 import clueGame.Solution;
 
@@ -153,16 +154,44 @@ public class GameActionTests {
 		
 	}
 
+	/**Suggestions may not be "correctly" made (ex not comprising of one person, one weapon and one room) in order to not have to write massive setups for each test.*/
 	@Test
 	public void testSuggestionHandling() {
 		
-		//test solution nobody can disprove
+		//test suggestion nobody can disprove
 		
 		Solution suggestion = board.getSolution();
 		assertTrue(board.handleSuggestion(suggestion, board.getPlayers().get(0)) == null);
 		
-		//
-
+		//test suggestion only accuser can disprove
+		
+		suggestion = new Solution(board.getPlayers().get(1).getMyCards().get(0).getName(), board.getPlayers().get(1).getMyCards().get(1).getName(), board.getPlayers().get(1).getMyCards().get(2).getName());
+		assertTrue(board.handleSuggestion(suggestion, board.getPlayers().get(1)) == null);
+		
+		//test suggestion only player can disprove
+		
+		suggestion = board.getSolution();
+		suggestion.person = board.getPlayers().get(0).getMyCards().get(0).getName();
+		assertTrue(board.handleSuggestion(suggestion, board.getPlayers().get(1)).equals(board.getPlayers().get(0).disproveSuggestion(suggestion)));
+		
+		//test suggestion player can disprove but player is accuser
+		
+		assertTrue(board.handleSuggestion(suggestion, board.getPlayers().get(0)) == null);
+		
+		//test suggestion two players can disprove
+		
+		suggestion = board.getSolution();
+		suggestion.person = board.getPlayers().get(1).getMyCards().get(0).getName();
+		suggestion.weapon = board.getPlayers().get(2).getMyCards().get(0).getName();
+		assertTrue(board.handleSuggestion(suggestion, board.getPlayers().get(0)).equals(board.getPlayers().get(1).disproveSuggestion(suggestion)));
+		
+		//test suggestion that human player and computer player can disprove
+		
+		suggestion = board.getSolution();
+		suggestion.person = board.getPlayers().get(0).getMyCards().get(0).getName();
+		suggestion.weapon = board.getPlayers().get(1).getMyCards().get(0).getName();
+		assertTrue(board.handleSuggestion(suggestion, board.getPlayers().get(2)).equals(board.getPlayers().get(1).disproveSuggestion(suggestion)));
+		
 	}
 
 	@Test

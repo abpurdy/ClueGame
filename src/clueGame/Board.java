@@ -131,11 +131,6 @@ public class Board {
 
 			legend.put(lineData[0].charAt(0), lineData[1]); //insert map pair
 			
-			//add room card into deck
-			/*if(lineData[2].contentEquals("Card")) {
-				Card newCard = new Card(lineData[1], CardType.ROOM);
-				deck.add(newCard);
-			}*/
 		}
 		
 		reader.close();
@@ -272,16 +267,6 @@ public class Board {
 			deck.add(newCard); //add card to deck
 			
 		}
-
-		//read legend file and store info in legend map
-		/*while(reader.hasNext()) {
-
-			String line = reader.nextLine(); //get next line
-					
-			//add weapon card into deck
-			Card newCard = new Card(line, CardType.WEAPON);
-			deck.add(newCard);
-		}*/
 				
 		reader.close(); 
 				
@@ -390,15 +375,15 @@ public class Board {
 		//create random generator
 		Random random = new Random(System.currentTimeMillis());
 		//select random cards of each tpe
-		int roomIndex = random.nextInt(9) + 12;
-		int personIndex = random.nextInt(6) + 6;
-		int weaponIndex = random.nextInt(6); 
+		Card room = deck.get(random.nextInt(9) + 12);
+		Card person = deck.get(random.nextInt(6) + 6);
+		Card weapon = deck.get(random.nextInt(6));
 		//set solution
-		solution = new Solution(deck.get(personIndex).getName(), deck.get(roomIndex).getName(), deck.get(weaponIndex).getName());
-		//move cards in the solution to the end of the deck
-		Collections.swap(deck, weaponIndex, deck.size()-1);
-		Collections.swap(deck, personIndex, deck.size()-2);
-		Collections.swap(deck, roomIndex, deck.size()-3);
+		solution = new Solution(person.getName(), room.getName(), weapon.getName());
+		
+		deck.remove(weapon);
+		deck.remove(person);
+		deck.remove(room);
 		
 		//shuffle the rest of the deck
 		for(int j = 0; j < 3; j++) {
@@ -419,7 +404,18 @@ public class Board {
 	/**Handle a given suggestion.*/
 	public Card handleSuggestion(Solution suggestion, Player accuser) {
 		
-		return null;
+		//if accuser is not human player, and human player can disprove, check to see if any other player can disprove first
+		if(!(accuser instanceof HumanPlayer) && players.get(0).disproveSuggestion(suggestion) != null)
+			for(int x = 1; x < players.size(); x++)
+				if(!players.get(x).equals(accuser) && players.get(x).disproveSuggestion(suggestion) != null)
+					return players.get(x).disproveSuggestion(suggestion);
+		
+		//otherwise, check to see if each other player can disprove the suggestion
+		for(Player player : players) 
+			if(!player.equals(accuser) && player.disproveSuggestion(suggestion) != null)
+				return player.disproveSuggestion(suggestion);
+		
+		return null; //return null if no player could disprove
 		
 	}
 	
