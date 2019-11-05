@@ -42,6 +42,8 @@ public class Board {
 	private String cardConfigFile;
 	/**The singleton instance of this Board class.*/
 	private static Board instance = new Board();
+	/**A random object for various purposes.*/
+	public static Random random = new Random();
 	/**A list of the players in the game.*/
 	private ArrayList<Player> players;
 	/**A list representing the deck of cards**/
@@ -165,8 +167,10 @@ public class Board {
 						validRoom = true;
 
 				//throw exception if illegal room is found
-				if(validRoom == false)
+				if(validRoom == false) {
+					reader.close();
 					throw new BadConfigFormatException("An illegal room type was found in the board config file.");
+				}
 
 				//create new board cell and add it to the board
 				BoardCell newCell = new BoardCell(rowNum, x, rowData[x]);
@@ -214,10 +218,6 @@ public class Board {
 				newPlayer = new ComputerPlayer(Integer.parseInt(playerData[3]), Integer.parseInt(playerData[4]), playerData[0], playerData[1]);
 			
 			players.add(newPlayer); //add new player to lsit
-			
-			//add player card to deck
-			//Card newCard = new Card(playerData[0], CardType.PERSON);
-			//deck.add(newCard);
 			
 		}
 		
@@ -401,7 +401,10 @@ public class Board {
 	/**Select an answer.*/
 	public void selectAnswer() {}
 	
-	/**Handle a given suggestion.*/
+	/**Handle a given suggestion.
+	 * @param suggestion The given suggestion to have each player try to disprove.
+	 * @param accuser The player who made the suggestion.
+	 * @return The card that disproves the suggestion, gotten from the first non-human player who can do so.*/
 	public Card handleSuggestion(Solution suggestion, Player accuser) {
 		
 		//if accuser is not human player, and human player can disprove, check to see if any other player can disprove first

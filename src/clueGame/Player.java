@@ -87,7 +87,7 @@ public class Player {
 
 
 	/**Disprove the current suggestion.
-	 * @return A Card object.*/
+	 * @return The card that disproves the suggestion.*/
 	public Card disproveSuggestion(Solution suggestion) {
 		
 		ArrayList<Card> matchingCards = new ArrayList<Card>(); //list of cards in player's hand that match suggestion
@@ -97,12 +97,13 @@ public class Player {
 			if(card.getName().equals(suggestion.person) || card.getName().equals(suggestion.room) || card.getName().equals(suggestion.weapon))
 				matchingCards.add(card);
 				
+		//return null if no cards match, or the only card that matches, or a random matching card if more than 1 matches
 		if(matchingCards.size() == 0)
 			return null;
 		else if(matchingCards.size() == 1)
 			return matchingCards.get(0);
 		else
-			return matchingCards.get(0); //TODO make random
+			return matchingCards.get(Board.random.nextInt(matchingCards.size())); //TODO make random
 		
 	}
 	

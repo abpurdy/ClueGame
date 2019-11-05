@@ -121,6 +121,7 @@ public class GameActionTests {
 	@Test
 	public void testDisproveSuggestion() {
 		
+		//create test player and suggestion
 		Player player = new ComputerPlayer(0, 0, "Test", "white");
 		Solution suggestion = new Solution("Jotaro", "Long Room", "Turtle");
 		
@@ -140,7 +141,8 @@ public class GameActionTests {
 		player.giveCard(new Card("Long Room", CardType.ROOM));
 		player.giveCard(new Card("Arrow", CardType.WEAPON));
 		
-		assertTrue(player.disproveSuggestion(suggestion).equals(new Card("Jotaro", CardType.PERSON)) || player.disproveSuggestion(suggestion).equals(new Card("Long Room", CardType.ROOM)));
+		Card disprover = player.disproveSuggestion(suggestion);
+		assertTrue(disprover.equals(new Card("Jotaro", CardType.PERSON)) || disprover.equals(new Card("Long Room", CardType.ROOM)));
 		
 		//test no matching cards
 		
