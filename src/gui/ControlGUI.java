@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ControlGUI extends JFrame {
+public class ControlGUI extends JPanel {
 	
 	public JTextField currentPlayer;
 	public JTextField currentRoll;
@@ -17,21 +17,6 @@ public class ControlGUI extends JFrame {
 	public JTextField currentGuessResult;
 
 	public ControlGUI() {
-
-		setTitle("Clue Game");
-		setSize(1000, 400);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		add(createMainPanel());
-		
-	}
-	
-	public static void main(String[] args) {
-		ControlGUI gui = new ControlGUI();
-		gui.setVisible(true);
-	}
-	
-	public JPanel createMainPanel() {
-		
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(2, 1));
 		JPanel topPanel = new JPanel();
@@ -39,9 +24,8 @@ public class ControlGUI extends JFrame {
 		topPanel.add(createButtonPanel());
 		panel.add(topPanel);
 		panel.add(createInfoPanel());
-		return panel;
-		
 	}
+	
 	
 	public JPanel createButtonPanel() {
 		
