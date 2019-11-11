@@ -1,5 +1,8 @@
 package clueGame;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 /**Class for a cell that represents a space on the game board.
  * @author Tanner Lorenz\
  * @author Austin Purdy*/
@@ -66,6 +69,19 @@ public class BoardCell {
 	
 	
 	//class methods
+	
+	/**Draw this board cell on the gui.
+	 * @param g The graphics object to draw.*/
+	public void draw(Graphics g) {
+		
+		if(isWalkway())
+			g.setColor(Color.YELLOW);
+		else
+			g.setColor(Color.GRAY);
+		
+		g.fillRect(row*30, column*30, 30, 30);
+		
+	}
 	
 	/**Returns true if this cell is a walkway.*/
 	public boolean isWalkway() {

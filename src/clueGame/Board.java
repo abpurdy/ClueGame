@@ -1,10 +1,8 @@
 package clueGame;
 
-import java.io.BufferedReader;
-
+import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,14 +12,15 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-import clueGame.BoardCell;
+import javax.swing.JPanel;
+
 import clueGame.BoardCell.DoorDirection;
 import clueGame.Card.CardType;
 
 /**@author Tanner Lorenz
  * @author Austin Purdy
  * A class that controls the Clue board.*/
-public class Board {
+public class Board extends JPanel{
 
 
 	//class variables
@@ -270,6 +269,18 @@ public class Board {
 				
 		reader.close(); 
 				
+	}
+	
+	/**Draw the board on the gui.*/
+	public void paintComponent(Graphics g) {
+		
+		super.paintComponent(g);
+		
+		for(BoardCell[] row : board)
+			for(BoardCell cell : row)
+				if(cell != null)
+					cell.draw(g);
+		
 	}
 
 	public ArrayList<Card> getWeaponDeck() {
