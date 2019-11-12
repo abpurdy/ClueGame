@@ -4,16 +4,18 @@ import java.awt.GridLayout;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class DetectiveNotesGUI extends JPanel {
+public class DetectiveNotesGUI extends JDialog {
 	private JTextField name;
 
 	public DetectiveNotesGUI() {
 		setLayout(new GridLayout(3,2));
+		setSize(500, 600);
 		JPanel panel = createPeoplePanel();
 		add(panel);
 		panel = createPersonGuess();
@@ -135,4 +137,5 @@ public class DetectiveNotesGUI extends JPanel {
 
 		return panel;
 	}
+	
 }

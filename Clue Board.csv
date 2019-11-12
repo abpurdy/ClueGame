@@ -15,9 +15,9 @@ T,T,W,W,W,L,L,W,W,W,X,X,X,X,W,W,W,W,W,FL,FN,F,F,F
 T,T,W,W,W,LL,LR,W,W,W,W,W,W,W,W,W,W,W,W,F,F,F,F,F
 W,W,W,W,W,L,L,W,W,W,W,V,V,V,V,W,W,W,W,F,F,F,F,F
 W,W,W,W,W,L,L,W,W,W,W,VL,V,V,V,W,W,W,W,W,W,W,W,W
-O,O,OU,O,W,L,L,W,W,W,W,V,V,V,V,W,W,W,W,W,W,W,W,W
+O,O,OU,O,W,LN,L,W,W,W,W,V,V,V,V,W,W,W,W,W,W,W,W,W
 O,O,O,O,W,L,L,W,V,VU,V,V,V,V,V,W,W,W,KL,K,K,K,K,K
-ON,O,O,O,W,LN,L,W,V,V,V,V,V,V,V,W,W,W,K,K,K,K,K,K
+ON,O,O,O,W,L,L,W,V,V,V,V,V,V,V,W,W,W,K,K,K,K,K,K
 O,O,O,O,W,L,L,W,V,VN,V,V,V,V,V,W,W,W,K,KN,K,K,K,K
 O,O,O,O,W,L,L,W,V,V,V,V,V,V,V,W,W,W,K,K,K,K,K,K
 O,O,O,O,W,L,L,W,V,V,V,V,V,V,V,W,W,W,K,K,K,K,K,K
