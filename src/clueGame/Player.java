@@ -91,6 +91,11 @@ public class Player {
 	}
 
 
+	public String getName() {
+		return name;
+	}
+
+
 	/**Disprove the current suggestion.
 	 * @return The card that disproves the suggestion.*/
 	public Card disproveSuggestion(Solution suggestion) {

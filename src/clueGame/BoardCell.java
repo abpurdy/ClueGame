@@ -29,7 +29,7 @@ public class BoardCell {
 	//class variables
 	
 	/**The size of this cell on the screen.*/
-	private static final int SIZE = 20;
+	private static final int SIZE = 25;
 	/**The row of this cell.*/
 	private int row;
 	/**The column of this cell*/
