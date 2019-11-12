@@ -63,7 +63,8 @@ public class Board extends JPanel{
 	private Set<BoardCell> targets;
 	/**The game board.*/
 	private BoardCell[][] board;
-
+	/**Die roll value**/
+	private int dieValue;
 
 	//constructor
 
@@ -444,7 +445,26 @@ public class Board extends JPanel{
 		return accusation.equals(solution);
 	}
 
+	private void handlePlayerTurn() {
+		if(currentPlayer.isHuman()) {
+			
+		}
+		else{
+			ComputerPlayer compPlayer = (ComputerPlayer) currentPlayer;
+			calcTargets(compPlayer.row, compPlayer.column, dieValue);
 
+			compPlayer.setPreviousCell(board[compPlayer.row][compPlayer.column]);
+			compPlayer.setCurrentCell(compPlayer.pickLocation(targets));
+		}
+	}
+	
+	/** rolls the die**/
+	private void dieRoll() {
+		Random random = new Random(System.currentTimeMillis()); //create random generator
+		
+		dieValue = random.nextInt(6);
+	}
+	
 	//getters and setters
 
 	public Solution getSolution() {

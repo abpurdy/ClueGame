@@ -85,14 +85,21 @@ public class Player {
 		this.seenCards = seenCards;
 	}
 
+	public void setCurrentCell(BoardCell cell) {
+		this.row = cell.getRow();
+		this.column = cell.getColumn();
+	}
 
 	public Color getColor() {
 		return color;
 	}
 
-
 	public String getName() {
 		return name;
+	}
+	
+	public boolean isHuman() {
+		return human;
 	}
 
 
