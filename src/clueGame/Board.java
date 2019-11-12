@@ -447,6 +447,8 @@ public class Board extends JPanel{
 
 	private void handlePlayerTurn() {
 		if(currentPlayer.isHuman()) {
+			HumanPlayer humanPlayer = (HumanPlayer) currentPlayer;
+			calcTargets(humanPlayer.row, humanPlayer.column, dieValue);
 			
 		}
 		else{

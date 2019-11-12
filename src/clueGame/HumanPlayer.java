@@ -1,5 +1,7 @@
 package clueGame;
 
+import java.util.Set;
+
 /**@author Tanner Lorenz
  * @author Austin Purdy
  * A class that controls the human player.*/
@@ -14,6 +16,10 @@ public class HumanPlayer extends Player {
 	 * @param color This player's color as a String, eg. "white"*/
 	public HumanPlayer(int row, int column, String name, String color) {
 		super(true, row, column, name, color);
+	}
+	
+	public void handleTurn(int dieRoll, Set<BoardCell> targets) {
+		
 	}
 
 }
