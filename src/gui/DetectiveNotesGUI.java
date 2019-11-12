@@ -10,10 +10,24 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+/**@author Austin Purdy
+ * @author Tanner Lorenz
+ * Class that controls the player's notes.*/
 public class DetectiveNotesGUI extends JDialog {
+	
+	//class variables
+	
+	/**Text field for the player's name.*/
 	private JTextField name;
 
+	
+	//constructors
+	
+	/**Create the notes dialog.*/
 	public DetectiveNotesGUI() {
+		
+		//setup dialog appearance
+		
 		setLayout(new GridLayout(3,2));
 		setSize(500, 600);
 		JPanel panel = createPeoplePanel();
@@ -28,9 +42,18 @@ public class DetectiveNotesGUI extends JDialog {
 		add(panel);
 		panel = createWeaponGuess();
 		add(panel);
+		
 	}
+	
+	
+	//class methods
 
+	/**Create the panel for the weapons guess.
+	 * @return The created panel.*/
 	private JPanel createWeaponGuess() {
+		
+		//setup panel
+		
 		JPanel panel = new JPanel();
 
 		String weaponList[] = {"Arrow", "Turtle", "Rock", "Statue", "Bomb", "Mask"};
@@ -40,9 +63,15 @@ public class DetectiveNotesGUI extends JDialog {
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Weapon Guess"));
 
 		return panel;
+		
 	}
 
+	/**Create the panel for the rooms guess.
+	 * @return The created panel.*/
 	private JPanel createRoomGuess() {
+		
+		//setup panel
+		
 		JPanel panel = new JPanel();
 
 		String roomList[] = {"Bathroom","Living Room","Observatory","Long Room","War Room","Kitchen","Library","Office"};
@@ -52,9 +81,15 @@ public class DetectiveNotesGUI extends JDialog {
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Room Guess"));
 
 		return panel;
+		
 	}
 
+	/**Create the panel for the people guess.
+	 * @return The created panel.*/
 	private JPanel createPersonGuess() {
+		
+		//setup panel
+		
 		JPanel panel = new JPanel();
 
 		String personList[] = {"Jotaro","Kakyoin","Okuyasu","Giorno","Bruno","Josuke"};
@@ -64,11 +99,18 @@ public class DetectiveNotesGUI extends JDialog {
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Person Guess"));
 
 		return panel;
+		
 	}
 
+	/**Create panel for the weapons checklist.
+	 * @return The created panel.*/
 	private JPanel createWeaponsPanel() {
+		
+		//setup panel
+		
 		JPanel panel = new JPanel();
 
+		//add checkboxes
 		JCheckBox arrow = new JCheckBox("Arrow");
 		JCheckBox turtle = new JCheckBox("Turtle");
 		JCheckBox rock = new JCheckBox("Rock");
@@ -86,11 +128,18 @@ public class DetectiveNotesGUI extends JDialog {
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Weapons"));
 
 		return panel;
+		
 	}
 
+	/**Create panel for the rooms checklist.
+	 * @return The created panel.*/
 	private JPanel createRoomsPanel() {
+		
+		//setup panel
+		
 		JPanel panel = new JPanel();
 
+		//add checkboxes
 		JCheckBox library = new JCheckBox("Library");
 		JCheckBox bathroom = new JCheckBox("Bathroom");
 		JCheckBox observatory = new JCheckBox("Observatory");
@@ -114,11 +163,18 @@ public class DetectiveNotesGUI extends JDialog {
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "Rooms"));
 
 		return panel;
+		
 	}
 
+	/**Create panel for the people checklist.
+	 * @return The created panel.*/
 	private JPanel createPeoplePanel() {
+		
+		//setup panel
+		
 		JPanel panel = new JPanel();
 
+		//add checkboxes
 		JCheckBox jotaro = new JCheckBox("Jotaro");
 		JCheckBox kakyoin = new JCheckBox("Kakyoin");
 		JCheckBox okuyasu = new JCheckBox("Okuyasu");
@@ -136,6 +192,7 @@ public class DetectiveNotesGUI extends JDialog {
 		panel.setBorder(new TitledBorder (new EtchedBorder(), "People"));
 
 		return panel;
+		
 	}
 	
 }

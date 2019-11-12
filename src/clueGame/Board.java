@@ -271,11 +271,13 @@ public class Board extends JPanel{
 				
 	}
 	
-	/**Draw the board on the gui.*/
+	/**Draw the board on the gui.
+	 * @param g A graphics object to draw on.*/
 	public void paintComponent(Graphics g) {
 		
-		super.paintComponent(g);
+		super.paintComponent(g); //call super
 		
+		//paint each cell on the gui
 		for(BoardCell[] row : board)
 			for(BoardCell cell : row)
 				if(cell != null)

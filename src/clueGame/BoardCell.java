@@ -75,7 +75,9 @@ public class BoardCell {
 	//class methods
 	
 	/**Draw this board cell on the gui.
-	 * @param g The graphics object to draw.*/
+	 * @param g The graphics object to draw.
+	 * @param targets The list of cells that are currently targets.
+	 * @param players The list of players.*/
 	public void draw(Graphics g, Set<BoardCell> targets, ArrayList<Player> players) {
 		
 		//draw walkways and rooms

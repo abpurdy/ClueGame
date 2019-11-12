@@ -10,12 +10,20 @@ import clueGame.Board;
 import clueGame.Card;
 import clueGame.Card.CardType;
 
+/**@author Tanner Lorenz
+ * @author Austin Purdy
+ * Class that controls the player's card display.*/
 public class PlayerCards extends JPanel {
+	
+	//constructors
 
+	/**Create the card display.*/
 	public PlayerCards() {
+		
 		setLayout(new GridLayout(0, 1));
 		add(new JLabel("Your cards:"));
 		add(createCardPanels());
+		
 	}
 	
 	private JPanel createCardPanels() {

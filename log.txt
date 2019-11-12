@@ -1,3 +1,57 @@
+commit b8777c4c64eab7513651706a883b37f470eae2f8
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Tue Nov 12 09:28:40 2019 -0700
+
+    Tweaked GUI and added popup message
+
+commit d0a346209d1dfacb52ec79e3d0c717de1b1c202b
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Mon Nov 11 21:56:54 2019 -0700
+
+    Added exit option to menu
+
+commit 742554b3bb7ec505b9d079a777c816d4aa0e77d0
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Mon Nov 11 21:53:59 2019 -0700
+
+    Finished GUI
+
+commit 6ade6c6d388af456186dd60333fec08d92bb5ddc
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Mon Nov 11 17:51:56 2019 -0700
+
+    Finished graphics
+
+commit aa4fd5f5d94f04b3b63c923a19444523490a3d52
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Mon Nov 11 08:04:40 2019 -0700
+
+    Added initial graphics
+
+commit 350f9a2322ac160af27c8bce4d8c165be0658a6d
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Thu Nov 7 10:41:00 2019 -0700
+
+    add main frame class
+
+commit 6bf12faae1888acbea2e48d96c3652df6560a8b0
+Author: Austin Purdy <abpurdy@mines.edu>
+Date:   Thu Nov 7 10:32:42 2019 -0700
+
+    detective notes panel
+
+commit 6455fd2735e63a39a4eadb34eee8facd01163aa6
+Author: Gbagecol <54816222+Gbagecol@users.noreply.github.com>
+Date:   Tue Nov 5 09:57:11 2019 -0700
+
+    Added initial control gui
+
+commit a5c1f94a3ddf52f98185357122ab913f5331f594
+Author: Tanner <tlorenz@mymail.mines.edu>
+Date:   Mon Nov 4 22:46:05 2019 -0700
+
+    Cleaned code
+
 commit 6a3c292665e8ec9acc39f7c47fa1538bee497be2
 Author: Tanner <tlorenz@mymail.mines.edu>
 Date:   Mon Nov 4 22:28:42 2019 -0700
