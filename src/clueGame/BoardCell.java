@@ -82,10 +82,10 @@ public class BoardCell {
 		
 		//draw walkways and rooms
 		
-		if(isWalkway())
+		if(isWalkway() && !targets.contains(this))
 			g.setColor(Color.YELLOW);
 		else if(targets.contains(this))
-			g.setColor(Color.GREEN);
+			g.setColor(Color.CYAN);
 		else
 			g.setColor(Color.GRAY);
 		

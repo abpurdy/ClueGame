@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,6 +17,7 @@ import javax.swing.JPanel;
 
 import clueGame.BoardCell.DoorDirection;
 import clueGame.Card.CardType;
+import gui.GUIFrame;
 
 /**@author Tanner Lorenz
  * @author Austin Purdy
@@ -44,7 +46,7 @@ public class Board extends JPanel{
 	/**A random object for various purposes.*/
 	public static Random random = new Random();
 	/**The current player.*/
-	private Player currentPlayer;
+	private int currentPlayer;
 	/**A list of the players in the game.*/
 	private ArrayList<Player> players;
 	/**A list representing the deck of cards**/
@@ -65,6 +67,8 @@ public class Board extends JPanel{
 	private BoardCell[][] board;
 	/**Die roll value**/
 	private int dieValue;
+	/**Game ended**/
+	private boolean gameEnded;
 
 	//constructor
 
@@ -78,6 +82,7 @@ public class Board extends JPanel{
 		roomConfigFile = "";
 		playerConfigFile = "";
 		cardConfigFile = "";
+		gameEnded=false;
 		players = new ArrayList<Player>();
 		deck = new ArrayList<Card>();
 		legend = new HashMap<Character, String>();
@@ -110,7 +115,7 @@ public class Board extends JPanel{
 		calcAdjacencies();
 		dealCards();
 		
-		currentPlayer = players.get(0); //set human as starting player
+		currentPlayer = 0; //set human as starting player
 		
 	}
 
@@ -444,15 +449,28 @@ public class Board extends JPanel{
 	public boolean checkAccusation(Solution accusation) {
 		return accusation.equals(solution);
 	}
+	
+	public void gameTurnFramework() {
+		
+		while(!gameEnded) {
+			dieRoll();
+			calcTargets(players.get(currentPlayer).row, players.get(currentPlayer).column, dieValue);
+			
+			handlePlayerTurn();
+			currentPlayer = (currentPlayer+1)%6;
+		}
+	}
 
 	private void handlePlayerTurn() {
-		if(currentPlayer.isHuman()) {
-			HumanPlayer humanPlayer = (HumanPlayer) currentPlayer;
-			calcTargets(humanPlayer.row, humanPlayer.column, dieValue);
+		if(players.get(currentPlayer).isHuman()) {
+			repaint();
+			HumanPlayer humanPlayer = (HumanPlayer) players.get(currentPlayer);
+			targets.clear();
+			repaint();
 			
 		}
 		else{
-			ComputerPlayer compPlayer = (ComputerPlayer) currentPlayer;
+			ComputerPlayer compPlayer = (ComputerPlayer) players.get(currentPlayer);
 			calcTargets(compPlayer.row, compPlayer.column, dieValue);
 
 			compPlayer.setPreviousCell(board[compPlayer.row][compPlayer.column]);
@@ -464,7 +482,7 @@ public class Board extends JPanel{
 	private void dieRoll() {
 		Random random = new Random(System.currentTimeMillis()); //create random generator
 		
-		dieValue = random.nextInt(6);
+		dieValue = random.nextInt(6) + 1;
 	}
 	
 	//getters and setters
