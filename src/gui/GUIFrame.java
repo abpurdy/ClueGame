@@ -49,6 +49,13 @@ public class GUIFrame extends JFrame{
 			}
 		});
 		menu.add(notesOption);
+		JMenuItem exitOption = new JMenuItem("Exit");
+		exitOption.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		menu.add(exitOption);
 		return menu;
 		
 	}
