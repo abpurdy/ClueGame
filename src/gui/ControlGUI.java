@@ -24,6 +24,7 @@ public class ControlGUI extends JPanel {
 		topPanel.add(createButtonPanel());
 		panel.add(topPanel);
 		panel.add(createInfoPanel());
+		add(panel);
 	}
 	
 	

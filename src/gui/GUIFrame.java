@@ -17,12 +17,13 @@ public class GUIFrame extends JFrame{
 		board.initialize();
 		
 		setTitle("Clue Game");
-		setSize(1000, 1000);
+		setSize(700, 700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		ControlGUI control = new ControlGUI();
 		DetectiveNotesGUI notes = new DetectiveNotesGUI();
 		add(board, BorderLayout.CENTER);
-		//add(control);
+		add(control, BorderLayout.SOUTH);
+		add(new PlayerCards(), BorderLayout.EAST);
 		//add(notes);
 		
 	}

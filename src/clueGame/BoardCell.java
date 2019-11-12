@@ -2,6 +2,8 @@ package clueGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Set;
 
 /**Class for a cell that represents a space on the game board.
  * @author Tanner Lorenz\
@@ -26,6 +28,8 @@ public class BoardCell {
 	
 	//class variables
 	
+	/**The size of this cell on the screen.*/
+	private static final int SIZE = 20;
 	/**The row of this cell.*/
 	private int row;
 	/**The column of this cell*/
@@ -72,14 +76,71 @@ public class BoardCell {
 	
 	/**Draw this board cell on the gui.
 	 * @param g The graphics object to draw.*/
-	public void draw(Graphics g) {
+	public void draw(Graphics g, Set<BoardCell> targets, ArrayList<Player> players) {
+		
+		//draw walkways and rooms
 		
 		if(isWalkway())
 			g.setColor(Color.YELLOW);
+		else if(targets.contains(this))
+			g.setColor(Color.GREEN);
 		else
 			g.setColor(Color.GRAY);
 		
-		g.fillRect(row*30, column*30, 30, 30);
+		g.fillRect(column*SIZE, row*SIZE, SIZE, SIZE);
+		
+		g.setColor(Color.BLACK);
+		g.drawRect(column*SIZE, row*SIZE, SIZE, SIZE);
+		
+		//draw doorways
+		
+		if(isDoorway()) {
+			
+			g.setColor(Color.BLUE);
+			
+			switch(doorDirection){
+			
+			case UP:
+				g.fillRect(column*SIZE, row*SIZE, SIZE, 5);
+				break;
+				
+			case LEFT:
+				g.fillRect(column*SIZE, row*SIZE, 5, SIZE);
+				break;
+				
+			case RIGHT:
+				g.fillRect((column*SIZE)+SIZE-5, row*SIZE, 5, SIZE);
+				break;
+				
+			case DOWN:
+				g.fillRect(column*SIZE, (row*SIZE)+SIZE-5, SIZE, 5);
+				break;
+				
+			default:
+				break;
+			
+			}
+			
+		}
+		
+		//draw players
+		
+		for(Player player : players) {
+			if(player.row == row && player.column == column) {
+				g.setColor(player.getColor());
+				g.fillOval(column*SIZE, row*SIZE, SIZE, SIZE);
+				g.setColor(Color.BLACK);
+				g.drawOval(column*SIZE, row*SIZE, SIZE, SIZE);
+			}
+		}
+		
+		//draw room labels
+		
+		if(roomType.length() > 1 && roomType.charAt(1) == 'N') {
+			g.setColor(Color.BLUE);
+			g.drawString(Board.getInstance().getLegend().get(roomType.charAt(0)), column*SIZE, (row*SIZE)-5);
+		}
+			
 		
 	}
 	

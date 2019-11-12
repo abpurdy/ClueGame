@@ -279,7 +279,7 @@ public class Board extends JPanel{
 		for(BoardCell[] row : board)
 			for(BoardCell cell : row)
 				if(cell != null)
-					cell.draw(g);
+					cell.draw(g, targets, players);
 		
 	}
 

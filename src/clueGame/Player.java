@@ -86,6 +86,11 @@ public class Player {
 	}
 
 
+	public Color getColor() {
+		return color;
+	}
+
+
 	/**Disprove the current suggestion.
 	 * @return The card that disproves the suggestion.*/
 	public Card disproveSuggestion(Solution suggestion) {
