@@ -43,6 +43,8 @@ public class Board extends JPanel{
 	private static Board instance = new Board();
 	/**A random object for various purposes.*/
 	public static Random random = new Random();
+	/**The current player.*/
+	private Player currentPlayer;
 	/**A list of the players in the game.*/
 	private ArrayList<Player> players;
 	/**A list representing the deck of cards**/
@@ -106,6 +108,8 @@ public class Board extends JPanel{
 		
 		calcAdjacencies();
 		dealCards();
+		
+		currentPlayer = players.get(0); //set human as starting player
 		
 	}
 
