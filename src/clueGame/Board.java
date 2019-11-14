@@ -462,7 +462,10 @@ public class Board extends JPanel{
 
 	private void handlePlayerTurn() {
 		if(getCurrentPlayer().isHuman()) {
-			
+			HumanPlayer humanPlayer = (HumanPlayer) getCurrentPlayer();
+			calcTargets(humanPlayer.row, humanPlayer.column, dieValue);
+			repaint();
+			targets.clear();
 		}
 		else{
 			ComputerPlayer compPlayer = (ComputerPlayer) getCurrentPlayer();
@@ -471,6 +474,7 @@ public class Board extends JPanel{
 			compPlayer.setPreviousCell(board[compPlayer.row][compPlayer.column]);
 			compPlayer.setCurrentCell(compPlayer.pickLocation(targets));
 		}
+		repaint();
 	}
 	
 	/** rolls the die**/
