@@ -20,6 +20,8 @@ public class HumanPlayer extends Player {
 	
 	public void handleTurn(int dieRoll, Set<BoardCell> targets) {
 		
+		System.out.println("Player turn");
+		
 	}
 
 }
