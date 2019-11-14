@@ -1,6 +1,8 @@
 package clueGame;
 
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -85,6 +87,43 @@ public class Board extends JPanel{
 		adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 		targets = new HashSet<BoardCell>();
 		board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+		
+		addMouseListener(new MouseListener() {
+			
+			public void mouseClicked(MouseEvent e) {
+
+				for(BoardCell[] row : board)
+					for(BoardCell cell : row)
+						if(cell != null && cell.containsMouse(e.getX(), e.getY()))
+							System.out.println("Clicked on " + cell.getColumn() + ", " + cell.getRow());
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 
 	}
 
@@ -466,7 +505,6 @@ public class Board extends JPanel{
 		if(getCurrentPlayer().isHuman()) {
 			HumanPlayer humanPlayer = (HumanPlayer) getCurrentPlayer();
 			calcTargets(humanPlayer.row, humanPlayer.column, dieValue);
-			targets = targets;
 			repaint();
 			
 			humanPlayer.handleTurn(dieValue, targets);
