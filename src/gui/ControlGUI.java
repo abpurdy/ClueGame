@@ -1,13 +1,15 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import clueGame.Board;
 
 /**@author Tanner Lorenz
  * @author Austin Purdy
@@ -54,6 +56,7 @@ public class ControlGUI extends JPanel {
 		//create and add buttons to panel
 		
 		JButton nextPlayerButton = new JButton("Next player");
+		nextPlayerButton.addActionListener(new NextPlayerListener());
 		JButton accusationButton = new JButton("Make accusation");
 		JPanel panel = new JPanel();
 		panel.add(nextPlayerButton);
@@ -74,6 +77,7 @@ public class ControlGUI extends JPanel {
 		JLabel label = new JLabel("Whose turn?");
 		currentPlayer = new JTextField();
 		currentPlayer.setEditable(false);
+		currentPlayer.setText(Board.getInstance().getCurrentPlayer().getName());
 		panel.add(label);
 		panel.add(currentPlayer);
 		
@@ -128,6 +132,19 @@ public class ControlGUI extends JPanel {
 		
 		return infoPanel;
 				
+	}
+	
+	/**Action listener for the Next Player button.*/
+	private class NextPlayerListener implements ActionListener{
+		
+		public void actionPerformed(ActionEvent e) {
+			
+			Board.getInstance().nextTurn();
+			currentRoll.setText(Integer.toString(Board.rollDice()));
+			currentPlayer.setText(Board.getInstance().getCurrentPlayer().getName());
+			
+		}
+		
 	}
 
 }

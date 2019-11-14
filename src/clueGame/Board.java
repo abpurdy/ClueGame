@@ -1,6 +1,5 @@
 package clueGame;
 
-import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,7 +16,6 @@ import javax.swing.JPanel;
 
 import clueGame.BoardCell.DoorDirection;
 import clueGame.Card.CardType;
-import gui.GUIFrame;
 
 /**@author Tanner Lorenz
  * @author Austin Purdy
@@ -33,6 +31,8 @@ public class Board extends JPanel{
 	private int numRows;
 	/**Number of columns in the board.*/
 	private int numColumns;
+	/**The current player.*/
+	private int currentPlayer;
 	/**The name of the board configuration file.*/
 	private String boardConfigFile;
 	/**The name of the room configuration file.*/
@@ -45,8 +45,6 @@ public class Board extends JPanel{
 	private static Board instance = new Board();
 	/**A random object for various purposes.*/
 	public static Random random = new Random();
-	/**The current player.*/
-	private int currentPlayer;
 	/**A list of the players in the game.*/
 	private ArrayList<Player> players;
 	/**A list representing the deck of cards**/
@@ -67,8 +65,6 @@ public class Board extends JPanel{
 	private BoardCell[][] board;
 	/**Die roll value**/
 	private int dieValue;
-	/**Game ended**/
-	private boolean gameEnded;
 
 	//constructor
 
@@ -82,7 +78,7 @@ public class Board extends JPanel{
 		roomConfigFile = "";
 		playerConfigFile = "";
 		cardConfigFile = "";
-		gameEnded=false;
+		currentPlayer = 0;
 		players = new ArrayList<Player>();
 		deck = new ArrayList<Card>();
 		legend = new HashMap<Character, String>();
@@ -114,8 +110,6 @@ public class Board extends JPanel{
 		
 		calcAdjacencies();
 		dealCards();
-		
-		currentPlayer = 0; //set human as starting player
 		
 	}
 
@@ -281,6 +275,12 @@ public class Board extends JPanel{
 				
 	}
 	
+	/**Roll a six sided dice.
+	 * @return The result.*/
+	public static int rollDice() {
+		return random.nextInt(6) + 1;
+	}
+	
 	/**Draw the board on the gui.
 	 * @param g A graphics object to draw on.*/
 	public void paintComponent(Graphics g) {
@@ -292,6 +292,16 @@ public class Board extends JPanel{
 			for(BoardCell cell : row)
 				if(cell != null)
 					cell.draw(g, targets, players);
+		
+	}
+	
+	/**Move to the next player's turn. Perform some checks first if the current player is the human player.*/
+	public void nextTurn() {
+		
+		if(currentPlayer == players.size()-1)
+			currentPlayer = 0;
+		else
+			currentPlayer++;
 		
 	}
 
@@ -449,28 +459,13 @@ public class Board extends JPanel{
 	public boolean checkAccusation(Solution accusation) {
 		return accusation.equals(solution);
 	}
-	
-	public void gameTurnFramework() {
-		
-		while(!gameEnded) {
-			dieRoll();
-			calcTargets(players.get(currentPlayer).row, players.get(currentPlayer).column, dieValue);
-			
-			handlePlayerTurn();
-			currentPlayer = (currentPlayer+1)%6;
-		}
-	}
 
 	private void handlePlayerTurn() {
-		if(players.get(currentPlayer).isHuman()) {
-			repaint();
-			HumanPlayer humanPlayer = (HumanPlayer) players.get(currentPlayer);
-			targets.clear();
-			repaint();
+		if(getCurrentPlayer().isHuman()) {
 			
 		}
 		else{
-			ComputerPlayer compPlayer = (ComputerPlayer) players.get(currentPlayer);
+			ComputerPlayer compPlayer = (ComputerPlayer) getCurrentPlayer();
 			calcTargets(compPlayer.row, compPlayer.column, dieValue);
 
 			compPlayer.setPreviousCell(board[compPlayer.row][compPlayer.column]);
@@ -482,7 +477,7 @@ public class Board extends JPanel{
 	private void dieRoll() {
 		Random random = new Random(System.currentTimeMillis()); //create random generator
 		
-		dieValue = random.nextInt(6) + 1;
+		dieValue = random.nextInt(6);
 	}
 	
 	//getters and setters
@@ -524,6 +519,9 @@ public class Board extends JPanel{
 		return legend;
 	}
 
+	public Player getCurrentPlayer() {
+		return players.get(currentPlayer);
+	}
 
 	public void setConfigFiles(String boardConfigFile, String roomConfigFile) {
 		this.boardConfigFile = boardConfigFile;
