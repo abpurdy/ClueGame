@@ -295,21 +295,6 @@ public class Board extends JPanel{
 		
 	}
 	
-	/**Move to the next player's turn. Perform some checks first if the current player is the human player.*/
-	public void nextTurn() {
-		
-		dieRoll();
-		handlePlayerTurn();
-		
-		if(currentPlayer == 0)
-			((HumanPlayer) players.get(0)).handleTurn(dieValue, targets);
-		
-		if(currentPlayer == players.size()-1)
-			currentPlayer = 0;
-		else
-			currentPlayer++;
-		
-	}
 
 	public ArrayList<Card> getWeaponDeck() {
 		return weaponDeck;
@@ -466,11 +451,24 @@ public class Board extends JPanel{
 		return accusation.equals(solution);
 	}
 
+
+	/**Move to the next player's turn. Perform some checks first if the current player is the human player.*/
+	public void nextTurn() {
+		
+		dieRoll();
+		handlePlayerTurn();
+		
+		currentPlayer = (currentPlayer+1)%6;
+		
+	}
+	
 	private void handlePlayerTurn() {
 		if(getCurrentPlayer().isHuman()) {
 			HumanPlayer humanPlayer = (HumanPlayer) getCurrentPlayer();
 			calcTargets(humanPlayer.row, humanPlayer.column, dieValue);
+			targets = targets;
 			repaint();
+			
 			humanPlayer.handleTurn(dieValue, targets);
 			targets.clear();
 		}
@@ -480,6 +478,7 @@ public class Board extends JPanel{
 
 			compPlayer.setPreviousCell(board[compPlayer.row][compPlayer.column]);
 			compPlayer.setCurrentCell(compPlayer.pickLocation(targets));
+			targets.clear();
 		}
 		repaint();
 	}

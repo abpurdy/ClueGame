@@ -111,6 +111,6 @@ public class GUIFrame extends JFrame{
 		gui.setVisible(true);
 		
 		JOptionPane.showMessageDialog(gui, "You are " + Board.getInstance().getPlayers().get(0).getName() + ", press Next Player to begin play.", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
-		
+		Board.getInstance().nextTurn();
 	}
 }
