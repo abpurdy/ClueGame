@@ -487,7 +487,7 @@ public class Board extends JPanel{
 	private void dieRoll() {
 		Random random = new Random(System.currentTimeMillis()); //create random generator
 		
-		dieValue = random.nextInt(6);
+		dieValue = random.nextInt(6)+1;
 	}
 	
 	//getters and setters
