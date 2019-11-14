@@ -167,6 +167,16 @@ public class BoardCell {
 		return roomType + " (" + row + "," + column + ")";
 	}
 	
+	/**Whether or not the mouse is currently on this cell.*/
+	public boolean containsMouse(int mouseX, int mouseY) {
+		
+		if(row*SIZE < mouseX && (row*SIZE)+SIZE > mouseX && column*SIZE < mouseY && (column*SIZE)+SIZE > mouseY)
+			return true;
+		
+		return false;
+		
+	}
+	
 	//getters and setters
 	
 	public int getRow() {
