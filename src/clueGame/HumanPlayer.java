@@ -18,10 +18,9 @@ public class HumanPlayer extends Player {
 		super(true, row, column, name, color);
 	}
 	
-	public void handleTurn(int dieRoll, Set<BoardCell> targets) {
-		
-		System.out.println("Player turn");
-		
+	public void movePlayer(BoardCell newCell) {
+		this.row = newCell.getRow();
+		this.column = newCell.getColumn();
 	}
 
 }

@@ -138,10 +138,9 @@ public class ControlGUI extends JPanel {
 	private class NextPlayerListener implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e) {
-			
-			Board.getInstance().nextTurn();
 			currentRoll.setText(Integer.toString(Board.rollDice()));
 			currentPlayer.setText(Board.getInstance().getCurrentPlayer().getName());
+			Board.getInstance().nextTurn();
 			
 		}
 		

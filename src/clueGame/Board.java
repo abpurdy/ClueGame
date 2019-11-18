@@ -95,7 +95,17 @@ public class Board extends JPanel{
 				for(BoardCell[] row : board)
 					for(BoardCell cell : row)
 						if(cell != null && cell.containsMouse(e.getX(), e.getY()))
-							System.out.println("Clicked on " + cell.getColumn() + ", " + cell.getRow());
+							if(currentPlayer == 1) {
+								HumanPlayer human = (HumanPlayer) players.get(0);
+								if(targets.contains(cell)) {
+									human.movePlayer(cell);
+									targets.clear();
+									repaint();
+								}
+								else {
+									System.out.print("Not a valid target");
+								}
+							}
 				
 			}
 
@@ -493,32 +503,31 @@ public class Board extends JPanel{
 
 	/**Move to the next player's turn. Perform some checks first if the current player is the human player.*/
 	public void nextTurn() {
-		
-		dieRoll();
-		handlePlayerTurn();
-		
-		currentPlayer = (currentPlayer+1)%6;
-		
+		if(currentPlayer != 1 || targets.isEmpty()) {
+			dieRoll();
+			handlePlayerTurn();
+			
+			currentPlayer = (currentPlayer+1)%6;
+		}
 	}
 	
 	private void handlePlayerTurn() {
-		if(getCurrentPlayer().isHuman()) {
-			HumanPlayer humanPlayer = (HumanPlayer) getCurrentPlayer();
-			calcTargets(humanPlayer.row, humanPlayer.column, dieValue);
-			repaint();
-			
-			humanPlayer.handleTurn(dieValue, targets);
-			targets.clear();
-		}
-		else{
-			ComputerPlayer compPlayer = (ComputerPlayer) getCurrentPlayer();
-			calcTargets(compPlayer.row, compPlayer.column, dieValue);
+		if(targets.isEmpty()) {
+			if(getCurrentPlayer().isHuman()) {
+				HumanPlayer humanPlayer = (HumanPlayer) getCurrentPlayer();
+				calcTargets(humanPlayer.row, humanPlayer.column, dieValue);
+			}
+			else{
+				ComputerPlayer compPlayer = (ComputerPlayer) getCurrentPlayer();
+				calcTargets(compPlayer.row, compPlayer.column, dieValue);
 
-			compPlayer.setPreviousCell(board[compPlayer.row][compPlayer.column]);
-			compPlayer.setCurrentCell(compPlayer.pickLocation(targets));
-			targets.clear();
+				compPlayer.setPreviousCell(board[compPlayer.row][compPlayer.column]);
+				compPlayer.setCurrentCell(compPlayer.pickLocation(targets));
+				targets.clear();
+			}
+			repaint();
 		}
-		repaint();
+		
 	}
 	
 	/** rolls the die**/

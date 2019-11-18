@@ -1,15 +1,41 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Set;
+
+import javax.swing.JPanel;
 
 /**Class for a cell that represents a space on the game board.
  * @author Tanner Lorenz\
  * @author Austin Purdy*/
 public class BoardCell {
 	
+	@Override
+	public boolean equals(Object o) {
+		// If the object is compared with itself then return true   
+        if (o == this) { 
+            return true; 
+        } 
+  
+        /* Check if o is an instance of BoardCell or not 
+          "null instanceof [type]" also returns false */
+        if (!(o instanceof BoardCell)) { 
+            return false; 
+        } 
+          
+        // typecast o to BoardCell so that we can compare data members  
+        BoardCell cell = (BoardCell) o; 
+          
+        // Compare the data members and return accordingly  
+        return (cell.row == this.row && cell.column == this.column && cell.doorDirection == this.doorDirection);
+    	
+	}
+
 	/**Enum that represents each direction a door can be in.*/
 	public enum DoorDirection{
 		
@@ -84,8 +110,9 @@ public class BoardCell {
 		
 		if(isWalkway() && !targets.contains(this))
 			g.setColor(Color.YELLOW);
-		else if(targets.contains(this))
+		else if(targets.contains(this)) {
 			g.setColor(Color.CYAN);
+		}
 		else
 			g.setColor(Color.GRAY);
 		
@@ -146,6 +173,13 @@ public class BoardCell {
 		
 	}
 	
+	public boolean containsClick(int mouseX, int mouseY) {
+		Rectangle rect = new Rectangle(column*SIZE, row*SIZE, SIZE, SIZE);
+		if (rect.contains(new Point(mouseX, mouseY))) 
+			return true;
+		return false;
+	}
+	
 	/**Returns true if this cell is a walkway.*/
 	public boolean isWalkway() {
 		return roomType.charAt(0) == 'W';
@@ -170,7 +204,7 @@ public class BoardCell {
 	/**Whether or not the mouse is currently on this cell.*/
 	public boolean containsMouse(int mouseX, int mouseY) {
 		
-		if(row*SIZE < mouseX && (row*SIZE)+SIZE > mouseX && column*SIZE < mouseY && (column*SIZE)+SIZE > mouseY)
+		if(row*SIZE < mouseY && (row*SIZE)+SIZE > mouseY && column*SIZE < mouseX && (column*SIZE)+SIZE > mouseX)
 			return true;
 		
 		return false;
