@@ -2,6 +2,8 @@ package clueGame;
 
 import java.util.Set;
 
+import gui.GUIFrame;
+
 /**@author Tanner Lorenz
  * @author Austin Purdy
  * A class that controls the human player.*/
@@ -19,8 +21,13 @@ public class HumanPlayer extends Player {
 	}
 	
 	public void movePlayer(BoardCell newCell) {
+		
 		this.row = newCell.getRow();
 		this.column = newCell.getColumn();
+		
+		if(newCell.isRoom())
+			GUIFrame.doPlayerSuggestion(Board.getInstance().getLegend().get(newCell.getRoomType().charAt(0)));
+		
 	}
 
 }
