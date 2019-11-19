@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import clueGame.Board;
-import clueGame.Player;
+import clueGame.Card;
 import clueGame.Solution;
 
 public class SuggestionDialog extends JDialog {
@@ -72,7 +72,10 @@ public class SuggestionDialog extends JDialog {
 				//create suggestion from current player choices
 				
 				Solution suggestion = new Solution(people.getSelectedItem().toString(), room.getText(), weapons.getSelectedItem().toString());
-				Board.handleSuggestion(suggestion, Board.getInstance().getPlayers().get(0));
+				GUIFrame.gui.control.setCurrentGuess(people.getSelectedItem().toString(), room.getText(), weapons.getSelectedItem().toString());
+				
+				//handle suggestion
+				GUIFrame.gui.control.setGuessResult(Board.handleSuggestion(suggestion, Board.getInstance().getPlayers().get(0)));
 				setVisible(false);
 				
 			}

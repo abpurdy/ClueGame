@@ -26,6 +26,10 @@ public class GUIFrame extends JFrame{
 	private static DetectiveNotesGUI notes;
 	/**The suggestion dialog.*/
 	private static SuggestionDialog suggestionDialog;
+	/**The control portion of the gui.*/
+	public static ControlGUI control;
+	/**The main gui.*/
+	public static GUIFrame gui;
 	
 	
 	//constructors
@@ -44,7 +48,7 @@ public class GUIFrame extends JFrame{
 		setTitle("Clue Game");
 		setSize(800, 800);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		ControlGUI control = new ControlGUI();
+		control = new ControlGUI();
 		DetectiveNotesGUI notes = new DetectiveNotesGUI();
 		add(board, BorderLayout.CENTER);
 		add(control, BorderLayout.SOUTH);
@@ -114,7 +118,7 @@ public class GUIFrame extends JFrame{
 	/**Run the game and show the GUI.*/
 	public static void main(String[] args) {
 		
-		GUIFrame gui = new GUIFrame();
+		gui = new GUIFrame();
 		gui.setVisible(true);
 		
 		notes = new DetectiveNotesGUI();
@@ -124,4 +128,5 @@ public class GUIFrame extends JFrame{
 		doPlayerSuggestion("Long Room");
 		
 	}
+	
 }

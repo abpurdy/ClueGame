@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import clueGame.Board;
+import clueGame.Card;
 
 /**@author Tanner Lorenz
  * @author Austin Purdy
@@ -133,6 +134,21 @@ public class ControlGUI extends JPanel {
 		return infoPanel;
 				
 	}
+	
+	
+	//getters and setters
+	
+	public void setCurrentGuess(String person, String room, String weapon) {
+		currentGuess.setText(person + ", " + room + ", " + weapon);
+	}
+	
+	public void setGuessResult(Card card) {
+		if(card != null)
+			currentGuessResult.setText(card.getName());
+		else
+			currentGuessResult.setText("No new clue");
+	}
+	
 	
 	/**Action listener for the Next Player button.*/
 	private class NextPlayerListener implements ActionListener{
