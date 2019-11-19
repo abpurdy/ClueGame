@@ -23,7 +23,9 @@ public class GUIFrame extends JFrame{
 	/**The game board object.*/
 	public static Board board = Board.getInstance();
 	/**The dialog for the player's notes.*/
-	private DetectiveNotesGUI notes;
+	private static DetectiveNotesGUI notes;
+	/**The suggestion dialog.*/
+	private static SuggestionDialog suggestionDialog;
 	
 	
 	//constructors
@@ -75,7 +77,6 @@ public class GUIFrame extends JFrame{
 			//show notes dialog on screen
 			public void actionPerformed(ActionEvent e) {
 				
-				notes = new DetectiveNotesGUI();
 				notes.setVisible(true);
 				
 			}
@@ -104,13 +105,23 @@ public class GUIFrame extends JFrame{
 		
 	}
 	
+	/**Show dialog to make player suggestion.*/
+	public static void doPlayerSuggestion(String room) {
+		suggestionDialog.setRoom(room);
+		suggestionDialog.setVisible(true);
+	}
+	
 	/**Run the game and show the GUI.*/
 	public static void main(String[] args) {
 		
 		GUIFrame gui = new GUIFrame();
 		gui.setVisible(true);
 		
+		notes = new DetectiveNotesGUI();
+		suggestionDialog = new SuggestionDialog();
+		
 		JOptionPane.showMessageDialog(gui, "You are " + Board.getInstance().getPlayers().get(0).getName() + ", press Next Player to begin play.", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
-		//Board.getInstance().nextTurn();
+		doPlayerSuggestion("Long Room");
+		
 	}
 }
