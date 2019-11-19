@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import clueGame.Card.CardType;
 
 /**@author Tanner Lorenz
@@ -56,7 +58,17 @@ public class ComputerPlayer extends Player {
 
 	/**Make an accusation about the murderer.*/
 	public void makeAccusation() {
-
+		BoardCell currentCell = Board.getInstance().getCellAt(row,column);
+		if(currentCell.isRoom() &&
+				currentCell.getRoomType().equals(Board.getInstance().getSolution().room) &&
+				Board.getInstance().getDeck().size() == seenCards.size() + 3) {
+			
+			JOptionPane.showMessageDialog(Board.getInstance(), name + " made an accusation of " 
+					+ Board.getInstance().getSolution().person + " with the " +
+					Board.getInstance().getSolution().weapon + " in the " +
+					Board.getInstance().getSolution().room + ".\n" +
+					"this is correct and " + name + " has won!");
+		}
 	}
 
 	/**Create a new suggestion for the solution.*/

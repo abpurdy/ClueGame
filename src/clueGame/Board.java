@@ -524,12 +524,22 @@ public class Board extends JPanel{
 			}
 			else{
 				ComputerPlayer compPlayer = (ComputerPlayer) getCurrentPlayer();
+				compPlayer.makeAccusation();
+				
 				calcTargets(compPlayer.row, compPlayer.column, dieValue);
 
 				compPlayer.setPreviousCell(board[compPlayer.row][compPlayer.column]);
 				compPlayer.setCurrentCell(compPlayer.pickLocation(targets));
 				targets.clear();
 				currentPlayer = (currentPlayer+1)%6;
+				
+				if(getCellAt(compPlayer.row, compPlayer.column).isRoom()) {
+					Solution suggest = compPlayer.createSuggestion(this);
+					ArrayList<Card> seen = compPlayer.getSeenCards();
+					seen.add(handleSuggestion(suggest, getCurrentPlayer()));
+				}
+				
+				
 			}
 			repaint();
 		}

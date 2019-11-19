@@ -14,7 +14,7 @@ public class Player {
 	/**Whether or not this player is human.*/
 	private boolean human;
 	/**This player's name.*/
-	private String name;
+	protected String name;
 	/*The row this player is at.**/
 	protected int row;
 	/**The column this player is at.*/
