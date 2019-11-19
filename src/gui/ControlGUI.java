@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -59,6 +60,7 @@ public class ControlGUI extends JPanel {
 		JButton nextPlayerButton = new JButton("Next player");
 		nextPlayerButton.addActionListener(new NextPlayerListener());
 		JButton accusationButton = new JButton("Make accusation");
+		accusationButton.addActionListener(new AccusationListener());
 		JPanel panel = new JPanel();
 		panel.add(nextPlayerButton);
 		panel.add(accusationButton);
@@ -154,10 +156,21 @@ public class ControlGUI extends JPanel {
 	private class NextPlayerListener implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e) {
+			
 			Board.getInstance().nextTurn();
 			currentRoll.setText(Integer.toString(Board.getInstance().getDieValue()));
 			currentPlayer.setText(Board.getInstance().getCurrentPlayer().getName());
 			
+		}
+		
+	}
+	
+	/**Action listener for accusaion button.*/
+	private class AccusationListener implements ActionListener{
+		
+		public void actionPerformed(ActionEvent e) {
+			if(!Board.getInstance().getCurrentPlayer().isHuman())
+				JOptionPane.showMessageDialog(GUIFrame.gui, "You can't make an accusation when it's not your turn.");
 		}
 		
 	}
