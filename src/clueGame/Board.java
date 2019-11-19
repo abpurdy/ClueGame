@@ -14,6 +14,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import clueGame.BoardCell.DoorDirection;
@@ -103,7 +104,7 @@ public class Board extends JPanel{
 									repaint();
 								}
 								else {
-									System.out.print("Not a valid target");
+									JOptionPane.showMessageDialog(instance, "Please select a valid target.");
 								}
 							}
 				
