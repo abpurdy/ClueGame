@@ -71,6 +71,11 @@ public class Board extends JPanel{
 
 	//constructor
 
+	public int getDieValue() {
+		return dieValue;
+	}
+
+
 	private Board() {
 
 		//initialize class variables
@@ -96,12 +101,13 @@ public class Board extends JPanel{
 				for(BoardCell[] row : board)
 					for(BoardCell cell : row)
 						if(cell != null && cell.containsMouse(e.getX(), e.getY()))
-							if(currentPlayer == 1) {
+							if(currentPlayer == 0 && !targets.isEmpty()) {
 								HumanPlayer human = (HumanPlayer) players.get(0);
 								if(targets.contains(cell)) {
 									human.movePlayer(cell);
 									targets.clear();
 									repaint();
+									currentPlayer = (currentPlayer+1)%6;
 								}
 								else {
 									JOptionPane.showMessageDialog(instance, "Please select a valid target.");
@@ -504,11 +510,9 @@ public class Board extends JPanel{
 
 	/**Move to the next player's turn. Perform some checks first if the current player is the human player.*/
 	public void nextTurn() {
-		if(currentPlayer != 1 || targets.isEmpty()) {
+		if(targets.isEmpty()) {
 			dieRoll();
 			handlePlayerTurn();
-			
-			currentPlayer = (currentPlayer+1)%6;
 		}
 	}
 	
@@ -525,6 +529,7 @@ public class Board extends JPanel{
 				compPlayer.setPreviousCell(board[compPlayer.row][compPlayer.column]);
 				compPlayer.setCurrentCell(compPlayer.pickLocation(targets));
 				targets.clear();
+				currentPlayer = (currentPlayer+1)%6;
 			}
 			repaint();
 		}

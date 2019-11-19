@@ -139,7 +139,7 @@ public class ControlGUI extends JPanel {
 		
 		public void actionPerformed(ActionEvent e) {
 			Board.getInstance().nextTurn();
-			currentRoll.setText(Integer.toString(Board.rollDice()));
+			currentRoll.setText(Integer.toString(Board.getInstance().getDieValue()));
 			currentPlayer.setText(Board.getInstance().getCurrentPlayer().getName());
 			
 		}
