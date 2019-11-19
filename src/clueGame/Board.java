@@ -49,7 +49,7 @@ public class Board extends JPanel{
 	/**A random object for various purposes.*/
 	public static Random random = new Random();
 	/**A list of the players in the game.*/
-	private ArrayList<Player> players;
+	private static ArrayList<Player> players;
 	/**A list representing the deck of cards**/
 	private ArrayList<Card> deck;
 	/**A list representing the weapon cards in the deck**/
@@ -485,7 +485,7 @@ public class Board extends JPanel{
 	 * @param suggestion The given suggestion to have each player try to disprove.
 	 * @param accuser The player who made the suggestion.
 	 * @return The card that disproves the suggestion, gotten from the first non-human player who can do so.*/
-	public Card handleSuggestion(Solution suggestion, Player accuser) {
+	public static Card handleSuggestion(Solution suggestion, Player accuser) {
 		
 		//if accuser is not human player, and human player can disprove, check to see if any other player can disprove first
 		if(!(accuser instanceof HumanPlayer) && players.get(0).disproveSuggestion(suggestion) != null)
