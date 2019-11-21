@@ -19,6 +19,8 @@ public class Player {
 	protected int row;
 	/**The column this player is at.*/
 	protected int column;
+	/**The last room this player visited.*/
+	protected char lastRoom;
 	/**This player's color.*/
 	private Color color;
 	/**Array of the players cards**/
@@ -42,6 +44,7 @@ public class Player {
 		this.row = row;
 		this.column = column;
 		this.name = name;
+		this.lastRoom = ' ';
 		
 		myCards = new ArrayList<Card>();
 		seenCards = new ArrayList<Card>();
@@ -88,6 +91,8 @@ public class Player {
 	public void setCurrentCell(BoardCell cell) {
 		this.row = cell.getRow();
 		this.column = cell.getColumn();
+		if(cell.isRoom())
+			this.lastRoom = cell.getRoomType().charAt(0);
 	}
 
 	public Color getColor() {
@@ -98,6 +103,11 @@ public class Player {
 		return name;
 	}
 	
+	public char getLastRoom() {
+		return lastRoom;
+	}
+
+
 	public boolean isHuman() {
 		return human;
 	}

@@ -433,10 +433,14 @@ public class Board extends JPanel{
 				
 				visited.add(adjacent); //add cell to visited list
 				
-				//add cell if it is a doorway
-				if(adjacent.isDoorway())
-					targets.add(adjacent);
+				//do not add cell if it is room that was previously visited
+				if(adjacent.isRoom() && adjacent.getRoomType().charAt(0) == getCurrentPlayer().getLastRoom())
+					return;
 				
+				//add cell if it is a doorway
+				if(adjacent.isDoorway()) 
+						targets.add(adjacent);
+					
 				//add cell to targets if no moves remain, otherwise go to that cell and check its adjacent cells
 				if(pathLength == 1)
 					targets.add(adjacent);

@@ -25,8 +25,10 @@ public class HumanPlayer extends Player {
 		this.row = newCell.getRow();
 		this.column = newCell.getColumn();
 		
-		if(newCell.isRoom())
+		if(newCell.isRoom()) {
+			lastRoom = newCell.getRoomType().charAt(0);
 			GUIFrame.doPlayerSuggestion(Board.getInstance().getLegend().get(newCell.getRoomType().charAt(0)));
+		}
 		
 	}
 
