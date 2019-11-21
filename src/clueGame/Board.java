@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 
 import clueGame.BoardCell.DoorDirection;
 import clueGame.Card.CardType;
+import gui.GUIFrame;
 
 /**@author Tanner Lorenz
  * @author Austin Purdy
@@ -491,16 +492,27 @@ public class Board extends JPanel{
 	 * @return The card that disproves the suggestion, gotten from the first non-human player who can do so.*/
 	public static Card handleSuggestion(Solution suggestion, Player accuser) {
 		
+		Card result;
+		
 		//if accuser is not human player, and human player can disprove, check to see if any other player can disprove first
-		if(!(accuser instanceof HumanPlayer) && players.get(0).disproveSuggestion(suggestion) != null)
-			for(int x = 1; x < players.size(); x++)
-				if(!players.get(x).equals(accuser) && players.get(x).disproveSuggestion(suggestion) != null)
-					return players.get(x).disproveSuggestion(suggestion);
+		if(!(accuser instanceof HumanPlayer) && players.get(0).disproveSuggestion(suggestion) != null) {
+			for(int x = 1; x < players.size(); x++) {
+				if(!players.get(x).equals(accuser) && players.get(x).disproveSuggestion(suggestion) != null) {
+					result = players.get(x).disproveSuggestion(suggestion);
+					GUIFrame.gui.control.setGuessResult(result);
+					return result;
+				}
+			}
+		}
 		
 		//otherwise, check to see if each other player can disprove the suggestion
-		for(Player player : players) 
-			if(!player.equals(accuser) && player.disproveSuggestion(suggestion) != null)
-				return player.disproveSuggestion(suggestion);
+		for(Player player : players) {
+			if(!player.equals(accuser) && player.disproveSuggestion(suggestion) != null) {
+				result = player.disproveSuggestion(suggestion);
+				GUIFrame.gui.control.setGuessResult(result);
+				return result;
+			}
+		}
 		
 		return null; //return null if no player could disprove
 		

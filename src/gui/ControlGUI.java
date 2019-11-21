@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -95,7 +96,7 @@ public class ControlGUI extends JPanel {
 		//setup labels and panel
 		
 		JPanel infoPanel = new JPanel();
-		infoPanel.setLayout(new GridLayout(1, 3));
+		infoPanel.setLayout(new FlowLayout());
 		JLabel dieLabel = new JLabel("Roll:");
 		JLabel guessLabel = new JLabel("Guess:");
 		JLabel resultLabel = new JLabel("Response:");
@@ -106,6 +107,7 @@ public class ControlGUI extends JPanel {
 		currentRoll.setEditable(false);
 		currentGuess = new JTextField();
 		currentGuess.setEditable(false);
+		currentGuess.setText("Player's guesses will go here.");
 		currentGuessResult = new JTextField();
 		currentGuessResult.setEditable(false);
 		

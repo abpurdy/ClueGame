@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 
 import clueGame.Card.CardType;
+import gui.GUIFrame;
 
 /**@author Tanner Lorenz
  * @author Austin Purdy
@@ -124,6 +125,7 @@ public class ComputerPlayer extends Player {
 			person = people.get(random.nextInt(people.size())).getName();
 		}
 		
+		GUIFrame.gui.control.setCurrentGuess(person, room, weapon);
 		return new Solution(person, room ,weapon);
 	}
 
