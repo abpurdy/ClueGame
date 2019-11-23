@@ -11,8 +11,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import clueGame.AccusationDialog;
 import clueGame.Board;
 import clueGame.Card;
+import clueGame.Player;
 
 /**@author Tanner Lorenz
  * @author Austin Purdy
@@ -171,8 +173,21 @@ public class ControlGUI extends JPanel {
 	private class AccusationListener implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e) {
-			if(!Board.getInstance().getCurrentPlayer().isHuman())
+			Board board = Board.getInstance();
+			Player currentPlayer = Board.getInstance().getCurrentPlayer();
+			if(!currentPlayer.isHuman())
 				JOptionPane.showMessageDialog(GUIFrame.gui, "You can't make an accusation when it's not your turn.");
+			else if(board.getTargets().isEmpty()) {
+				JOptionPane.showMessageDialog(GUIFrame.gui, "You can't make an accusation after you have moved.");
+			}
+			else if(!currentPlayer.getCurrentCell().isRoom()) {
+				JOptionPane.showMessageDialog(GUIFrame.gui, "You can't make an accusation outside of a room.");
+			}
+			else {
+				AccusationDialog accusationDialog = new AccusationDialog();
+				accusationDialog.setRoom(board.getLegend().get(currentPlayer.getCurrentCell().getRoomType().charAt(0)));
+				accusationDialog.setVisible(true);
+			}
 		}
 		
 	}

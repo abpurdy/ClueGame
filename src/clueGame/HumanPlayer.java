@@ -2,6 +2,8 @@ package clueGame;
 
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import gui.GUIFrame;
 
 /**@author Tanner Lorenz
@@ -28,6 +30,24 @@ public class HumanPlayer extends Player {
 		if(newCell.isRoom()) {
 			lastRoom = newCell.getRoomType().charAt(0);
 			GUIFrame.doPlayerSuggestion(Board.getInstance().getLegend().get(newCell.getRoomType().charAt(0)));
+		}
+		
+	}
+	
+	public static void handleAccusation(Solution accusation) {
+		if(accusation.equals(Board.getInstance().getSolution())) {
+			JOptionPane.showMessageDialog(Board.getInstance(), "You" + " made an accusation of " 
+					+ accusation.person + " with the " +
+					accusation.weapon + " in the " +
+					accusation.room + ".\n" +
+					"this is correct and " + "you" + " have won!");
+		}
+		else {
+			JOptionPane.showMessageDialog(Board.getInstance(), "You" + " made an accusation of " 
+					+ accusation.person + " with the " +
+					accusation.weapon + " in the " +
+					accusation.room + ".\n" +
+					"this is incorrect so unfortuanately you have lost.");
 		}
 		
 	}

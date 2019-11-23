@@ -111,6 +111,10 @@ public class Player {
 	public boolean isHuman() {
 		return human;
 	}
+	
+	public BoardCell getCurrentCell() {
+		return Board.getInstance().getCellAt(row, column);
+	}
 
 
 	/**Disprove the current suggestion.
