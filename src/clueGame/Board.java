@@ -552,11 +552,7 @@ public class Board extends JPanel{
 					if (suggestion != null) {
 						seen.add(suggestion);
 					}
-					else {
-						
-					}
 				}
-				
 				
 			}
 			repaint();

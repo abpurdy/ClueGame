@@ -15,9 +15,6 @@ import gui.GUIFrame;
 public class ComputerPlayer extends Player {
 	/**previous cell**/
 	private BoardCell previousCell;
-	/**Holds the value of the suggestion if no one can disprove the player's suggestion
-	 * so theoretically this suggestion is correct**/
-	private Solution luckyGuess;
 	
 	//constructors
 
@@ -28,11 +25,8 @@ public class ComputerPlayer extends Player {
 	 * @param color This player's color as a String, eg. "white"*/
 	public ComputerPlayer(int row, int column, String name, String color) {
 		super(false, row, column, name, color);
-		luckyGuess = null;
 	}
 
-
-	//class methods
 
 	/**Pick a location on the board to move to from the list of available targets.
 	 * @param targets The target list.*/
