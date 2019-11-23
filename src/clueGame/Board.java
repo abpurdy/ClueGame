@@ -434,10 +434,6 @@ public class Board extends JPanel{
 				
 				visited.add(adjacent); //add cell to visited list
 				
-				//do not add cell if it is room that was previously visited
-				if(adjacent.isRoom() && adjacent.getRoomType().charAt(0) == getCurrentPlayer().getLastRoom())
-					return;
-				
 				//add cell if it is a doorway
 				if(adjacent.isDoorway()) 
 						targets.add(adjacent);
@@ -552,7 +548,10 @@ public class Board extends JPanel{
 				if(getCellAt(compPlayer.row, compPlayer.column).isRoom()) {
 					Solution suggest = compPlayer.createSuggestion(this);
 					ArrayList<Card> seen = compPlayer.getSeenCards();
-					seen.add(handleSuggestion(suggest, getCurrentPlayer()));
+					Card suggestion = handleSuggestion(suggest, getCurrentPlayer());
+					if (suggestion != null) {
+						seen.add(suggestion);
+					}
 				}
 				
 				
