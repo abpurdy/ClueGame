@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import clueGame.AccusationDialog;
 import clueGame.Board;
 import clueGame.Card;
 import clueGame.Player;
